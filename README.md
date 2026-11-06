@@ -1,5 +1,13 @@
 # Little Town — source starter
 
+## Current development checkpoint
+
+The original three path bugs are fixed. A first implementation of moving traffic, six distinct slower pedestrians per map, and an “Ask for directions · Space” dialogue is available. Directions cover all 34 destinations, existing directed bus services, and train journeys between maps. These additions still need the refinements listed in [the numbered plan](docs/IMPLEMENTATION_PLAN.md); they are not a finished release.
+
+Run `npm run check` and `npm test` (now includes focused world/path/routing regressions). Optional browser QA: `python3 tests/browser.py`, using installed Python Playwright and `/usr/bin/chromium`; it starts an internal temporary server and saves screenshots under `/tmp`. Build output remains a standalone offline HTML file.
+
+`docs/BASELINE.json` records the **original import**, not this authorized development version. A hash difference is expected after gameplay changes.
+
 This is the editable source of the current Town & Suburbs game. The source was separated into files without changing the game. Its first build matches the already delivered HTML byte for byte. The three reported path bugs remain unchanged; see docs/KNOWN_BUGS.md.
 
 ## First-time upload
