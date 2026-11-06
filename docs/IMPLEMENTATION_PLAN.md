@@ -27,3 +27,8 @@ Last updated: 2026-11-06. User-authorized scope; update this file after each mil
 - New tests: `tests/world.cjs` and optional `tests/browser.py`. Browser QA uses a temporary internal HTTP server because this environment's Chromium policy blocks `file://` URLs; the game itself remains standalone/offline.
 - Generated source sheets are retained outside the checkout at `/workspace/scratch/little-town-sprite-sources`; individual game-ready assets are tracked in `assets/vehicles/` and `assets/pedestrians/`. Raw tool-generated images also remain under `/workspace/generated_images/`.
 - `dist/` is a disposable generated output. `docs/BASELINE.json` intentionally remains the fingerprint of the original import and must not be used as a pass/fail check for the changed game.
+
+
+## Combined artwork and gameplay preview — 2026-11-06
+
+The user requested all latest gameplay additions with the new integrated artwork. Merged the complete `little-town/living-world-checkpoint` (`7e38b66`) with the in-place map-detail artwork (`e9ffb6d`). The two updated map images are unchanged. All gameplay source, actor assets, builder configuration and path fixes are taken from the checkpoint. Browser QA now additionally asserts actual vehicle and pedestrian movement on both maps, then exercises the proximity prompt, Space/click dialogue entry and cross-map destination answers. The earlier handoff pause was superseded by this integration request; unrelated prototype refinements listed above remain pending.

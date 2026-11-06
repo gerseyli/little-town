@@ -1,6 +1,6 @@
 # Original-map detail pass
 
-This version starts from the original delivered game (`d3acb44`), not the modular-sprite experiment. Both maps remain single integrated images with their original dense composition. The game engine, map geometry, controls, walker, shelters, glossary, transport, traffic rules and existing vehicle locations are unchanged.
+Both maps remain single integrated images with their original dense composition. The artwork pass was based on the original maps (`d3acb44`). The current combined preview uses all gameplay from `little-town/living-world-checkpoint` (`7e38b66`), including moving traffic, walking pedestrians, ask-for-directions, route planning and the three path fixes. Its updated map images are byte-identical to the artwork preview (`e9ffb6d`). The living-world road overlay hides painted traffic cars beneath the animated vehicles; parked cars and scenery remain in the map images.
 
 ## Generation prompt
 
@@ -18,4 +18,4 @@ Suburban detail: refine original house facades/roofs, barn/silo, rural station, 
 
 `MAP_EDIT_REGIONS.json` lists allowed building-area rectangles in the native source image coordinates. Generated candidates are registered to the original canvas, then only those selected regions are applied with a small inward feather. Pixels outside their union must be identical to the decoded original map; the final WebP is encoded losslessly so streets, traffic, vegetation, water and railway cannot drift from re-encoding. This preserves original terrain rather than accepting the generator's changes elsewhere on the map. Canvas sizes remain 1500×1049 (Town) and 1536×1024 (Suburbs); this edit does not add native 4K resolution.
 
-This is a visual edit, so the original HTML baseline fingerprint is historical and will differ. Validate unchanged source files against `d3acb44`, run syntax/gameplay checks, and inspect both browser maps. The three deferred path bugs remain unchanged.
+This is a visual edit, so the original HTML baseline fingerprint is historical and will differ. Validate gameplay source files against `7e38b66`, the map images against `e9ffb6d`, run syntax/gameplay checks, and inspect both browser maps. The three path fixes are restored from the gameplay checkpoint. Remaining prototype refinements are listed in `docs/IMPLEMENTATION_PLAN.md`.
