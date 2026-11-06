@@ -1,0 +1,8 @@
+{
+  "playable_filename": "Little-Town.html",
+  "sha256": "2f185aa194f0e6bb688832df7cbfef1dec7ff57b27ff47d8dd52751895bffbb6",
+  "size_bytes": 4877614,
+  "library_file_id": "libfile_1d8f299d580c8191a98fb9003731ec56",
+  "library_version": 1,
+  "note": "Current delivered game, including pending reported path bugs. Packaging must reproduce this baseline before further changes."
+}

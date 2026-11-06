@@ -1,0 +1,14 @@
+{
+  "name": "little-town",
+  "version": "0.3.0",
+  "private": true,
+  "description": "Offline ESL town and suburbs exploration game",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "node --check src/game.js && node --check src/phrasebook.js",
+    "test": "npm run build && node tests/smoke.cjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
