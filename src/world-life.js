@@ -5,7 +5,7 @@ function worldLife(key=mapKey){
  if(worlds.has(key))return worlds.get(key);
  const m=MAPS[key],traffic=VEHICLE_KINDS.map((kind,i)=>({kind,x:90+Math.floor(i/2)*(m.w/3),direction:i%2?1:-1,speed:110+(i%3)*7,width:kind==='bus'?108:kind==='truck'?100:78}));
  const paths=key==='town'?['Station Road','Garden Street','North Street','Oak Street','Woodland Trail','Main Road · south pavement']:['Station Walk','Willow Drive','Maple Drive','Lakeside Walk','Theme Park Walk','Mall Walk'];
- const people=paths.map((name,i)=>{const p=m.paths.find(p=>p.name===name),a=p.p[0],b=p.p[1],fraction=.15+i*.11;return {id:i,name:PEOPLE_NAMES[i],path:p,index:1,direction:1,x:a[0]+(b[0]-a[0])*fraction,y:a[1]+(b[1]-a[1])*fraction,speed:115+i*4,phase:i}});
+ const people=paths.map((name,i)=>{const p=m.paths.find(p=>p.name===name),a=p.p[0],b=p.p[1],fraction=.15+i*.11;return {id:i,name:PEOPLE_NAMES[i],path:p,index:1,direction:1,x:a[0]+(b[0]-a[0])*fraction,y:a[1]+(b[1]-a[1])*fraction,speed:(115+i*4)/2,distance:0,moving:false,facing:travelFacing(b[0]-a[0],b[1]-a[1])}});
  // A saved game may resume in the carriageway. Start vehicles off-map in
  // that case rather than spawning an actor on top of the restored walker.
  if(key===mapKey&&inRoad(y,key))traffic.forEach((v,i)=>{v.x=v.direction===1?-120-Math.floor(i/2)*180:m.w+120+Math.floor(i/2)*180});
@@ -54,23 +54,24 @@ function advanceTraffic(dt,now=performance.now()){
  }
 }
 function advancePeople(dt){
- for(const p of worldLife().people){if(p===nearbyPerson||p===conversationPerson)continue;let remaining=p.speed*dt;
+ for(const p of worldLife().people){p.moving=false;if(p===nearbyPerson||p===conversationPerson)continue;let remaining=p.speed*dt;
   while(remaining>0){const target=p.path.p[p.index],dx=target[0]-p.x,dy=target[1]-p.y,d=Math.hypot(dx,dy),step=Math.min(d,remaining,2);
    if(d<.01){if(p.index===p.path.p.length-1)p.direction=-1;else if(p.index===0)p.direction=1;p.index+=p.direction;continue}
-   const nx=p.x+dx/d*step,ny=p.y+dy/d*step;if(!walkable(nx,ny,green(),p.y)||!roadEntryClear(nx,ny,p.y))break;p.x=nx;p.y=ny;p.phase+=step/15;remaining-=step;
+   const nx=p.x+dx/d*step,ny=p.y+dy/d*step;if(!walkable(nx,ny,green(),p.y)||!roadEntryClear(nx,ny,p.y))break;p.facing=travelFacing(dx,dy);p.x=nx;p.y=ny;p.distance+=step;p.moving=true;remaining-=step;
   }
  }
 }
 function mountLife(){
  const r=current().road,life=worldLife();
  $('traffic').innerHTML=life.traffic.map((v,i)=>`<g id="vehicle-${i}"><image href="${ASSETS['vehicle-'+v.kind]}" x="${-v.width/2}" y="-45" width="${v.width}" height="52" preserveAspectRatio="xMidYMax meet"/></g>`).join('');
- $('pedestrians').innerHTML=[...life.people].sort((a,b)=>a.y-b.y).map(p=>`<g id="person-${p.id}"><ellipse rx="14" ry="5" fill="#183a3544"/><image href="${ASSETS['person-'+p.id]}" x="-24" y="-77" width="48" height="80" preserveAspectRatio="xMidYMax meet"/></g>`).join('');
+ $('pedestrians').innerHTML=[...life.people].sort((a,b)=>a.y-b.y).map(p=>`<g id="person-${p.id}"><ellipse rx="14" ry="5" fill="#183a3544"/>${actorSprite('person-sprite-'+p.id,'walk-person-'+p.id,PEDESTRIAN_SIZE,PEDESTRIAN_SIZE)}</g>`).join('');
  renderLife();
 }
 function renderLife(){
+ if($('directions-dialog').open||$('book').open)worldLife().people.forEach(p=>p.moving=false);
  const r=current().road,life=worldLife();
  life.traffic.forEach((v,i)=>$('vehicle-'+i).setAttribute('transform',`translate(${v.x} ${v.direction===1?r.y2-15:r.y1+36}) scale(${v.direction} 1)`));
- life.people.forEach(p=>$('person-'+p.id).setAttribute('transform',`translate(${p.x} ${p.y+Math.sin(p.phase)*1.5})`));
+ life.people.forEach(p=>{$('person-'+p.id).setAttribute('transform',`translate(${p.x} ${p.y})`);renderActor('person-sprite-'+p.id,p,p.facing,64)});
 }
 function updatePersonPrompt(){
  const allowed=!busy&&!$('book').open&&!$('directions-dialog').open&&!context;

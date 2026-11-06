@@ -4,7 +4,9 @@
 
 The original three path bugs are fixed. A first implementation of moving traffic, six distinct slower pedestrians per map, and an “Ask for directions · Space” dialogue is available. Directions cover all 34 destinations, existing directed bus services, and train journeys between maps. These additions still need the refinements listed in [the numbered plan](docs/IMPLEMENTATION_PLAN.md); they are not a finished release.
 
-Run `npm run check` and `npm test` (now includes focused world/path/routing regressions). Optional browser QA: `python3 tests/browser.py`, using installed Python Playwright and `/usr/bin/chromium`; it starts an internal temporary server and saves screenshots under `/tmp`. Build output remains a standalone offline HTML file.
+Pedestrians now walk at half their original speed, and all six pedestrians plus the tourist use generated four-direction walking sprite sheets.
+
+Run `npm run check` and `npm test` (includes world/path/routing, traffic and animation regressions). Optional browser QA: `python3 tests/browser.py` and `python3 tests/actors-browser.py`, using installed Python Playwright and `/usr/bin/chromium`; it starts an internal temporary server and saves screenshots under `/tmp`. Build output remains a standalone offline HTML file.
 
 `docs/BASELINE.json` records the **original import**, not this authorized development version. A hash difference is expected after gameplay changes.
 

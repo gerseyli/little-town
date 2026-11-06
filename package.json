@@ -5,8 +5,8 @@
   "description": "Offline ESL town and suburbs exploration game",
   "scripts": {
     "build": "node scripts/build.mjs",
-    "check": "node --check src/game.js && node --check src/phrasebook.js && node --check src/navigation.js && node --check src/world-life.js",
-    "test": "npm run build && node tests/smoke.cjs && node tests/world.cjs && node tests/traffic.cjs"
+    "check": "node --check src/game.js && node --check src/phrasebook.js && node --check src/navigation.js && node --check src/world-life.js && node --check src/actors.js",
+    "test": "npm run build && node tests/smoke.cjs && node tests/world.cjs && node tests/traffic.cjs && node tests/actors.cjs"
   },
   "engines": {
     "node": ">=18"

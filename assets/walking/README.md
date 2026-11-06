@@ -1,0 +1,9 @@
+# Directional walking atlases
+
+Generated with the image-generation tool using each existing character image as its reference. Original identities and costumes are preserved. `tourist.webp` references `../walker.webp`; `person-0.webp` through `person-5.webp` reference `../pedestrians/0.webp` through `5.webp` (Maya, Arthur, Lin, Sam, Rosie, Nora).
+
+Each atlas has **4 columns × 4 rows** with a transparent background. Rows from top to bottom: **south/front, west/left, east/right, north/back**. Columns are four successive walking phases: contact, passing, opposite contact, opposite passing. The renderer clips a single cell, anchors its bottom at the character's map position, and advances frames by actual distance traveled. Passing frame 1 is the resting pose. No stretching of individual limbs or procedural pose deformation is used.
+
+Generated PNG originals are retained in `/workspace/generated_images`. The game-ready WebP files are lossless format conversions of those sheets, without crops or resizing. Maya, Lin and Rosie's first outputs faced east in both side rows; image-generation edits corrected their west rows before import.
+
+`foot-anchors.json` records measured per-frame transparent foot margins. `scripts/measure-walking.py` regenerates these measurements using Pillow as an optional authoring tool; it does not edit the images. The renderer offsets each viewport to keep feet grounded without a floating bob. `src/actors.js` owns atlas rendering. Pedestrians walk at 57.5–67.5 map units/second (half their original speeds), with a 64-unit stride cycle. The tourist retains the existing 180-unit movement speed and uses a 96-unit stride cycle. Pausing, talking and blocked movement show the resting frame in the last facing direction. All seven atlases are embedded in the standalone HTML; no image loading from the network is required.
