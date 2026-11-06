@@ -4,7 +4,9 @@
 
 The original three path bugs are fixed. A first implementation of moving traffic, six distinct slower pedestrians per map, and an “Ask for directions · Space” dialogue is available. Directions cover all 34 destinations, existing directed bus services, and train journeys between maps. These additions still need the refinements listed in [the numbered plan](docs/IMPLEMENTATION_PLAN.md); they are not a finished release.
 
-Run `npm run check` and `npm test` (now includes focused world/path/routing regressions). Optional browser QA: `python3 tests/browser.py`, using installed Python Playwright and `/usr/bin/chromium`; it starts an internal temporary server and saves screenshots under `/tmp`. Build output remains a standalone offline HTML file.
+Pedestrians now walk at half their original speed, and all six pedestrians plus the tourist use generated four-direction walking sprite sheets.
+
+Run `npm run check` and `npm test` (includes world/path/routing, traffic and animation regressions). Optional browser QA: `python3 tests/browser.py` and `python3 tests/actors-browser.py`, using installed Python Playwright and `/usr/bin/chromium`; it starts an internal temporary server and saves screenshots under `/tmp`. Build output remains a standalone offline HTML file.
 
 `docs/BASELINE.json` records the **original import**, not this authorized development version. A hash difference is expected after gameplay changes.
 
@@ -38,9 +40,11 @@ Open dist/Little-Town.html to play. It is a single offline file with all seven i
 | src/index.html | Page and overlay markup |
 | src/styles.css | Styling |
 | src/game.js | Game engine and interaction logic |
+| src/motion.js | Eased movement and camera simulation |
+| src/actors.js | Directional walking frames and grounded foot anchors |
 | src/phrasebook.js | Illustrated glossary |
 | src/maps.json | Map geometry, names, routes and stops |
-| assets/ | Seven WebP image assets |
+| assets/ | Integrated maps, interface artwork, vehicle sprites and directional walking atlases |
 | scripts/build.mjs | Standalone HTML builder |
 | tests/smoke.cjs | Baseline game checks |
 | docs/ | Project brief, pending bugs and baseline fingerprint |
@@ -53,3 +57,10 @@ The existing checks cover general reachability, some collision rules, grammar la
 ## First Codex task
 
 Read AGENTS.md, README.md, docs/PROJECT_BRIEF.md and docs/KNOWN_BUGS.md. Run npm run check and npm test. Compare dist/Little-Town.html with docs/BASELINE.json. Confirm the project is ready for future work. Do not fix the deferred bugs or change gameplay in this setup task.
+
+
+## Current movement and paths
+
+The live game uses the existing four-direction walking atlases from `assets/walking/`. The player cruises at 210 map units/second; pedestrians retain their agreed half-speed pace of 57.5–67.5. Acceleration, stopping and camera following are eased. Walk up to a pedestrian and press Space or click **Ask for directions**. The detailed integrated map artwork is unchanged.
+
+The original three path bugs are fixed, with further visible-path connections audited in `docs/WALKING_PATH_AUDIT.md`. `npm test` includes traffic, animation, route, terrain and frame-rate regressions. Optional Chromium QA: `python3 tests/browser.py`, `python3 tests/actors-browser.py`, `python3 tests/motion-browser.py` (Playwright required only for these development checks). The baseline fingerprint is historical and applies only to the initial import.

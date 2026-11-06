@@ -22,7 +22,7 @@ for(const key of ['town','suburbs']){
  mapKey=key;const life=worldLife();
  check(life.people.length===6,'six people '+key);
  for(const person of life.people){
-  check(person.speed<SPEED*.65&&person.speed>=SPEED*.4,'catchable person');
+  check(person.speed===(115+person.id*4)/2,'catchable person');
   for(let i=1;i<person.path.p.length;i++)check(clearSegment(key,{x:person.path.p[i-1][0],y:person.path.p[i-1][1]},{x:person.path.p[i][0],y:person.path.p[i][1]}),'pedestrian path valid '+person.path.name);
  }
  // Traffic stop, queue, clear, restart and finish-crossing safety on both maps.

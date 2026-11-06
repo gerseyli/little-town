@@ -6,4 +6,4 @@ Generated for this development checkpoint using the image generation tool, then 
 - `pedestrians/0.webp` through `5.webp`: Maya, Arthur, Lin, Sam, Rosie and Nora. Each has different hair, clothes and appearance.
 - Original generated sheets and cutouts are preserved outside the checkout in `/workspace/scratch/little-town-sprite-sources` and `/workspace/generated_images`. Export packaging extracts the six grid cells, crops transparent margins and resizes before WebP encoding; it does not redraw the subjects.
 
-These are the first artwork pass, pending user review. Pedestrians currently use a walking pose with a subtle movement bob rather than a multi-frame gait animation.
+These are the first artwork pass, pending user review. The original single-pose references are retained. The live game now uses generated four-direction walking atlases for all six pedestrians and the tourist; see `walking/README.md`.
