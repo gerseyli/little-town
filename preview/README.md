@@ -1,16 +1,14 @@
-# Living-world gameplay with updated map artwork
+# Animated walking and repaired paths
 
-Download `Little-Town-Living-World-Updated-Art.zip` using **Download raw file**, extract it and open `Little-Town.html` in your browser. Everything is embedded for offline play.
+Download `Little-Town-Animated-Walking.zip` using GitHub’s **Download raw file** button, extract it, and open `Little-Town.html` in your browser. No installation, server or Internet connection is needed to play.
 
-This combines the complete gameplay checkpoint `7e38b66` with the updated integrated map artwork from `e9ffb6d`:
+This preview retains the updated integrated map artwork and reuses all seven directional walking atlases already generated and committed on `little-town/traffic-safety` (`6bc1a83`).
 
-- Six moving vehicles on each map, traffic-light stops, queues and crossing clearance.
-- Six distinct walking pedestrians on each map. Walk close to one and click **Ask for directions**, or press **Space**.
-- Choose any Town or Suburbs destination for walking, bus and train route advice.
-- The checkpoint's three path fixes, original bus services, railway travel and phrase book.
+- Four-direction walk cycles for the player and all six pedestrian identities; grounded feet and a resting pose when blocked, stopped or talking.
+- Brisk player pace (210 map units/s), agreed half-speed pedestrians (57.5–67.5), eased acceleration/braking and smooth camera following that respects manual panning.
+- Moving traffic, hardened queues and Coast Road yielding/clearance, original buses/trains and ask-for-directions.
+- Original three path fixes plus the missing field lane, inner lake promenade, riverbank alignment, full meadow path, driveways and entrance approaches. Water, buildings, railway and unsafe road entry remain blocked.
 
-The updated Town and Suburbs map images are unchanged. The gameplay source and actor assets exactly match the latest living-world checkpoint. The road overlay is retained to conceal the map's stationary painted road cars under the moving traffic.
+Validation passed: JavaScript syntax; smoke/world/traffic/actor/motion suites; 20,880 path-centre probes plus independently traced connectors and negative terrain probes; Chromium atlas, directions and real-keyboard movement tests. Maps and atlas binaries are unchanged from their source commits. The ZIP is verified against the built export byte for byte.
 
-Validation passed: syntax checks; original smoke suite; world/traffic/pedestrian/path/directions tests; browser assertions of actual movement on both maps and functioning directions dialogues. The ZIP matches the built HTML byte for byte.
-
-This is a preview of the existing living-world prototype. Its remaining traffic and directions refinements are documented in `docs/IMPLEMENTATION_PLAN.md`; this integration does not claim to resolve those.
+Further route-language/UI polish listed in `docs/IMPLEMENTATION_PLAN.md` remains outside this update.
