@@ -1,0 +1,342 @@
+[
+  {
+    "asset": "town-bakery",
+    "width": 595,
+    "height": 581,
+    "sourceSheet": "town-civic",
+    "sourcePixels": [
+      1254,
+      1254
+    ]
+  },
+  {
+    "asset": "town-library",
+    "width": 618,
+    "height": 587,
+    "sourceSheet": "town-civic",
+    "sourcePixels": [
+      1254,
+      1254
+    ]
+  },
+  {
+    "asset": "town-school",
+    "width": 612,
+    "height": 604,
+    "sourceSheet": "town-civic",
+    "sourcePixels": [
+      1254,
+      1254
+    ]
+  },
+  {
+    "asset": "town-hospital",
+    "width": 621,
+    "height": 572,
+    "sourceSheet": "town-civic",
+    "sourcePixels": [
+      1254,
+      1254
+    ]
+  },
+  {
+    "asset": "town-bank",
+    "width": 572,
+    "height": 585,
+    "sourceSheet": "town-culture",
+    "sourcePixels": [
+      1254,
+      1254
+    ]
+  },
+  {
+    "asset": "town-cafe",
+    "width": 616,
+    "height": 587,
+    "sourceSheet": "town-culture",
+    "sourcePixels": [
+      1254,
+      1254
+    ]
+  },
+  {
+    "asset": "town-museum",
+    "width": 608,
+    "height": 619,
+    "sourceSheet": "town-culture",
+    "sourcePixels": [
+      1254,
+      1254
+    ]
+  },
+  {
+    "asset": "town-police",
+    "width": 608,
+    "height": 590,
+    "sourceSheet": "town-culture",
+    "sourcePixels": [
+      1254,
+      1254
+    ]
+  },
+  {
+    "asset": "town-post",
+    "width": 575,
+    "height": 598,
+    "sourceSheet": "town-shops",
+    "sourcePixels": [
+      1254,
+      1254
+    ]
+  },
+  {
+    "asset": "town-pharmacy",
+    "width": 571,
+    "height": 571,
+    "sourceSheet": "town-shops",
+    "sourcePixels": [
+      1254,
+      1254
+    ]
+  },
+  {
+    "asset": "town-supermarket",
+    "width": 621,
+    "height": 562,
+    "sourceSheet": "town-shops",
+    "sourcePixels": [
+      1254,
+      1254
+    ]
+  },
+  {
+    "asset": "town-station",
+    "width": 627,
+    "height": 539,
+    "sourceSheet": "town-shops",
+    "sourcePixels": [
+      1254,
+      1254
+    ]
+  },
+  {
+    "asset": "town-hotel",
+    "width": 582,
+    "height": 611,
+    "sourceSheet": "town-leisure",
+    "sourcePixels": [
+      1254,
+      1254
+    ]
+  },
+  {
+    "asset": "town-cinema",
+    "width": 586,
+    "height": 599,
+    "sourceSheet": "town-leisure",
+    "sourcePixels": [
+      1254,
+      1254
+    ]
+  },
+  {
+    "asset": "town-park",
+    "width": 608,
+    "height": 582,
+    "sourceSheet": "town-leisure",
+    "sourcePixels": [
+      1254,
+      1254
+    ]
+  },
+  {
+    "asset": "town-square",
+    "width": 622,
+    "height": 526,
+    "sourceSheet": "town-leisure",
+    "sourcePixels": [
+      1254,
+      1254
+    ]
+  },
+  {
+    "asset": "town-forest",
+    "width": 615,
+    "height": 581,
+    "sourceSheet": "town-nature-homes",
+    "sourcePixels": [
+      1254,
+      1254
+    ]
+  },
+  {
+    "asset": "town-field",
+    "width": 603,
+    "height": 398,
+    "sourceSheet": "town-nature-homes",
+    "sourcePixels": [
+      1254,
+      1254
+    ]
+  },
+  {
+    "asset": "suburbs-bakers",
+    "width": 594,
+    "height": 548,
+    "sourceSheet": "town-nature-homes",
+    "sourcePixels": [
+      1254,
+      1254
+    ]
+  },
+  {
+    "asset": "suburbs-johnsons",
+    "width": 596,
+    "height": 574,
+    "sourceSheet": "town-nature-homes",
+    "sourcePixels": [
+      1254,
+      1254
+    ]
+  },
+  {
+    "asset": "suburbs-millers",
+    "width": 593,
+    "height": 546,
+    "sourceSheet": "suburbs-homes-farm",
+    "sourcePixels": [
+      1254,
+      1254
+    ]
+  },
+  {
+    "asset": "suburbs-wilsons",
+    "width": 615,
+    "height": 524,
+    "sourceSheet": "suburbs-homes-farm",
+    "sourcePixels": [
+      1254,
+      1254
+    ]
+  },
+  {
+    "asset": "suburbs-farm",
+    "width": 597,
+    "height": 583,
+    "sourceSheet": "suburbs-homes-farm",
+    "sourcePixels": [
+      1254,
+      1254
+    ]
+  },
+  {
+    "asset": "suburbs-station",
+    "width": 621,
+    "height": 544,
+    "sourceSheet": "suburbs-homes-farm",
+    "sourcePixels": [
+      1254,
+      1254
+    ]
+  },
+  {
+    "asset": "suburbs-forest",
+    "width": 609,
+    "height": 597,
+    "sourceSheet": "suburbs-landscape",
+    "sourcePixels": [
+      1254,
+      1254
+    ]
+  },
+  {
+    "asset": "suburbs-field",
+    "width": 608,
+    "height": 523,
+    "sourceSheet": "suburbs-landscape",
+    "sourcePixels": [
+      1254,
+      1254
+    ]
+  },
+  {
+    "asset": "suburbs-lake",
+    "width": 609,
+    "height": 576,
+    "sourceSheet": "suburbs-landscape",
+    "sourcePixels": [
+      1254,
+      1254
+    ]
+  },
+  {
+    "asset": "suburbs-hill",
+    "width": 616,
+    "height": 532,
+    "sourceSheet": "suburbs-landscape",
+    "sourcePixels": [
+      1254,
+      1254
+    ]
+  },
+  {
+    "asset": "suburbs-mountain",
+    "width": 598,
+    "height": 543,
+    "sourceSheet": "suburbs-destinations",
+    "sourcePixels": [
+      1254,
+      1254
+    ]
+  },
+  {
+    "asset": "suburbs-mall",
+    "width": 650,
+    "height": 224,
+    "sourceSheet": "suburbs-destinations",
+    "sourcePixels": [
+      1254,
+      1254
+    ]
+  },
+  {
+    "asset": "suburbs-parking",
+    "width": 600,
+    "height": 197,
+    "sourceSheet": "suburbs-destinations",
+    "sourcePixels": [
+      1254,
+      1254
+    ]
+  },
+  {
+    "asset": "suburbs-themepark",
+    "width": 650,
+    "height": 263,
+    "sourceSheet": "suburbs-destinations",
+    "sourcePixels": [
+      1254,
+      1254
+    ]
+  },
+  {
+    "asset": "suburbs-bay",
+    "width": 602,
+    "height": 607,
+    "sourceSheet": "suburbs-coast",
+    "sourcePixels": [
+      1254,
+      1254
+    ]
+  },
+  {
+    "asset": "suburbs-harbor",
+    "width": 600,
+    "height": 608,
+    "sourceSheet": "suburbs-coast",
+    "sourcePixels": [
+      1254,
+      1254
+    ]
+  }
+]

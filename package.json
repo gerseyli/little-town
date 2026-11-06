@@ -6,7 +6,7 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "check": "node --check src/game.js && node --check src/phrasebook.js",
-    "test": "npm run build && node tests/smoke.cjs"
+    "test": "npm run build && node tests/smoke.cjs && node tests/art.cjs"
   },
   "engines": {
     "node": ">=18"

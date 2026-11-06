@@ -21,7 +21,7 @@ npm test
 npm run build
 ```
 
-Open dist/Little-Town.html to play. It is a single offline file with all seven images embedded. dist/index.html is the same game for supported preview tools.
+Open dist/Little-Town.html to play. It is a single offline file with all artwork embedded, including the separate place sprites. dist/index.html is the same game for supported preview tools.
 
 ## Source layout
 
@@ -32,7 +32,11 @@ Open dist/Little-Town.html to play. It is a single offline file with all seven i
 | src/game.js | Game engine and interaction logic |
 | src/phrasebook.js | Illustrated glossary |
 | src/maps.json | Map geometry, names, routes and stops |
-| assets/ | Seven WebP image assets |
+| assets/places/ | Independent transparent WebP place sprites |
+| assets/backgrounds/ | Terrain plates without baked-in landmarks |
+| src/art.json | Place artwork paths and world-space placement rectangles |
+| docs/art/ART_DIRECTION.md | Reusable generation prompts and art rules |
+| assets/ | Original map references and interface artwork |
 | scripts/build.mjs | Standalone HTML builder |
 | tests/smoke.cjs | Baseline game checks |
 | docs/ | Project brief, pending bugs and baseline fingerprint |
@@ -45,3 +49,13 @@ The existing checks cover general reachability, some collision rules, grammar la
 ## First Codex task
 
 Read AGENTS.md, README.md, docs/PROJECT_BRIEF.md and docs/KNOWN_BUGS.md. Run npm run check and npm test. Compare dist/Little-Town.html with docs/BASELINE.json. Confirm the project is ready for future work. Do not fix the deferred bugs or change gameplay in this setup task.
+
+## Replaceable map artwork
+
+Each of the 34 named places is rendered independently above a terrain background.
+Change the corresponding WebP in `assets/places/` to replace a place without changing
+its identity, movement, labels, routes or interactions. `src/art.json` controls only
+artwork placement; `src/maps.json` remains the navigation source of truth.
+Run `npm test` and `node tests/art.cjs` after building. The original import fingerprint
+in `docs/BASELINE.json` is a historical reference; visual changes intentionally
+produce a different export. Generation prompts are saved in `docs/art/ART_DIRECTION.md`.

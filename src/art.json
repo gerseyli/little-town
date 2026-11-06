@@ -1,0 +1,401 @@
+{
+  "version": 1,
+  "style": "Sunlit storybook realism",
+  "maps": {
+    "town": {
+      "background": "assets/backgrounds/town.webp",
+      "places": [
+        {
+          "id": "bakery",
+          "asset": "town-bakery",
+          "file": "assets/places/town-bakery.webp",
+          "rect": [
+            145,
+            120,
+            300,
+            220
+          ]
+        },
+        {
+          "id": "library",
+          "asset": "town-library",
+          "file": "assets/places/town-library.webp",
+          "rect": [
+            505,
+            125,
+            280,
+            220
+          ]
+        },
+        {
+          "id": "school",
+          "asset": "town-school",
+          "file": "assets/places/town-school.webp",
+          "rect": [
+            855,
+            10,
+            250,
+            260
+          ]
+        },
+        {
+          "id": "hospital",
+          "asset": "town-hospital",
+          "file": "assets/places/town-hospital.webp",
+          "rect": [
+            1155,
+            120,
+            155,
+            230
+          ]
+        },
+        {
+          "id": "bank",
+          "asset": "town-bank",
+          "file": "assets/places/town-bank.webp",
+          "rect": [
+            150,
+            390,
+            290,
+            195
+          ]
+        },
+        {
+          "id": "cafe",
+          "asset": "town-cafe",
+          "file": "assets/places/town-cafe.webp",
+          "rect": [
+            510,
+            390,
+            160,
+            195
+          ]
+        },
+        {
+          "id": "museum",
+          "asset": "town-museum",
+          "file": "assets/places/town-museum.webp",
+          "rect": [
+            1155,
+            390,
+            155,
+            205
+          ]
+        },
+        {
+          "id": "police",
+          "asset": "town-police",
+          "file": "assets/places/town-police.webp",
+          "rect": [
+            165,
+            835,
+            290,
+            160
+          ]
+        },
+        {
+          "id": "post",
+          "asset": "town-post",
+          "file": "assets/places/town-post.webp",
+          "rect": [
+            500,
+            835,
+            180,
+            160
+          ]
+        },
+        {
+          "id": "pharmacy",
+          "asset": "town-pharmacy",
+          "file": "assets/places/town-pharmacy.webp",
+          "rect": [
+            750,
+            835,
+            310,
+            160
+          ]
+        },
+        {
+          "id": "supermarket",
+          "asset": "town-supermarket",
+          "file": "assets/places/town-supermarket.webp",
+          "rect": [
+            1155,
+            835,
+            165,
+            160
+          ]
+        },
+        {
+          "id": "station",
+          "asset": "town-station",
+          "file": "assets/places/town-station.webp",
+          "rect": [
+            485,
+            1165,
+            195,
+            125
+          ]
+        },
+        {
+          "id": "hotel",
+          "asset": "town-hotel",
+          "file": "assets/places/town-hotel.webp",
+          "rect": [
+            750,
+            1040,
+            310,
+            240
+          ]
+        },
+        {
+          "id": "cinema",
+          "asset": "town-cinema",
+          "file": "assets/places/town-cinema.webp",
+          "rect": [
+            1155,
+            1140,
+            165,
+            145
+          ]
+        },
+        {
+          "id": "park",
+          "asset": "town-park",
+          "file": "assets/places/town-park.webp",
+          "rect": [
+            335,
+            1020,
+            330,
+            110
+          ]
+        },
+        {
+          "id": "square",
+          "asset": "town-square",
+          "file": "assets/places/town-square.webp",
+          "rect": [
+            755,
+            365,
+            170,
+            130
+          ]
+        },
+        {
+          "id": "forest",
+          "asset": "town-forest",
+          "file": "assets/places/town-forest.webp",
+          "rect": [
+            1735,
+            100,
+            255,
+            570
+          ],
+          "fit": "xMidYMid slice"
+        },
+        {
+          "id": "field",
+          "asset": "town-field",
+          "file": "assets/places/town-field.webp",
+          "rect": [
+            1735,
+            1150,
+            255,
+            170
+          ],
+          "fit": "none"
+        }
+      ]
+    },
+    "suburbs": {
+      "background": "assets/backgrounds/suburbs.webp",
+      "places": [
+        {
+          "id": "bakers",
+          "asset": "suburbs-bakers",
+          "file": "assets/places/suburbs-bakers.webp",
+          "rect": [
+            132.8125,
+            289.0625,
+            328.125,
+            210.9375
+          ]
+        },
+        {
+          "id": "johnsons",
+          "asset": "suburbs-johnsons",
+          "file": "assets/places/suburbs-johnsons.webp",
+          "rect": [
+            515.625,
+            281.25,
+            351.5625,
+            226.5625
+          ]
+        },
+        {
+          "id": "millers",
+          "asset": "suburbs-millers",
+          "file": "assets/places/suburbs-millers.webp",
+          "rect": [
+            125,
+            546.875,
+            343.75,
+            226.5625
+          ]
+        },
+        {
+          "id": "wilsons",
+          "asset": "suburbs-wilsons",
+          "file": "assets/places/suburbs-wilsons.webp",
+          "rect": [
+            515.625,
+            546.875,
+            351.5625,
+            226.5625
+          ]
+        },
+        {
+          "id": "mall",
+          "asset": "suburbs-mall",
+          "file": "assets/places/suburbs-mall.webp",
+          "rect": [
+            468.75,
+            960.9375,
+            1054.6875,
+            234.375
+          ]
+        },
+        {
+          "id": "parking",
+          "asset": "suburbs-parking",
+          "file": "assets/places/suburbs-parking.webp",
+          "rect": [
+            468.75,
+            1234.375,
+            1054.6875,
+            218.75
+          ],
+          "fit": "none"
+        },
+        {
+          "id": "station",
+          "asset": "suburbs-station",
+          "file": "assets/places/suburbs-station.webp",
+          "rect": [
+            31.25,
+            1296.875,
+            414.0625,
+            187.5
+          ]
+        },
+        {
+          "id": "farm",
+          "asset": "suburbs-farm",
+          "file": "assets/places/suburbs-farm.webp",
+          "rect": [
+            54.6875,
+            15.625,
+            640.625,
+            218.75
+          ]
+        },
+        {
+          "id": "forest",
+          "asset": "suburbs-forest",
+          "file": "assets/places/suburbs-forest.webp",
+          "rect": [
+            945.3125,
+            140.625,
+            382.8125,
+            296.875
+          ],
+          "fit": "xMidYMid slice"
+        },
+        {
+          "id": "field",
+          "asset": "suburbs-field",
+          "file": "assets/places/suburbs-field.webp",
+          "rect": [
+            1375,
+            500,
+            328.125,
+            273.4375
+          ],
+          "fit": "none"
+        },
+        {
+          "id": "lake",
+          "asset": "suburbs-lake",
+          "file": "assets/places/suburbs-lake.webp",
+          "rect": [
+            1734.375,
+            484.375,
+            515.625,
+            289.0625
+          ],
+          "fit": "none"
+        },
+        {
+          "id": "hill",
+          "asset": "suburbs-hill",
+          "file": "assets/places/suburbs-hill.webp",
+          "rect": [
+            1406.25,
+            117.1875,
+            343.75,
+            312.5
+          ]
+        },
+        {
+          "id": "mountain",
+          "asset": "suburbs-mountain",
+          "file": "assets/places/suburbs-mountain.webp",
+          "rect": [
+            1812.5,
+            23.4375,
+            546.875,
+            375
+          ]
+        },
+        {
+          "id": "themepark",
+          "asset": "suburbs-themepark",
+          "file": "assets/places/suburbs-themepark.webp",
+          "rect": [
+            1585.9375,
+            968.75,
+            726.5625,
+            226.5625
+          ]
+        },
+        {
+          "id": "bay",
+          "asset": "suburbs-bay",
+          "file": "assets/places/suburbs-bay.webp",
+          "rect": [
+            1734.375,
+            1289.0625,
+            328.125,
+            187.5
+          ],
+          "fit": "none"
+        },
+        {
+          "id": "harbor",
+          "asset": "suburbs-harbor",
+          "file": "assets/places/suburbs-harbor.webp",
+          "rect": [
+            2046.875,
+            1250,
+            328.125,
+            234.375
+          ]
+        }
+      ]
+    }
+  },
+  "shared": {
+    "parkedCar": "assets/places/parked-car.webp",
+    "pathTexture": "assets/pathTexture.webp"
+  }
+}
