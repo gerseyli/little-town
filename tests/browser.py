@@ -30,6 +30,29 @@ with sync_playwright() as p:
  page.locator('#ask-directions').click()
  page.locator('[data-destination-map="town"][data-destination="pharmacy"]').click()
  assert 'train' in page.locator('#directions-answer').inner_text().lower()
+ # Exercise the live movement gate in Chromium, including a car already on the gap.
+ result=page.evaluate("""() => {
+  if($('directions-dialog').open)closeDirections();
+  mapKey='suburbs';signalEpoch=performance.now();
+  const life=worldLife(),r=current().road,cx=(r.gap[0]+r.gap[1])/2;
+  x=cx;y=r.y1-1;
+  life.traffic=[{kind:'bus',x:cx,direction:1,speed:110,width:108}];
+  const before=y;move(0,1,8/SPEED);
+  if(y!==before)throw Error('Walker entered occupied Coast Road');
+  for(let i=0;i<50;i++)advanceTraffic(.04,signalEpoch+1000);
+  move(0,1,8/SPEED);
+  if(!inRoad(y))throw Error('Walker cannot enter cleared Coast Road');
+  // Leave a visible queue at a zebra crossing for artwork inspection.
+  x=40;y=40;const crossing=r.crossings[0];
+  life.traffic=[{kind:'bus',x:crossing-180,direction:1,speed:110,width:108},
+   {kind:'car',x:crossing-330,direction:1,speed:117,width:78},
+   {kind:'taxi',x:crossing+180,direction:-1,speed:110,width:78}];
+  for(let i=0;i<200;i++)advanceTraffic(.04,signalEpoch+7000);
+  renderMap();frameMap(false);
+  return life.traffic.map(v=>({kind:v.kind,x:v.x}));
+ }""")
+ print('traffic browser checks',result)
+ page.screenshot(path='/tmp/little-town-traffic.png')
  print('errors',errors)
  assert not errors
  browser.close()
