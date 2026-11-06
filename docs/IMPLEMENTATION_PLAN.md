@@ -45,14 +45,14 @@ Validation: syntax checks; smoke, world, traffic, actor and motion/path suites; 
 
 ## Active task — paved widths, labels and concise directions (2026-11-06)
 
-User request: preserve the approved artwork, animation, speeds and gameplay; fix Garden Street and the short theme-park/harbor approach; make the **whole visible paved width** walkable rather than only a top/bottom strip; name every path and centre its label on the paving; limit route instructions to **five items by default, six at most when necessary**, keeping them concise and useful.
+User request: preserve the approved artwork, animation, speeds and gameplay; fix Garden Street and the short theme-park/harbor approach; make the **whole visible paved width** walkable rather than only a top/bottom strip; name every path and centre its label on the paving; keep route instructions **as short as possible, never more than six items**, keeping them concise and useful.
 
 Working branch: `preview/path-widths-concise-directions-20261106`. Starting version: `45ff4e6` (animated walking preview). No other chat's pending work should be discarded.
 
 - [ ] Reproduce the two reported obstructions using actual map pixel coordinates and keyboard travel, not only the old navigation centre lines.
 - [ ] Trace paved centres/edges on both map images; repair geometry and usable widths at joins, bends, bridge approaches, entrance aprons and promenades. Keep water, buildings, parked cars, railway and unsafe road entry blocked.
 - [ ] Ensure every registered path has a stable name and a centred map label. Derive placement from actual path geometry; avoid the current incomplete, offset hand-maintained street-label lists. Preserve the place-label toggle and legibility.
-- [ ] Replace grid-step narration with a concise route summary. Prefer understandable routes, suppress grid-alignment zigzags, combine continuous street travel, retain necessary turns/crossings/bus/train instructions and arrival. Do not merely truncate a long route or hide it in huge bullets. Five items normally; hard maximum six.
+- [ ] Replace grid-step narration with a concise route summary. Prefer understandable routes, suppress grid-alignment zigzags, combine continuous street travel, retain necessary turns/crossings/bus/train instructions and arrival. Do not merely truncate a long route or hide it in huge bullets. Use as few items as needed; never pad to five. Hard maximum six.
 - [ ] Add independent full-width corridor/edge and keyboard regressions for Garden Street and the real harbor approach, plus both-map route and label checks. Manually inspect overlays/labels and follow representative directions. Run syntax, gameplay, traffic, animation and browser suites.
 - [ ] Update this section after each verified milestone; commit and push checkpoints to the branch above. Package an updated standalone ZIP under `preview/`, verify it against the build and push it for the user's established GitHub **Download raw file** workflow. Leave `main` unchanged.
 
