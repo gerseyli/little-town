@@ -1,0 +1,14 @@
+{
+  "town": {
+    "width": 1500,
+    "height": 1049,
+    "changed_pixels_in_building_regions": 399629,
+    "changed_pixels_outside_building_regions": 0
+  },
+  "suburbs": {
+    "width": 1536,
+    "height": 1024,
+    "changed_pixels_in_building_regions": 344093,
+    "changed_pixels_outside_building_regions": 0
+  }
+}
