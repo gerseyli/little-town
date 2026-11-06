@@ -21,11 +21,13 @@ const assetJSON='{'+Object.entries(assets).map(([k,v])=>JSON.stringify(k)+': '+J
 const maps=await read('src/maps.json');
 const phrases=await read('src/phrasebook.js');
 const styles=await read('src/styles.css');
+const motion=await read('src/motion.js');
 const navigation=await read('src/navigation.js'),worldLife=await read('src/world-life.js');
 const game=(await read('src/game.js'))
  .replace('/* ASSETS */',()=> 'const ASSETS='+assetJSON+';')
  .replace('/* MAP DATA */',()=> 'const MAPS='+maps+';')
  .replace('/* PHRASEBOOK */\n',()=>phrases)
+ .replace('/* MOTION */',()=>motion)
  .replace('/* NAVIGATION */',()=>navigation)
  .replace('/* WORLD LIFE */',()=>worldLife);
 const html=(await read('src/index.html'))

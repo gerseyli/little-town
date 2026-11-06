@@ -5,7 +5,7 @@ function worldLife(key=mapKey){
  if(worlds.has(key))return worlds.get(key);
  const m=MAPS[key],traffic=VEHICLE_KINDS.map((kind,i)=>({kind,x:90+Math.floor(i/2)*(m.w/3),direction:i%2?1:-1,speed:110+(i%3)*7,width:kind==='bus'?108:kind==='truck'?100:78}));
  const paths=key==='town'?['Station Road','Garden Street','North Street','Oak Street','Woodland Trail','Main Road · south pavement']:['Station Walk','Willow Drive','Maple Drive','Lakeside Walk','Theme Park Walk','Mall Walk'];
- const people=paths.map((name,i)=>{const p=m.paths.find(p=>p.name===name),a=p.p[0],b=p.p[1],fraction=.15+i*.11;return {id:i,name:PEOPLE_NAMES[i],path:p,index:1,direction:1,x:a[0]+(b[0]-a[0])*fraction,y:a[1]+(b[1]-a[1])*fraction,speed:115+i*4,phase:i}});
+ const people=paths.map((name,i)=>{const p=m.paths.find(p=>p.name===name),a=p.p[0],b=p.p[1],fraction=.15+i*.11;return {id:i,name:PEOPLE_NAMES[i],path:p,index:1,direction:1,x:a[0]+(b[0]-a[0])*fraction,y:a[1]+(b[1]-a[1])*fraction,speed:100+i*4,velocity:0,phase:i,moving:false,facing:'east'}});
  const life={traffic,people};worlds.set(key,life);return life;
 }
 function walkingPhase(now=performance.now()){return (now-signalEpoch)%14000>=6500}
@@ -22,20 +22,23 @@ function advanceTraffic(dt,now=performance.now()){
  const life=worldLife(),m=current(),centers=crossingCenters(),red=walkingPhase(now)||centers.some(cx=>crossingOccupied(cx));
  // Front vehicles advance first, so a queue can safely follow its leader.
  for(const dir of [-1,1])for(const v of life.traffic.filter(v=>v.direction===dir).sort((a,b)=>dir*(b.x-a.x))){
-  let distance=v.speed*dt;
+  let limitDistance=Infinity;
   for(const cx of centers){const ahead=(cx-v.x)*dir,limit=ahead-24-v.width/2-8;
-   if((red||crossingOccupied(cx))&&ahead>v.width/2+24)distance=Math.min(distance,Math.max(0,limit));
+   if((red||crossingOccupied(cx))&&ahead>v.width/2+24)limitDistance=Math.min(limitDistance,Math.max(0,limit));
   }
-  for(const other of life.traffic){const gap=(other.x-v.x)*dir-(v.width+other.width)/2-18;if(other!==v&&other.direction===dir&&(other.x-v.x)*dir>0)distance=Math.min(distance,Math.max(0,gap))}
+  for(const other of life.traffic){const gap=(other.x-v.x)*dir-(v.width+other.width)/2-18;if(other!==v&&other.direction===dir&&(other.x-v.x)*dir>0)limitDistance=Math.min(limitDistance,Math.max(0,gap))}
+  const desired=Math.min(v.speed,Math.sqrt(2*170*limitDistance));
+  v.velocity=approachSpeed(v.velocity||0,desired,(desired<(v.velocity||0)?300:115)*dt);
+  const distance=Math.min(v.velocity*dt,limitDistance);
   v.x+=dir*distance;
   if(v.x>m.w+v.width||v.x<-v.width){const entry=dir===1?-v.width:m.w+v.width;if(life.traffic.every(o=>o===v||o.direction!==dir||Math.abs(o.x-entry)>(o.width+v.width)/2+24))v.x=entry}
  }
 }
 function advancePeople(dt){
- for(const p of worldLife().people){if(p===nearbyPerson||p===conversationPerson)continue;let remaining=p.speed*dt;
+ for(const p of worldLife().people){p.moving=false;if(p===nearbyPerson||p===conversationPerson){p.velocity=0;continue}p.velocity=approachSpeed(p.velocity||0,p.speed,650*dt);let remaining=p.velocity*dt;
   while(remaining>0){const target=p.path.p[p.index],dx=target[0]-p.x,dy=target[1]-p.y,d=Math.hypot(dx,dy),step=Math.min(d,remaining,2);
    if(d<.01){if(p.index===p.path.p.length-1)p.direction=-1;else if(p.index===0)p.direction=1;p.index+=p.direction;continue}
-   const nx=p.x+dx/d*step,ny=p.y+dy/d*step;if(!walkable(nx,ny,green(),p.y))break;p.x=nx;p.y=ny;p.phase+=step/15;remaining-=step;
+   const nx=p.x+dx/d*step,ny=p.y+dy/d*step;if(!walkable(nx,ny,green(),p.y))break;p.facing=headingBetween({x:p.x,y:p.y},{x:nx,y:ny});p.x=nx;p.y=ny;p.phase+=step/15;p.moving=true;remaining-=step;
   }
  }
 }
