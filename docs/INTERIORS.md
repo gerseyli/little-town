@@ -2,9 +2,9 @@
 
 Walk near the pharmacy entrance on Garden Street (between the post office and supermarket). A directions-style **Enter the pharmacy · Space** prompt appears. Click it or press Space to enter. Only the pharmacy is enabled in this pilot; other venues retain their existing outdoor behaviour.
 
-The pharmacy uses the supplied room image and neutral chemist portrait unchanged. Her lower body is clipped at the rear edge of the front countertop, so she stands behind it. The accessible HTML speech bubble says **Hello, how can I help you today?** The chemist supports mouse, touch, Space and Enter. Her next interaction is intentionally left for the user's next request: clicks currently emit the extension event described below and keep the neutral greeting. No purchase, charge or expression change occurs.
+The pharmacy uses the supplied room image and neutral chemist portrait unchanged. Her lower body is clipped at the rear edge of the front countertop, so she stands behind it. The accessible HTML speech bubble says **Hello, how can I help you today?** The chemist supports mouse, touch, Space and Enter. Clicking her now opens the [pharmacy consultation and shop](PHARMACY_SHOP.md): symptom selection, recommendations, an editable basket and checkout using saved player money. Her portrait remains neutral.
 
-**Back outside** or Escape returns the player to the exact outdoor position and facing. Money is shown indoors and preserved. Held movement clears on entry and exit. Tab cycles through interior controls; outdoor controls and directions cannot be activated while indoors. Reloading the game resumes outside using the existing save.
+**Back outside** returns the player to the exact outdoor position and facing. Escape first closes the consultation back to the counter, then leaves from the room. Money is shown indoors and preserved. Held movement clears on entry and exit. Tab cycles through interior controls; outdoor controls and directions cannot be activated while indoors. Reloading the game resumes outside using the existing save.
 
 ## Implementation and future scenes
 
@@ -12,14 +12,14 @@ The pharmacy uses the supplied room image and neutral chemist portrait unchanged
 - Each entry identifies map/place, the actual named entrance approach, a proximity radius, background, character and greeting. Pharmacy proximity uses distance to `pharmacy-entrance`, plus 42 world units of tolerance, only on walkable paving. Facing is unrestricted; the player does not have to line up with one pixel.
 - Both prompt selection and activation revalidate the entrance. Entrance priority suppresses the nearby pedestrian prompt and rejects stale directions clicks. Existing bus and train logic is preserved.
 - The interior is a full-screen native modal dialog. The room keeps its original aspect ratio, with blurred room framing when the screen aspect ratio differs. The portrait is composed in CSS without editing the original image. A queued-close guard prevents an old visit's close event from ending a rapid new visit.
-- `playerMoney` remains the same account indoors; `renderMoney()` also updates the indoor readout. Current entry/click/exit actions do not charge money.
+- `playerMoney` remains the same account indoors; `renderMoney()` also updates the indoor readout. Checkout spends money atomically; entry, opening the consultation and exit do not charge money.
 
-The next pharmacy interaction can subscribe to:
+Chemist activation opens the current consultation and also emits the following event for future extensions:
 
 ```js
 document.addEventListener('little-town:chemist-interact', event => {
   // event.detail: {map: 'town', place: 'pharmacy'}
-  // Implement the user-specified next interaction here.
+  // Observe chemist activation; consultation is already opened.
 });
 ```
 

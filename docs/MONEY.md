@@ -15,6 +15,6 @@ Amounts passed to these methods are non-negative dollar numbers with at most two
 
 Successful nonzero transactions update the HUD and save immediately. The existing `little-town-worlds-v3` record now includes `moneyCents`; previous save keys remain readable. Missing, negative, fractional, nonnumeric or unsafe stored cents fall back to $100, while a saved zero remains zero. Map travel, walking, label settings and **Back to start** preserve the account. If storage is unavailable, the game still keeps its balance in memory for the current session.
 
-This introduction adds no fares, purchases or rewards. Existing transport behaviour is unchanged. Future events can use the account without managing UI or storage themselves.
+The pharmacy shop now calls this account for paid checkout; spending is saved immediately and shown both inside and outside. See `PHARMACY_SHOP.md`. Existing transport behaviour is unchanged. Future events can also use the account without managing UI or storage themselves.
 
 Validation: `node tests/money.cjs` (included in `npm test`) and `python3 tests/money-browser.py`. The latter covers save migration/reload, earnings/spending, zero, insufficient funds, blocked storage, train travel/reset and nonoverlapping HUD geometry at 1920, 701, 700, 375 and 320 pixels. Asset prompts are recorded in `assets/ui/README.md`.

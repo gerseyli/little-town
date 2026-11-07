@@ -2,11 +2,11 @@
 
 ## Enter the pharmacy
 
-Walk near the pharmacy entrance on Garden Street and click **Enter the pharmacy · Space** or press Space. Entry takes priority over nearby pedestrians. Inside, the supplied neutral chemist greets you with “Hello, how can I help you today?” She is clickable, ready for the next interaction to be defined. **Back outside** or Escape returns you to the same position, preserving money. Only pharmacy entry is enabled in this pilot. See [interior behaviour and extension notes](docs/INTERIORS.md).
+Walk near the pharmacy entrance on Garden Street and click **Enter the pharmacy · Space** or press Space. Entry takes priority over nearby pedestrians. Inside, click the supplied neutral chemist to open the pharmacy shop: select symptoms, toggle phrase names, ask for recommendations, add medicines to a basket and check out using your saved balance. See [the pharmacy shop pilot](docs/PHARMACY_SHOP.md). **Back outside** or Escape returns you to the same position, preserving money. Only pharmacy entry is enabled in this pilot. See [interior behaviour and extension notes](docs/INTERIORS.md).
 
 ## Player money
 
-The player now starts with **$100**, shown in a generated wallet HUD at the upper left. The balance saves with progress and stays intact during travel and Back to start. Shared earning/spending methods are ready for future events; no fares or rewards are added in this introduction. See [the money model and integration notes](docs/MONEY.md).
+The player now starts with **$100**, shown in a generated wallet HUD at the upper left. The balance saves with progress and stays intact during travel and Back to start. Pharmacy checkout now uses the shared spending method and saves the updated balance immediately. Fares and rewards retain their existing behaviour. See [the money model and integration notes](docs/MONEY.md).
 
 ## Current development checkpoint
 
@@ -48,6 +48,8 @@ Open dist/Little-Town.html to play. It is a single offline file with all image a
 | src/index.html | Page and overlay markup |
 | src/styles.css | Styling |
 | src/game.js | Game engine and interaction logic |
+| src/shop.js | Reusable basket and atomic paid checkout |
+| src/pharmacy.js / src/pharmacy-data.json | Pharmacy consultation, symptoms, recommendations and catalog |
 | src/interiors.js | Entrance proximity, interaction priority and pharmacy scene |
 | src/money.js | Saved player account and money HUD updates |
 | src/motion.js | Eased movement and camera simulation |

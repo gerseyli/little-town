@@ -3,14 +3,14 @@
 let pharmacySession=null;
 function pharmacyShopVisible(){return !!pharmacySession?.visible}
 function resetPharmacyShop(){
- pharmacySession=null;$('pharmacy-shop').classList.add('hidden');$('interior-dialog').classList.remove('shop-open');
+ pharmacySession=null;$('pharmacy-shop').classList.add('hidden');$('interior-dialog').classList.remove('shop-open');$('interior-dialog').setAttribute('aria-describedby','chemist-greeting');
 }
 function shopActionArt(){return '<img class="shop-action-art" src="'+ASSETS.pharmacyAction+'" alt="" aria-hidden="true">'}
 function openPharmacyShop(){
  if(!activeInterior||activeInterior.entry.place!=='pharmacy')return;
  if(!pharmacySession)pharmacySession={phase:'symptoms',selected:new Set(),names:true,order:createShopOrder(PHARMACY_DATA.products,playerMoney),receipt:null,error:''};
  pharmacySession.visible=true;clearKeys();
- $('pharmacy-shop').classList.remove('hidden');$('interior-dialog').classList.add('shop-open');
+ $('pharmacy-shop').classList.remove('hidden');$('interior-dialog').classList.add('shop-open');$('interior-dialog').setAttribute('aria-describedby','shop-heading');
  $('shop-chemist-art').src=ASSETS['chemist-neutral'];
  $('consultation-art').src=ASSETS.pharmacyConsultation;$('basket-art').src=ASSETS.pharmacyBasket;
  $('symptom-atlas-image').setAttribute('href',ASSETS.pharmacySymptoms);
@@ -19,7 +19,7 @@ function openPharmacyShop(){
 }
 function closePharmacyShop(){
  if(!pharmacySession)return;
- pharmacySession.visible=false;$('pharmacy-shop').classList.add('hidden');$('interior-dialog').classList.remove('shop-open');
+ pharmacySession.visible=false;$('pharmacy-shop').classList.add('hidden');$('interior-dialog').classList.remove('shop-open');$('interior-dialog').setAttribute('aria-describedby','chemist-greeting');
  clearKeys();$('chemist').focus();
 }
 function selectedPharmacySymptoms(){return PHARMACY_DATA.symptoms.filter(item=>pharmacySession.selected.has(item.id))}

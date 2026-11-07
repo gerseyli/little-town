@@ -1,19 +1,22 @@
-# Pharmacy entry preview
+# Pharmacy shop pilot
 
-Download **Little-Town-Pharmacy-Entry.zip** using GitHub's **Download raw file** button. Extract it, then open **Little-Town.html** in a browser. No server, installation or internet connection is needed.
+Download **Little-Town-Pharmacy-Shop.zip** using GitHub's **Download raw file** button. Extract it, then open **Little-Town.html** in a browser. The game is fully offline.
 
-## Try the pilot
+## Try it
 
-Walk near the pharmacy entrance on **Garden Street**, between the post office and supermarket. Click **Enter the pharmacy · Space** or press Space. The entrance prompt takes priority when a pedestrian is also nearby.
+1. Enter the pharmacy on **Garden Street**, between the post office and supermarket, then click the chemist.
+2. Choose one or more of the twelve symptom pictures. Selected pictures have a green frame; click again to unselect. **Names: on/off** toggles the English phrases.
+3. Click **What would you recommend?** Read the chemist's recommendations and choose priced medicine cards.
+4. Items appear in **Your basket**, with removal buttons and a live total. **Check out** spends player money and shows a receipt. Insufficient funds preserve your basket and balance.
 
-Inside, the supplied neutral chemist stands behind the counter and says **Hello, how can I help you today?** She is clickable and keyboard accessible. The next interaction will be defined by the user; the pilot does not make purchases or change expressions.
+**Back to counter** or Escape returns to the room; Escape from the room leaves. **Back outside** leaves directly. Completed spending saves with progress. The basket contains one of each chosen product; recommendations shared across symptoms are combined. The pilot uses generic symptom-relief products and fictional prices.
 
-Click **Back outside** or press Escape to leave. Outdoor position, facing and money are preserved. Only the pharmacy has entry enabled in this pilot. The approved exterior artwork, traffic, directions, walking animation, paving fixes and money counter are retained.
+![Pharmacy consultation and basket](Pharmacy-Shop.png)
 
 ## Verification
 
-Syntax/full Node tests and Chromium interior, money and existing gameplay suites pass. Tests cover entrance/pedestrian precedence, stale targets, repeat/held keys, focus, exit/Escape/native close, rapid re-entry, original asset hashes, neutral image/greeting/click hook and preserving money/position. Desktop/portrait/landscape screenshots were visually reviewed. The HTML inside this archive is byte-identical to the build.
+Syntax/full Node tests and Chromium pharmacy, interior, money and exterior gameplay suites pass. Checks cover selection/green frames, names toggle, recommendations/deduplication, editing/totals, insufficient funds, $100 → $85 payment/reload, repeated checkout, stale actions, focus, entry/exit and independent scrolling at desktop/tablet/portrait/landscape sizes. All supplied images, maps, paths, walking and traffic logic are preserved. The archived HTML is byte-identical to the build.
 
-[Recovery plan](../docs/IMPLEMENTATION_PLAN.md) · [Interior behaviour and extension event](../docs/INTERIORS.md) · [Original artwork manifest](../assets/interiors/source-manifest.json)
+[Recovery plan](../docs/IMPLEMENTATION_PLAN.md) · [Shop flow, catalog and implementation](../docs/PHARMACY_SHOP.md) · [Generated artwork prompts](../assets/ui/pharmacy/README.md)
 
-Branch: `preview/pharmacy-entry-20261107`. Earlier previews remain on their earlier branches. Main is unchanged.
+Branch: `preview/pharmacy-shop-20261107`. Main is unchanged; previous previews remain on their earlier branches.

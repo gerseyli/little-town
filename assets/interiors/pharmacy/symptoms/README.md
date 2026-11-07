@@ -10,6 +10,6 @@ The sheet is **1448×1086**, arranged as **4 columns × 3 rows** of **362×362**
 | 2 | Toothache | Fever | Cough | Chills |
 | 3 | Runny nose | Sore throat | Sunburn | Insect bite |
 
-These are descriptive working labels inferred from the pictures; the user has not yet specified the teaching vocabulary or interaction. No medicine choices, dialogue branches, prices or answer rules have been inferred from the upload.
+The atlas retains these descriptive source labels. Active teaching phrases, recommendations and prices now live in `src/pharmacy-data.json`: the nausea picture is labelled “I have food poisoning” and the chills picture “I have the flu” in the shop.
 
-The current pharmacy pilot is unchanged. This source sheet is not embedded in the playable export until its interaction is specified. The existing `little-town:chemist-interact` hook is ready for that next step.
+The supplied PNG is now embedded in the standalone pharmacy shop. Individual cells use a shared SVG definition, preserving the original bytes and resolution. See `docs/PHARMACY_SHOP.md` for the implemented interaction.

@@ -45,7 +45,8 @@ try:
    page.locator('[data-shop-action="back-counter"]').click()
   assert page.evaluate('window.chemistClicks')==3
   assert page.evaluate("$('chemist-art').src===ASSETS['chemist-neutral']&&playerMoney.balanceCents===10000")
-  # Arrow keys and repeated Space cannot start outdoor movement or open other interfaces.
+  # With the room itself focused, movement/repeated keys cannot start outdoor movement.
+  page.evaluate("$('interior-dialog').focus()")
   page.keyboard.down('ArrowDown');page.keyboard.down('Space');page.keyboard.down('Space')
   page.evaluate('for(let i=1;i<=10;i++)tick(2000+i*1000/60)')
   assert page.evaluate('({map:mapKey,x,y,facing,angle,money:playerMoney.balanceCents})')==outside
