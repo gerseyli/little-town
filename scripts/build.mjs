@@ -20,13 +20,18 @@ for(const name of ['tourist',...Array.from({length:6},(_,i)=>'person-'+i)]){
  const bytes=await readFile(path.join(root,'assets/walking',name+'.webp'));
  assets['walk-'+name]='data:image/webp;base64,'+bytes.toString('base64');
 }
+// Embed the supplied pharmacy pilot artwork; keep other expressions/lobby as source assets.
+for(const [key,file] of [['pharmacy-background','background'],['chemist-neutral','chemist-neutral']]){
+ const bytes=await readFile(path.join(root,'assets/interiors/pharmacy',file+'.png'));
+ assets[key]='data:image/png;base64,'+bytes.toString('base64');
+}
 // Embed every map, control and actor image for a standalone offline export.
 const assetJSON='{'+Object.entries(assets).map(([k,v])=>JSON.stringify(k)+': '+JSON.stringify(v)).join(', ')+'}';
 const maps=await read('src/maps.json');
 const phrases=await read('src/phrasebook.js');
 const styles=await read('src/styles.css');
 const walkingAnchors=await read('assets/walking/foot-anchors.json');
-const money=await read('src/money.js');
+const money=await read('src/money.js'),interiors=await read('src/interiors.js');
 const motion=await read('src/motion.js'),paths=await read('src/paths.js');
 const navigation=await read('src/navigation.js'),worldLife=await read('src/world-life.js'),actors=await read('src/actors.js');
 const game=(await read('src/game.js'))
@@ -34,6 +39,7 @@ const game=(await read('src/game.js'))
  .replace('/* MAP DATA */',()=> 'const MAPS='+maps+';')
  .replace('/* PHRASEBOOK */\n',()=>phrases)
  .replace('/* MONEY */',()=>money)
+ .replace('/* INTERIORS */',()=>interiors)
  .replace('/* MOTION */',()=>motion)
  .replace('/* PATHS */',()=>paths)
  .replace('/* NAVIGATION */',()=>navigation)

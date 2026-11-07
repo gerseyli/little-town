@@ -32,5 +32,6 @@ function createMoneyAccount(savedCents,onChange=()=>{}){
 function renderMoney(){
  const text=formatMoney(playerMoney.balanceCents);
  $('money-balance').textContent=text;
+ $('interior-money').textContent=text;
  $('money-panel').classList.toggle('money-long',text.length>13);
 }

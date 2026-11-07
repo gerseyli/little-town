@@ -1,0 +1,30 @@
+{
+  "source": "User-supplied Downloads.rar, 2026-11-07",
+  "images": [
+    {
+      "original": "Charming Small-Town Pharmacy Counter.png",
+      "file": "pharmacy/background.png",
+      "sha256": "d7f9837d7a3a0bf507d010f16b9402f9ef21a82b968e95e1e77aa9bb95fb2245"
+    },
+    {
+      "original": "Neutral female chemist transparent cutout.png",
+      "file": "pharmacy/chemist-neutral.png",
+      "sha256": "a122d1684b517d3a7c14ca50783aa89e9382272390c171090d0d953662c7bf44"
+    },
+    {
+      "original": "Slightly annoyed chemist portrait.png",
+      "file": "pharmacy/chemist-displeased.png",
+      "sha256": "f298a58995c3ff98bf58e3ff54d5eea59994b5bc94399d6c3b478ddbe9d54d3b"
+    },
+    {
+      "original": "Welcoming Chemist with a Gentle Smile.png",
+      "file": "pharmacy/chemist-smiling.png",
+      "sha256": "229edf02f76830ffdf7c928130ab37a481f850561b8416adc887c1ec4f2c6d20"
+    },
+    {
+      "original": "Whimsical City Bank Department Lobby.png",
+      "file": "bank/background.png",
+      "sha256": "10b6cb0ec88061a0c6e7513ca638ef0d1f666aa2256421f69139adfaa118897c"
+    }
+  ]
+}
