@@ -70,3 +70,17 @@ Final verification milestone (2026-11-07): all syntax and Node suites passed, in
 ## Current task complete — 2026-11-07
 
 All items in the active paved-width/labels/concise-directions task above are complete and verified. The earlier recovery notes describe intermediate states, not unfinished requirements. Final changes preserve the approved artwork and walking/traffic modules. The updated offline preview is `preview/Little-Town-Paths-and-Short-Directions.zip`; its contents were checked byte for byte against the build. Current branch remains `preview/path-widths-concise-directions-20261106`; `main` is unchanged. Completed implementation checkpoints were pushed during work; this final delivery commit contains the results and package. No new user feature is implicitly queued after this task.
+
+## Active task — money counter (2026-11-07)
+
+User request: introduce a reusable player money balance starting at **$100**, visible in the HUD with a newly generated wallet icon and a matching illustrated number panel. Future game events will add or subtract money. Preserve all approved art, paths, directions, traffic, animation and current transport behaviour.
+
+Working branch: `preview/money-counter-20261107`, based on verified `8d5224f`.
+
+- [ ] Generate separate transparent wallet and blank number-panel assets in the existing warm illustrated game style; record prompts and embed assets in the offline build.
+- [ ] Add a shared money model with safe credit/debit operations, $100 default, readable dollar formatting and save/load migration for older saves. Back to start and map travel keep the balance.
+- [ ] Add accessible, responsive HUD placement without overlapping map controls or the map badge; respect the existing HUD visibility shortcut.
+- [ ] Verify default/old/malformed saves, earnings/spending, insufficient funds, reload, map travel and reset; check desktop and small-screen layout in Chromium and run existing checks.
+- [ ] Update this plan with results, commit/push recovery checkpoints, and package a verified standalone GitHub preview ZIP. Leave main unchanged.
+
+Scope: no new fares, purchases, reward triggers, debug buttons or economy balancing in this first introduction. Shared transaction API is for subsequent game events. Balance persists using the existing local game save and remains usable in memory if browser storage is unavailable.
