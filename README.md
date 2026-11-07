@@ -2,7 +2,7 @@
 
 ## Browser preview
 
-Automatic public preview hosting is prepared on **preview/live**. The environment network update is applied and GitHub build/gameplay checks pass. The owner is completing the explicitly approved public-repository visibility change and selecting GitHub Actions in Pages settings; a live URL has not yet been verified. See [deployment status and instructions](docs/PREVIEW_DEPLOYMENT.md). Once activated, future verified pushes update the same browser link. `npm run build:preview` builds the static site while preserving the standalone offline export.
+Automatic public preview hosting is prepared on **preview/live**. The environment network update is applied and GitHub build/gameplay checks pass. The repository is public and GitHub Pages is enabled. The owner is allowing preview/live in the Pages deployment environment; successful public deployment is still pending. See [deployment status and instructions](docs/PREVIEW_DEPLOYMENT.md). Once activated, future verified pushes update the same browser link. `npm run build:preview` builds the static site while preserving the standalone offline export.
 
 ## Enter the pharmacy
 

@@ -3,6 +3,11 @@ name: Publish game preview
 on:
   push:
     branches: [preview/live]
+    paths-ignore:
+      - docs/**
+      - README.md
+      - AGENTS.md
+      - preview/**
 
 permissions:
   contents: read
