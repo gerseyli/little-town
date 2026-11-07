@@ -1,19 +1,19 @@
-# Money counter preview
+# Pharmacy entry preview
 
-Download **Little-Town-Money-Counter.zip** using GitHub's **Download raw file** button. Extract the ZIP, then open **Little-Town.html** in a browser. The game is fully offline and needs no server or installation.
+Download **Little-Town-Pharmacy-Entry.zip** using GitHub's **Download raw file** button. Extract it, then open **Little-Town.html** in a browser. No server, installation or internet connection is needed.
 
-## New in this version
+## Try the pilot
 
-- Player balance starts at **$100**, with a generated leather wallet and matching parchment number panel at the upper left.
-- Balance saves with progress and survives travel and Back to start.
-- Shared safe earning/spending operations are ready for future game events. No fares or rewards are added yet.
-- HUD accommodates desktop/small screens and hides with H.
-- Approved map artwork, moving traffic, pedestrians/directions, walking sprites and all paving fixes are preserved.
+Walk near the pharmacy entrance on **Garden Street**, between the post office and supermarket. Click **Enter the pharmacy · Space** or press Space. The entrance prompt takes priority when a pedestrian is also nearby.
+
+Inside, the supplied neutral chemist stands behind the counter and says **Hello, how can I help you today?** She is clickable and keyboard accessible. The next interaction will be defined by the user; the pilot does not make purchases or change expressions.
+
+Click **Back outside** or press Escape to leave. Outdoor position, facing and money are preserved. Only the pharmacy has entry enabled in this pilot. The approved exterior artwork, traffic, directions, walking animation, paving fixes and money counter are retained.
 
 ## Verification
 
-Syntax and full Node suites pass, including money accounting, traffic, walking, paving and all 1,258 tested route cases. Chromium checks pass for existing gameplay, money save/load migration, earning/spending, zero/insufficient funds, travel/reset, storage denial and HUD non-overlap at 1920, 701, 700, 375 and 320 pixels. Desktop and small-screen screenshots were visually reviewed. The HTML in this ZIP is byte-identical to the current build.
+Syntax/full Node tests and Chromium interior, money and existing gameplay suites pass. Tests cover entrance/pedestrian precedence, stale targets, repeat/held keys, focus, exit/Escape/native close, rapid re-entry, original asset hashes, neutral image/greeting/click hook and preserving money/position. Desktop/portrait/landscape screenshots were visually reviewed. The HTML inside this archive is byte-identical to the build.
 
-Recovery plan: [implementation plan](../docs/IMPLEMENTATION_PLAN.md). Account integration: [money model](../docs/MONEY.md). Generated assets and prompts: [UI assets](../assets/ui/README.md).
+[Recovery plan](../docs/IMPLEMENTATION_PLAN.md) · [Interior behaviour and extension event](../docs/INTERIORS.md) · [Original artwork manifest](../assets/interiors/source-manifest.json)
 
-Working branch: `preview/money-counter-20261107`. Earlier approved previews remain on their earlier branches. Main is unchanged.
+Branch: `preview/pharmacy-entry-20261107`. Earlier previews remain on their earlier branches. Main is unchanged.

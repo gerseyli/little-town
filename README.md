@@ -1,5 +1,9 @@
 # Little Town — source starter
 
+## Enter the pharmacy
+
+Walk near the pharmacy entrance on Garden Street and click **Enter the pharmacy · Space** or press Space. Entry takes priority over nearby pedestrians. Inside, the supplied neutral chemist greets you with “Hello, how can I help you today?” She is clickable, ready for the next interaction to be defined. **Back outside** or Escape returns you to the same position, preserving money. Only pharmacy entry is enabled in this pilot. See [interior behaviour and extension notes](docs/INTERIORS.md).
+
 ## Player money
 
 The player now starts with **$100**, shown in a generated wallet HUD at the upper left. The balance saves with progress and stays intact during travel and Back to start. Shared earning/spending methods are ready for future events; no fares or rewards are added in this introduction. See [the money model and integration notes](docs/MONEY.md).
@@ -44,6 +48,7 @@ Open dist/Little-Town.html to play. It is a single offline file with all image a
 | src/index.html | Page and overlay markup |
 | src/styles.css | Styling |
 | src/game.js | Game engine and interaction logic |
+| src/interiors.js | Entrance proximity, interaction priority and pharmacy scene |
 | src/money.js | Saved player account and money HUD updates |
 | src/motion.js | Eased movement and camera simulation |
 | src/actors.js | Directional walking frames and grounded foot anchors |
