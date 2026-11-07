@@ -77,10 +77,12 @@ User request: introduce a reusable player money balance starting at **$100**, vi
 
 Working branch: `preview/money-counter-20261107`, based on verified `8d5224f`.
 
-- [ ] Generate separate transparent wallet and blank number-panel assets in the existing warm illustrated game style; record prompts and embed assets in the offline build.
-- [ ] Add a shared money model with safe credit/debit operations, $100 default, readable dollar formatting and save/load migration for older saves. Back to start and map travel keep the balance.
-- [ ] Add accessible, responsive HUD placement without overlapping map controls or the map badge; respect the existing HUD visibility shortcut.
+- [x] Generate separate transparent wallet and blank number-panel assets in the existing warm illustrated game style; record prompts and embed assets in the offline build.
+- [x] Add a shared money model with safe credit/debit operations, $100 default, readable dollar formatting and save/load migration for older saves. Back to start and map travel keep the balance.
+- [x] Add accessible, responsive HUD placement without overlapping map controls or the map badge; respect the existing HUD visibility shortcut.
 - [ ] Verify default/old/malformed saves, earnings/spending, insufficient funds, reload, map travel and reset; check desktop and small-screen layout in Chromium and run existing checks.
 - [ ] Update this plan with results, commit/push recovery checkpoints, and package a verified standalone GitHub preview ZIP. Leave main unchanged.
 
 Scope: no new fares, purchases, reward triggers, debug buttons or economy balancing in this first introduction. Shared transaction API is for subsequent game events. Balance persists using the existing local game save and remains usable in memory if browser storage is unavailable.
+
+Money implementation checkpoint: separate generated high-definition PNGs and generation prompts are in `assets/ui/`; builder embeds both. `src/money.js` provides integer-cent storage, `playerMoney.credit(dollars)`, `debit(dollars)` and `canAfford(dollars)`. Credits/spending update the HUD and save immediately; insufficient funds leave the balance unchanged. Existing saves without a valid `moneyCents` field default to $100. Unit checks pass; full suites and responsive browser validation are running. No map/actor/traffic/navigation source or existing artwork was modified.

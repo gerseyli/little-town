@@ -8,6 +8,10 @@ for(const name of ['town','suburbs','shelter','buttonSkin','dialogSkin','bookIco
  const bytes=await readFile(path.join(root,'assets',name+'.webp'));
  assets[name]='data:image/webp;base64,'+bytes.toString('base64');
 }
+for(const [key,file] of [['walletIcon','wallet'],['moneyPanel','money-panel']]){
+ const bytes=await readFile(path.join(root,'assets/ui',file+'.png'));
+ assets[key]='data:image/png;base64,'+bytes.toString('base64');
+}
 for(const name of ['car','truck','bus','taxi','ambulance','police']){
  const bytes=await readFile(path.join(root,'assets/vehicles',name+'.webp'));
  assets['vehicle-'+name]='data:image/webp;base64,'+bytes.toString('base64');
@@ -22,12 +26,14 @@ const maps=await read('src/maps.json');
 const phrases=await read('src/phrasebook.js');
 const styles=await read('src/styles.css');
 const walkingAnchors=await read('assets/walking/foot-anchors.json');
+const money=await read('src/money.js');
 const motion=await read('src/motion.js'),paths=await read('src/paths.js');
 const navigation=await read('src/navigation.js'),worldLife=await read('src/world-life.js'),actors=await read('src/actors.js');
 const game=(await read('src/game.js'))
  .replace('/* ASSETS */',()=> 'const ASSETS='+assetJSON+';')
  .replace('/* MAP DATA */',()=> 'const MAPS='+maps+';')
  .replace('/* PHRASEBOOK */\n',()=>phrases)
+ .replace('/* MONEY */',()=>money)
  .replace('/* MOTION */',()=>motion)
  .replace('/* PATHS */',()=>paths)
  .replace('/* NAVIGATION */',()=>navigation)
