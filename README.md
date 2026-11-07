@@ -64,3 +64,10 @@ Read AGENTS.md, README.md, docs/PROJECT_BRIEF.md and docs/KNOWN_BUGS.md. Run npm
 The live game uses the existing four-direction walking atlases from `assets/walking/`. The player cruises at 210 map units/second; pedestrians retain their agreed half-speed pace of 57.5–67.5. Acceleration, stopping and camera following are eased. Walk up to a pedestrian and press Space or click **Ask for directions**. The detailed integrated map artwork is unchanged.
 
 The original three path bugs are fixed, with further visible-path connections audited in `docs/WALKING_PATH_AUDIT.md`. `npm test` includes traffic, animation, route, terrain and frame-rate regressions. Optional Chromium QA: `python3 tests/browser.py`, `python3 tests/actors-browser.py`, `python3 tests/motion-browser.py` (Playwright required only for these development checks). The baseline fingerprint is historical and applies only to the initial import.
+
+
+## Paved widths, path names and short directions
+
+Garden Street and the actual theme-park/harbor gate link now use their painted widths. The path data also supplies the street names and centred labels, including repeated names on long bent roads. The existing label toggle controls these names.
+
+NPC directions follow named paths rather than narrating grid adjustments. They use as few concise items as needed, never padding the list; six is the maximum. Current start/NPC/patrol-end regression journeys take one to five items. Bus/train transfers, safe road crossings and the destination are retained. The approved map artwork, walking atlases and speeds are unchanged. See `docs/IMPLEMENTATION_PLAN.md` for the recovery plan and `docs/WALKING_PATH_AUDIT.md` for verification details.

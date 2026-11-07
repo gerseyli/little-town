@@ -1,6 +1,7 @@
 const fs=require('fs'),vm=require('vm');
 const elements=new Map;function el(){return {style:{setProperty(){}},value:'',textContent:'',innerHTML:'',open:false,classList:{add(){},remove(){},toggle(){}},setAttribute(){},addEventListener(){},focus(){},showModal(){this.open=true},close(){this.open=false}}};
 const ctx={console,Math,Date,performance:{now:()=>7000},setTimeout,clearTimeout,requestAnimationFrame(){},innerWidth:1360,innerHeight:920,localStorage:{getItem(){return null},setItem(){}},window:{addEventListener(){}},document:{documentElement:el(),body:el(),getElementById:id=>{if(!elements.has(id))elements.set(id,el());return elements.get(id)},querySelectorAll:()=>[],addEventListener(){}}};vm.createContext(ctx);vm.runInContext(fs.readFileSync(require('path').join(__dirname,'../dist/Little-Town.html'),'utf8').split('<script>')[1].split('</script>')[0],ctx);
+ctx.PAVED_FIXTURES=JSON.parse(fs.readFileSync(require('path').join(__dirname,'fixtures/paved-corridors.json'),'utf8'));
 vm.runInContext(`
 function check(v,m){if(!v)throw Error(m)}
 let paving=0;
@@ -12,6 +13,13 @@ for(const [key,m]of Object.entries(MAPS)){
  const labels=pathLabelData(key),ids=new Set();check(labels.length>=m.paths.length,'all named paths have labels');
  for(const label of labels){const path=m.paths.find(p=>p.id===label.pathId);check(path&&pathDistance(label.x,label.y,path)<1e-6,'secondary label centred on its own path')}
  for(const p of m.paths){check(p.name.trim()&&p.id&&!ids.has(p.id),'stable named unique path '+key);ids.add(p.id);const label=labels.find(l=>l.id===p.id);check(label.name===p.name&&pathDistance(label.x,label.y,p)<1e-6,'label centred on its own path '+p.name);check(walkable(label.x,label.y,true,label.y,key),'label lies on accessible paving '+p.name)}
+}
+const fixtures=PAVED_FIXTURES;
+for(const [key,corridors]of Object.entries(fixtures))for(const fixture of corridors){const [left,top,right,bottom]=fixture.bounds,columns=Math.max(2,Math.ceil((right-left)/20)),rows=Math.max(2,Math.ceil((bottom-top)/20));
+ for(let row=0;row<=rows;row++)for(let col=0;col<=columns;col++){
+  const px=left+(right-left)*col/columns,py=top+(bottom-top)*row/rows,wx=px*MAPS[key].w/(key==='town'?1500:1536),wy=py*MAPS[key].h/(key==='town'?1049:1024);
+  check(walkable(wx,wy,true,wy,key),'native paved corridor '+key+' '+fixture.name+' '+px+','+py);paving++;
+ }
 }
 console.log('PASS:',paving,'independent paving-width probes, complete centred path labels, and blocked water/buildings');
 const origins=new Map();
