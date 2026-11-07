@@ -171,7 +171,9 @@ User reports that pressing Space at the entrance prompt does nothing. Also reque
 
 Branch: `fix/entry-space-and-map-view-20261107`, based on shop pilot `78f84ac`.
 
-- [ ] Reproduce entrance Space after normal UI interaction/walking, including retained focus on map controls. Fix keyboard precedence without breaking native pharmacy/shop controls or held-key safety; add real-browser regression.
-- [ ] Start new/legacy saves at Whole map (100%). Preserve the selected zoom percentage across map changes, resize, Back to start and saved-game reload. Save view changes immediately and validate restored zoom.
+- [x] Reproduce entrance Space after normal UI interaction/walking, including retained focus on map controls. Fix keyboard precedence without breaking native pharmacy/shop controls or held-key safety; add real-browser regression.
+- [x] Start new/legacy saves at Whole map (100%). Preserve the selected zoom percentage across map changes, resize, Back to start and saved-game reload. Save view changes immediately and validate restored zoom.
 - [ ] Verify the exact keyboard reproduction plus entry/shop, initial fit, changed scale, train round trips and reloads. Run appropriate regression checks.
 - [ ] Update known bugs/handoff notes and push recoverable commits. Replace the playable preview ZIP with a verified updated export, leaving main unchanged.
+
+Entry/view checkpoint: reproduced the reported failure in Chromium by clicking +, walking on Garden Street into entrance range without changing focus, then pressing Space. The old build left the zoom button focused and failed to enter. Entrance Space now runs in the capture phase before native/map/walking button handlers, preserving facing/position and rejecting repeats. The exact reproduction and four additional focused-control cases pass. New/old saves default to Whole map, and valid saved zoom (100–300%) is restored. Rendering/travel/resize now keeps the chosen percentage; +/- and Whole map save immediately. Real train round trips at 160% and Whole map, reload, resize, reset and invalid zoom/money migration checks pass. Full regression suites are running.

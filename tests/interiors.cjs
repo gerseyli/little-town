@@ -13,9 +13,9 @@ function element(id=''){
 const documentHandlers=new Map;
 const ctx=vm.createContext({assert,console,performance:{now:()=>7000},setTimeout,clearTimeout,requestAnimationFrame(){},innerWidth:1360,innerHeight:920,
  localStorage:{getItem(){return null},setItem(){}},window:{addEventListener(){}},CustomEvent:class{constructor(type,options){this.type=type;this.detail=options.detail}},
- document:{documentElement:element(),body:element(),getElementById(id){if(!elements.has(id))elements.set(id,element(id));return elements.get(id)},querySelectorAll:()=>[],addEventListener(type,fn){documentHandlers.set(type,fn)}}});
+ document:{documentElement:element(),body:element(),getElementById(id){if(!elements.has(id))elements.set(id,element(id));return elements.get(id)},querySelectorAll:()=>[],addEventListener(type,fn,capture=false){if(!documentHandlers.has(type))documentHandlers.set(type,[]);documentHandlers.get(type).push({fn,capture})}}});
 vm.runInContext(fs.readFileSync(path.join(root,'dist/Little-Town.html'),'utf8').split('<script>')[1].split('</script>')[0],ctx);
-ctx.fireKey=(key,repeat=false)=>documentHandlers.get('keydown')({key:key==='Space'?' ':key,code:key,repeat,preventDefault(){},target:{closest:()=>null}});
+ctx.fireKey=(key,repeat=false)=>{let stopped=false;const event={key:key==='Space'?' ':key,code:key,repeat,preventDefault(){},stopImmediatePropagation(){stopped=true},target:{closest:()=>null}};for(const handler of [...documentHandlers.get('keydown')].sort((a,b)=>Number(b.capture)-Number(a.capture))){handler.fn(event);if(stopped)break}};
 vm.runInContext(`
 assert(PLACE_INTERIORS.every(interiorReady),'registered pilot assets are embedded');
 for(const [px,py] of [[900,990],[900,1000],[900,1020],[860,1020],[940,1020],[900,1040]])assert.equal(entranceAt('town',px,py)?.place,'pharmacy','loose entrance '+px+','+py);

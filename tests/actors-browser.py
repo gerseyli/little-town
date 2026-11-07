@@ -35,7 +35,7 @@ try:
    assert {f'{i} {row} 1 1' for i in range(4)}==set(frames),(facing,frames)
    assert page.locator('#walkerart').get_attribute('viewBox')==f'1 {row} 1 1'
    page.screenshot(path=f'/tmp/little-town-walk-{facing}.png')
-  page.evaluate("mapKey='town';x=300;y=1150;renderMap();frameMap(false);nearbyPerson=null;conversationPerson=null;advancePeople(.4);renderLife()")
+  page.evaluate("mapKey='town';x=300;y=1150;renderMap();frameMap(1);nearbyPerson=null;conversationPerson=null;advancePeople(.4);renderLife()")
   assert page.locator('#pedestrians svg').count()==6
   before=page.locator('#person-sprite-0').get_attribute('viewBox')
   page.evaluate('advancePeople(.4);renderLife()')

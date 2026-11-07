@@ -25,7 +25,7 @@ try:
    page.keyboard.up('ArrowDown')
    assert result['y']>=1278 and result['y']<1305,('Harbor width blocked or water admitted',px,result)
   for key in ['town','suburbs']:
-   page.evaluate("key=>{mapKey=key;held.clear();stopPlayerMotion();x=current().start[0];y=current().start[1];renderMap();frameMap(false)}",key)
+   page.evaluate("key=>{mapKey=key;held.clear();stopPlayerMotion();x=current().start[0];y=current().start[1];renderMap();frameMap(1)}",key)
    labels=page.evaluate("pathLabelData(mapKey)")
    assert page.locator('[data-path-label]').count()==len(labels)
    for label in labels:

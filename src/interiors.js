@@ -58,6 +58,15 @@ function leavePlace(){
  if(!activeInterior)return;
  $('interior-dialog').close();finishInteriorExit();
 }
+function handleEntranceKeydown(event){
+ if(event.code!=='Space'||!availableEntrance())return;
+ if(event.target.closest?.('input,select,textarea,[contenteditable]:not([contenteditable="false"])'))return;
+ // Walking leaves the last clicked control focused. Claim Space before that
+ // control can zoom, toggle a label or take another walking step.
+ event.preventDefault();event.stopImmediatePropagation();
+ if(!event.repeat)enterPlace();
+}
+document.addEventListener('keydown',handleEntranceKeydown,true);
 $('enter-place').addEventListener('click',enterPlace);
 $('interior-exit').addEventListener('click',leavePlace);
 $('interior-dialog').addEventListener('cancel',event=>{event.preventDefault();if(pharmacyShopVisible())closePharmacyShop();else leavePlace()});
