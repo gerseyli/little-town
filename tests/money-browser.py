@@ -10,15 +10,20 @@ try:
   browser=p.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox'])
   page=browser.new_page(viewport={'width':1920,'height':1080})
   errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
-  page.add_init_script('window.requestAnimationFrame=()=>0')
+  page.add_init_script("""window.requestAnimationFrame=()=>0;
+   {const fixture=sessionStorage.getItem('money-test-save');if(fixture){const s=JSON.parse(fixture);localStorage.clear();localStorage.setItem(s.key,s.value);sessionStorage.removeItem('money-test-save');}}
+  """)
   url='http://127.0.0.1:'+str(server.server_port)+'/Little-Town.html'
   page.goto(url)
-  def balance(text):assert page.locator('#money-balance').inner_text()==text
-  def reload_save(value,key='little-town-worlds-v3'):
-   page.evaluate('([key,value])=>{localStorage.clear();localStorage.setItem(key,value)}',[key,json.dumps(value)])
+  def balance(text):assert page.locator('#money-balance').inner_text()==text,(text,page.locator('#money-balance').inner_text())
+  def reload_save(value,key='little-town-worlds-v3',raw=False):
+   # Inject after unload, because the running game's visibility handler saves on reload.
+   page.evaluate("s=>sessionStorage.setItem('money-test-save',JSON.stringify(s))",{'key':key,'value':value if raw else json.dumps(value)})
    page.reload()
   balance('$100')
   assert page.locator('#money-balance').get_attribute('aria-live')=='polite'
+  for image_id in ['walleticon','money-panel-art']:
+   assert page.locator('#'+image_id).evaluate('async img=>{await img.decode();return img.naturalWidth>1000}')
   assert page.evaluate('''async()=>{for(const key of ['walletIcon','moneyPanel']){const img=new Image();img.src=ASSETS[key];await img.decode();if(img.naturalWidth<1000)throw Error('Low resolution art');}return true}''')
   page.evaluate('playerMoney.credit(25);playerMoney.debit(12.50)');balance('$112.50')
   assert page.evaluate('JSON.parse(localStorage.getItem("little-town-worlds-v3")).moneyCents')==11250
@@ -26,7 +31,7 @@ try:
   assert page.evaluate('playerMoney.debit(113)') is False;balance('$112.50')
   page.locator('#reset').click();balance('$112.50')
   page.evaluate("mapKey='town';x=current().train.x;y=current().train.y;travelCooldown=0;update();boardTrain()")
-  page.wait_for_function("mapKey==='suburbs'&&!busy")
+  page.wait_for_function("mapKey==='suburbs'&&!busy",polling=100)
   balance('$112.50');page.reload();balance('$112.50')
   assert page.evaluate('mapKey')=='suburbs'
   page.evaluate('playerMoney.debit(112.50)');page.reload();balance('$0')
@@ -37,8 +42,9 @@ try:
    assert page.evaluate('labels') is False
   for invalid in [-1,1.5,'10000',None,9007199254740992]:
    reload_save({'moneyCents':invalid});balance('$100')
-  page.evaluate("localStorage.setItem('little-town-worlds-v3','{broken')");page.reload();balance('$100')
+  reload_save('{broken',raw=True);balance('$100')
   reload_save({'moneyCents':12345});balance('$123.45')
+  reload_save({'moneyCents':10000});balance('$100')
   for width,height in [(1920,1080),(701,800),(700,800),(375,812),(320,640)]:
    page.set_viewport_size({'width':width,'height':height})
    for flip in [False,True]:

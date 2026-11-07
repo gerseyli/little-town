@@ -1,5 +1,9 @@
 # Little Town — source starter
 
+## Player money
+
+The player now starts with **$100**, shown in a generated wallet HUD at the upper left. The balance saves with progress and stays intact during travel and Back to start. Shared earning/spending methods are ready for future events; no fares or rewards are added in this introduction. See [the money model and integration notes](docs/MONEY.md).
+
 ## Current development checkpoint
 
 The original three path bugs are fixed. A first implementation of moving traffic, six distinct slower pedestrians per map, and an “Ask for directions · Space” dialogue is available. Directions cover all 34 destinations, existing directed bus services, and train journeys between maps. These additions still need the refinements listed in [the numbered plan](docs/IMPLEMENTATION_PLAN.md); they are not a finished release.
@@ -31,7 +35,7 @@ npm test
 npm run build
 ```
 
-Open dist/Little-Town.html to play. It is a single offline file with all seven images embedded. dist/index.html is the same game for supported preview tools.
+Open dist/Little-Town.html to play. It is a single offline file with all image assets embedded. dist/index.html is the same game for supported preview tools.
 
 ## Source layout
 
@@ -40,6 +44,7 @@ Open dist/Little-Town.html to play. It is a single offline file with all seven i
 | src/index.html | Page and overlay markup |
 | src/styles.css | Styling |
 | src/game.js | Game engine and interaction logic |
+| src/money.js | Saved player account and money HUD updates |
 | src/motion.js | Eased movement and camera simulation |
 | src/actors.js | Directional walking frames and grounded foot anchors |
 | src/phrasebook.js | Illustrated glossary |

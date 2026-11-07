@@ -1,15 +1,19 @@
-# Full-width paths, centred names and short directions
+# Money counter preview
 
-Download `Little-Town-Paths-and-Short-Directions.zip` using GitHub’s **Download raw file** button. Extract it and open `Little-Town.html` in your browser. No server, installation or Internet connection is needed to play.
+Download **Little-Town-Money-Counter.zip** using GitHub's **Download raw file** button. Extract the ZIP, then open **Little-Town.html** in a browser. The game is fully offline and needs no server or installation.
 
-- Garden Street is aligned with its actual paving and usable across the width.
-- The real short link from the theme-park gate to the harbor promenade is at x=1929.6875; the former incorrect shortcut through planting is blocked.
-- Path widths and joins have been corrected while water, buildings, parked cars, railway and unsafe road entry remain blocked.
-- Every registered path is named and labelled on its centre geometry. Long bent streets repeat their names on major sections; the label toggle still works.
-- Directions are concise and never padded: use as few items as needed, with six as the ceiling. All 1,258 tested start/NPC/patrol-end journeys take one to five items. Each item is limited to 160 characters/28 words. Complete turns, crossings, bus/train transfers and arrival are retained.
+## New in this version
 
-The approved integrated artwork, seven walking atlases, actor speeds, smooth movement and traffic safety are unchanged.
+- Player balance starts at **$100**, with a generated leather wallet and matching parchment number panel at the upper left.
+- Balance saves with progress and survives travel and Back to start.
+- Shared safe earning/spending operations are ready for future game events. No fares or rewards are added yet.
+- HUD accommodates desktop/small screens and hides with H.
+- Approved map artwork, moving traffic, pedestrians/directions, walking sprites and all paving fixes are preserved.
 
-Validation: syntax and all Node suites; 3,784 independent native-paving probes across the reported paths and 42 additional corridor regions; 1,258 safe route summaries; Chromium keyboard traversal at multiple paving-edge offsets, centred labels/toggle, NPC directions, traffic, walking frames and smooth camera/stop behavior. The ZIP matches the built HTML byte for byte.
+## Verification
 
-Recovery notes, completed milestones and validation are saved in `docs/IMPLEMENTATION_PLAN.md`. See `docs/WALKING_PATH_AUDIT.md` and `docs/KNOWN_BUGS.md` for geometry details and regressions.
+Syntax and full Node suites pass, including money accounting, traffic, walking, paving and all 1,258 tested route cases. Chromium checks pass for existing gameplay, money save/load migration, earning/spending, zero/insufficient funds, travel/reset, storage denial and HUD non-overlap at 1920, 701, 700, 375 and 320 pixels. Desktop and small-screen screenshots were visually reviewed. The HTML in this ZIP is byte-identical to the current build.
+
+Recovery plan: [implementation plan](../docs/IMPLEMENTATION_PLAN.md). Account integration: [money model](../docs/MONEY.md). Generated assets and prompts: [UI assets](../assets/ui/README.md).
+
+Working branch: `preview/money-counter-20261107`. Earlier approved previews remain on their earlier branches. Main is unchanged.

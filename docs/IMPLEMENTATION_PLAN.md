@@ -80,9 +80,18 @@ Working branch: `preview/money-counter-20261107`, based on verified `8d5224f`.
 - [x] Generate separate transparent wallet and blank number-panel assets in the existing warm illustrated game style; record prompts and embed assets in the offline build.
 - [x] Add a shared money model with safe credit/debit operations, $100 default, readable dollar formatting and save/load migration for older saves. Back to start and map travel keep the balance.
 - [x] Add accessible, responsive HUD placement without overlapping map controls or the map badge; respect the existing HUD visibility shortcut.
-- [ ] Verify default/old/malformed saves, earnings/spending, insufficient funds, reload, map travel and reset; check desktop and small-screen layout in Chromium and run existing checks.
-- [ ] Update this plan with results, commit/push recovery checkpoints, and package a verified standalone GitHub preview ZIP. Leave main unchanged.
+- [x] Verify default/old/malformed saves, earnings/spending, insufficient funds, reload, map travel and reset; check desktop and small-screen layout in Chromium and run existing checks.
+- [x] Update this plan with results, commit/push recovery checkpoints, and package a verified standalone GitHub preview ZIP. Leave main unchanged.
 
 Scope: no new fares, purchases, reward triggers, debug buttons or economy balancing in this first introduction. Shared transaction API is for subsequent game events. Balance persists using the existing local game save and remains usable in memory if browser storage is unavailable.
 
 Money implementation checkpoint: separate generated high-definition PNGs and generation prompts are in `assets/ui/`; builder embeds both. `src/money.js` provides integer-cent storage, `playerMoney.credit(dollars)`, `debit(dollars)` and `canAfford(dollars)`. Credits/spending update the HUD and save immediately; insufficient funds leave the balance unchanged. Existing saves without a valid `moneyCents` field default to $100. Unit checks pass; full suites and responsive browser validation are running. No map/actor/traffic/navigation source or existing artwork was modified.
+
+
+### Money counter complete — 2026-11-07
+
+Implemented the $100 player account, safe atomic credit/debit methods, saved integer cents and migration of older/invalid saves. Both generated transparent high-definition assets and their prompts are tracked in `assets/ui/`; live HTML text displays the balance. Final rendering uses ordinary image elements because Chromium rejected the large panel data URL as a CSS custom property. Desktop/mobile visual review confirms the panel is visible and readable. HUD hides with H and avoids both badge and relocated controls.
+
+Validation passed: `npm run check`, full `npm test` (including money, traffic, walking, 3,784 independent paving samples and 1,258 concise routes), `python3 tests/browser.py`, and `python3 tests/money-browser.py`. Money browser tests cover reload persistence, old and malformed saves, zero, insufficient funds, train travel, Back to start, denied browser storage and HUD geometry at widths 1920/701/700/375/320. No browser errors. Existing maps, paths, navigation, walking atlases, actor/motion and traffic modules are unchanged from `8d5224f`.
+
+Integration API and limits: `docs/MONEY.md`. New game events should call `playerMoney.credit(dollars)` or check `playerMoney.debit(dollars)` before granting a purchase. No fares, shops or reward triggers are introduced yet. Preview delivery: `preview/Little-Town-Money-Counter.zip`, containing the current standalone HTML verified byte for byte against the build. Branch: `preview/money-counter-20261107`; `main` remains unchanged. This task is complete; await the user's next mechanic request.
