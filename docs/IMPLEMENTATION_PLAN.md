@@ -135,3 +135,19 @@ The user uploaded **Pharmacy symptom clip-art sprite sheet.rar** without additio
 - [ ] Await the user's description of what clicking the chemist should do and how the symptom pictures are used. Asked in chat. Do not invent medicine matching, dialogue, prices, grading or expression changes.
 
 Resume from this branch so the new atlas is available. The extension point remains `little-town:chemist-interact` in `src/interiors.js`; behaviour and current export are described in `docs/INTERIORS.md`. The latest playable ZIP remains `preview/Little-Town-Pharmacy-Entry.zip`. No further gameplay has been requested by the upload alone.
+
+## Active task — pharmacy consultation and shop pilot (2026-11-07)
+
+User request: click the chemist to open a close-up interaction, with a larger chemist on the left and a generated HD pharmacy-style panel on the right. Scrollable symptom pictures, “I think I have …”, names on/off, multiple togglable selections highlighted green. Generated “What would you recommend?” button advances to the chemist's concise recommendations and medicine cards with names/prices. Clicking cards adds products to a separate generated basket panel, with removal, total and checkout deducted from existing money.
+
+Branch: `preview/pharmacy-shop-20261107`, based on `996830c` (includes original symptom atlas). User's detailed request now authorizes the interaction previously left pending.
+
+- [ ] Generate matching HD blank consultation frame, basket frame and action-button artwork; retain generation prompts and embed in the offline export. Reuse all supplied portraits, room and symptom art unchanged.
+- [ ] Implement reusable order/cart accounting in integer cents, generic symptom-relief products and simple fictional prices; one of each product in this pilot, deduplicate shared recommendations. No dosage, diagnosis engine or health effects.
+- [ ] Build close-up symptom selection with independent scrolling, names toggle, accessible multi-select green frames, exact phrase labels including food poisoning, and disabled empty recommendation action.
+- [ ] Show chemist recommendations and priced product cards, editable basket, live total/balance, atomic insufficient-funds-safe checkout and a receipt. Prevent repeated charges and hidden/stale product actions.
+- [ ] Preserve entrance priority and outdoor state, exit/escape/focus/keyboard behavior, existing money save, maps/traffic/paths/directions and standalone offline build. Back to consultation and changing symptoms should remain usable.
+- [ ] Verify all symptom/product mappings, selection/unselection/toggle, deduplication, removal/totals, successful/failed/repeated checkout, balance persistence, entry/exit and desktop/small-screen scrolling/focus/layout in Chromium. Run relevant existing suites.
+- [ ] Update recovery notes, push checkpoints and deliver a verified GitHub preview ZIP; leave main unchanged.
+
+Pilot choices: use generic recognizable products for symptom relief, no dosing or claims of cure. Food poisoning maps to oral rehydration salts; shared pain/fever recommendations map to one paracetamol product. Basket contents and receipt are per visit, with completed spending saved through the existing player account. No medicine-use or inventory system is implied by this pilot.
