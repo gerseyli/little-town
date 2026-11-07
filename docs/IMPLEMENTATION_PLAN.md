@@ -188,3 +188,18 @@ New and legacy saves begin at Whole map (100%). The user-selected zoom percentag
 Validation passed: syntax checks; full `npm test`; `tests/entry-view-browser.py` (failed before fix, passes after); existing interior, pharmacy shop, motion, exterior and paving browser checks. No browser errors. Approved assets, map geometry, traffic, navigation, actor/motion and shop modules are unchanged. Updated helper calls in existing browser fixtures explicitly select `frameMap(1)` for Whole map.
 
 Delivery: `preview/Little-Town-Entry-and-Map-View.zip`, containing a standalone HTML export verified byte for byte against the build. Branch `fix/entry-space-and-map-view-20261107`; code checkpoint `87b14c4` is pushed and final delivery commit contains docs and the ZIP. Main remains unchanged. Earlier previews remain on their branches. Open the newly extracted HTML to use these fixes.
+
+## Active task — permanent public browser preview (2026-11-07)
+
+User authorized setting up a permanent browser preview and explicitly selected **Public preview (simplest)**. Future verified changes should update the same link, without ZIP downloads. Starting game commit: `b0d89cd` (Space entry and persistent Whole map/zoom fixes).
+
+Canonical preview source branch: `preview/live`; main remains unchanged. Preserve repository visibility and all gameplay/assets. Only the generated playable site is to be published.
+
+- [x] Confirm public-preview preference. Discover existing GitHub authentication; native Git works, GitHub API CONNECT currently denied by network policy.
+- [x] Save a narrow environment network draft adding `api.github.com` and `gerseyli.github.io` while retaining presets. Draft save confirmed; requires user review/save/publication. User asked for a walkthrough; instructions supplied for the little-town environment. Do not claim network change is applied yet.
+- [ ] Build a static web distribution from the verified offline export, with unchanged game logic and content-hashed HD image assets for browser caching. Keep offline export available. Use a stable launcher/version manifest so refresh loads the latest build.
+- [ ] Add automatic GitHub Pages build/deploy workflow triggered by pushes to preview/live; test generated site under the repository URL path, keyboard interaction, pharmacy checkout and saved state.
+- [ ] When network configuration is applied, inspect repository Pages/permissions, configure workflow-based Pages and deployment environment, and verify GitHub Actions completes. Do not change repository visibility or introduce paid resources.
+- [ ] Verify the actual public HTTPS URL and current deployed version, including browser assets/gameplay. Save deployment/recovery instructions and ensure future changes publish from preview/live.
+
+Environment network draft is saved, not applied/published. It is tied to the existing little-town cloud configuration. GitHub API denial was an environment CONNECT 403; no missing credential was inferred, no new token requested. Continue independent build/workflow work while the user navigates settings.
