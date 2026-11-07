@@ -4,6 +4,10 @@
 
 Walk near the pharmacy entrance on Garden Street and click **Enter the pharmacy · Space** or press Space. Entry takes priority over nearby pedestrians. Inside, click the supplied neutral chemist to open the pharmacy shop: select symptoms, toggle phrase names, ask for recommendations, add medicines to a basket and check out using your saved balance. See [the pharmacy shop pilot](docs/PHARMACY_SHOP.md). **Back outside** or Escape returns you to the same position, preserving money. Only pharmacy entry is enabled in this pilot. See [interior behaviour and extension notes](docs/INTERIORS.md).
 
+## Map view
+
+The game starts in **Whole map (100%)**. Your chosen zoom percentage is saved and stays the same across Town/Suburbs travel, resizing, Back to start and reloads. Space enters when the entrance prompt is visible, including after using map or walking controls. See [map view and entrance keyboard behaviour](docs/MAP_VIEW.md).
+
 ## Player money
 
 The player now starts with **$100**, shown in a generated wallet HUD at the upper left. The balance saves with progress and stays intact during travel and Back to start. Pharmacy checkout now uses the shared spending method and saves the updated balance immediately. Fares and rewards retain their existing behaviour. See [the money model and integration notes](docs/MONEY.md).

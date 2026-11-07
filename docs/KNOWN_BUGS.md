@@ -26,3 +26,8 @@ The latest audit also corrects riverbank alignment, adds the missing western fie
 - **Overlong directions:** replaced grid-cell narration with continuous named-path guidance and simpler turn-aware routes. Complete instructions retain transport, crossing safety and arrival. They are not padded or truncated. Each item is bounded to 160 characters/28 words, with six items as the requirement ceiling. All 1,258 start/NPC/patrol-end test journeys currently use one to five items.
 
 The earlier centre-line audit alone did not establish paving-edge usability. The independent width fixtures in `tests/fixtures/paved-corridors.json`, regressions in `tests/paving-directions.cjs` and real-input browser checks in `tests/paving-browser.py` are the stronger checks for this revision.
+
+
+## Entrance Space — 2026-11-07
+
+**LT-005 — Entrance prompt ignores Space after using map controls:** reproduced by clicking +, walking into pharmacy entrance range with arrow keys, then pressing Space while + retains focus. Fixed by claiming entrance Space in a capture-phase handler before map/walking button handlers. Prevents both native button activation and an unintended walking step. Regression covers +, −, labels, Whole map and walking-button focus; repeats/key release preserve the open interior and outside facing/position. `tests/entry-view-browser.py` failed on the old build and passes with the fix.

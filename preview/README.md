@@ -1,22 +1,24 @@
-# Pharmacy shop pilot
+# Entrance Space and saved map view — corrected preview
 
-Download **Little-Town-Pharmacy-Shop.zip** using GitHub's **Download raw file** button. Extract it, then open **Little-Town.html** in a browser. The game is fully offline.
+Download **Little-Town-Entry-and-Map-View.zip** with GitHub's **Download raw file** button. Extract it and open the **newly extracted Little-Town.html**. The game is fully offline.
 
-## Try it
+## Fixed in this version
 
-1. Enter the pharmacy on **Garden Street**, between the post office and supermarket, then click the chemist.
-2. Choose one or more of the twelve symptom pictures. Selected pictures have a green frame; click again to unselect. **Names: on/off** toggles the English phrases.
-3. Click **What would you recommend?** Read the chemist's recommendations and choose priced medicine cards.
-4. Items appear in **Your basket**, with removal buttons and a live total. **Check out** spends player money and shows a receipt. Insufficient funds preserve your basket and balance.
+- **Space enters at the pharmacy prompt**, even when a zoom, labels, Whole map or walking button retains keyboard focus. Entry wins before the button's native action and nearby pedestrian interaction.
+- New games/older saves start at **Whole map (100%)**.
+- Your chosen zoom percentage stays the same between Town and Suburbs and survives resize, Back to start and reload. View changes save immediately.
+- The complete pharmacy shop pilot is retained: symptom multi-selection/names toggle, recommendations, editable basket and saved-money checkout.
 
-**Back to counter** or Escape returns to the room; Escape from the room leaves. **Back outside** leaves directly. Completed spending saves with progress. The basket contains one of each chosen product; recommendations shared across symptoms are combined. The pilot uses generic symptom-relief products and fictional prices.
+## Try the pharmacy
 
-![Pharmacy consultation and basket](Pharmacy-Shop.png)
+Enter the pharmacy on Garden Street, then click the chemist. Select symptom pictures and ask **What would you recommend?** Add product cards to **Your basket** and check out. Insufficient funds preserve the basket and balance; paid spending saves. **Back to counter** or Escape returns to the room; Escape from the room leaves. **Back outside** leaves directly.
+
+![Pharmacy shop](Pharmacy-Shop.png)
 
 ## Verification
 
-Syntax/full Node tests and Chromium pharmacy, interior, money and exterior gameplay suites pass. Checks cover selection/green frames, names toggle, recommendations/deduplication, editing/totals, insufficient funds, $100 → $85 payment/reload, repeated checkout, stale actions, focus, entry/exit and independent scrolling at desktop/tablet/portrait/landscape sizes. All supplied images, maps, paths, walking and traffic logic are preserved. The archived HTML is byte-identical to the build.
+The retained-focus entrance regression failed on the previous build and now passes for five control types. Real train journeys confirm zoom persistence at 160% and Whole map, along with reload/resize/reset and invalid-save fallback retaining money. Syntax/full Node and interior/shop/motion/exterior/paving Chromium suites pass. The archived HTML is byte-identical to the build; all artwork and existing gameplay data are preserved.
 
-[Recovery plan](../docs/IMPLEMENTATION_PLAN.md) · [Shop flow, catalog and implementation](../docs/PHARMACY_SHOP.md) · [Generated artwork prompts](../assets/ui/pharmacy/README.md)
+[Recovery plan](../docs/IMPLEMENTATION_PLAN.md) · [Map view and keyboard fix](../docs/MAP_VIEW.md) · [Pharmacy shop](../docs/PHARMACY_SHOP.md)
 
-Branch: `preview/pharmacy-shop-20261107`. Main is unchanged; previous previews remain on their earlier branches.
+Branch: `fix/entry-space-and-map-view-20261107`. Main unchanged.

@@ -10,7 +10,7 @@ The pharmacy uses the supplied room image and neutral chemist portrait unchanged
 
 - `src/interiors.js` owns `PLACE_INTERIORS`, entrance detection, priority, interior lifecycle and the chemist hook. Add future supported venues to the registry when their assets and interactions are ready. No dead-end prompts appear for unfinished venues.
 - Each entry identifies map/place, the actual named entrance approach, a proximity radius, background, character and greeting. Pharmacy proximity uses distance to `pharmacy-entrance`, plus 42 world units of tolerance, only on walkable paving. Facing is unrestricted; the player does not have to line up with one pixel.
-- Both prompt selection and activation revalidate the entrance. Entrance priority suppresses the nearby pedestrian prompt and rejects stale directions clicks. Existing bus and train logic is preserved.
+- Both prompt selection and activation revalidate the entrance. Entrance priority suppresses the nearby pedestrian prompt and rejects stale directions clicks. Entrance Space is handled during capture before focused map/walking controls, so their retained keyboard focus cannot steal entry or take an extra step. Existing bus and train logic is preserved.
 - The interior is a full-screen native modal dialog. The room keeps its original aspect ratio, with blurred room framing when the screen aspect ratio differs. The portrait is composed in CSS without editing the original image. A queued-close guard prevents an old visit's close event from ending a rapid new visit.
 - `playerMoney` remains the same account indoors; `renderMoney()` also updates the indoor readout. Checkout spends money atomically; entry, opening the consultation and exit do not charge money.
 

@@ -173,7 +173,18 @@ Branch: `fix/entry-space-and-map-view-20261107`, based on shop pilot `78f84ac`.
 
 - [x] Reproduce entrance Space after normal UI interaction/walking, including retained focus on map controls. Fix keyboard precedence without breaking native pharmacy/shop controls or held-key safety; add real-browser regression.
 - [x] Start new/legacy saves at Whole map (100%). Preserve the selected zoom percentage across map changes, resize, Back to start and saved-game reload. Save view changes immediately and validate restored zoom.
-- [ ] Verify the exact keyboard reproduction plus entry/shop, initial fit, changed scale, train round trips and reloads. Run appropriate regression checks.
-- [ ] Update known bugs/handoff notes and push recoverable commits. Replace the playable preview ZIP with a verified updated export, leaving main unchanged.
+- [x] Verify the exact keyboard reproduction plus entry/shop, initial fit, changed scale, train round trips and reloads. Run appropriate regression checks.
+- [x] Update known bugs/handoff notes and push recoverable commits. Replace the playable preview ZIP with a verified updated export, leaving main unchanged.
 
 Entry/view checkpoint: reproduced the reported failure in Chromium by clicking +, walking on Garden Street into entrance range without changing focus, then pressing Space. The old build left the zoom button focused and failed to enter. Entrance Space now runs in the capture phase before native/map/walking button handlers, preserving facing/position and rejecting repeats. The exact reproduction and four additional focused-control cases pass. New/old saves default to Whole map, and valid saved zoom (100–300%) is restored. Rendering/travel/resize now keeps the chosen percentage; +/- and Whole map save immediately. Real train round trips at 160% and Whole map, reload, resize, reset and invalid zoom/money migration checks pass. Full regression suites are running.
+
+
+### Entrance Space and map view fixes complete — 2026-11-07
+
+Both user requests are complete. Space entry was reproduced failing after + retained focus, then verified working after +, −, labels, Whole map and walking-button focus. Capture-phase entry prevents native zoom/toggle/step side effects and keeps entry ahead of pedestrians. Pharmacy/shop native Space/Enter interactions and Escape behavior remain intact.
+
+New and legacy saves begin at Whole map (100%). The user-selected zoom percentage (100–300%) is shared between Town/Suburbs and saved immediately on zoom changes/Whole map. Train round trips, reload, resizing/fullscreen and Back to start preserve it. Missing or invalid view fields default to 100% without discarding valid money/map progress. See `docs/MAP_VIEW.md`.
+
+Validation passed: syntax checks; full `npm test`; `tests/entry-view-browser.py` (failed before fix, passes after); existing interior, pharmacy shop, motion, exterior and paving browser checks. No browser errors. Approved assets, map geometry, traffic, navigation, actor/motion and shop modules are unchanged. Updated helper calls in existing browser fixtures explicitly select `frameMap(1)` for Whole map.
+
+Delivery: `preview/Little-Town-Entry-and-Map-View.zip`, containing a standalone HTML export verified byte for byte against the build. Branch `fix/entry-space-and-map-view-20261107`; code checkpoint `87b14c4` is pushed and final delivery commit contains docs and the ZIP. Main remains unchanged. Earlier previews remain on their branches. Open the newly extracted HTML to use these fixes.
