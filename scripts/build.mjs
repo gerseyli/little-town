@@ -22,13 +22,14 @@ const maps=await read('src/maps.json');
 const phrases=await read('src/phrasebook.js');
 const styles=await read('src/styles.css');
 const walkingAnchors=await read('assets/walking/foot-anchors.json');
-const motion=await read('src/motion.js');
+const motion=await read('src/motion.js'),paths=await read('src/paths.js');
 const navigation=await read('src/navigation.js'),worldLife=await read('src/world-life.js'),actors=await read('src/actors.js');
 const game=(await read('src/game.js'))
  .replace('/* ASSETS */',()=> 'const ASSETS='+assetJSON+';')
  .replace('/* MAP DATA */',()=> 'const MAPS='+maps+';')
  .replace('/* PHRASEBOOK */\n',()=>phrases)
  .replace('/* MOTION */',()=>motion)
+ .replace('/* PATHS */',()=>paths)
  .replace('/* NAVIGATION */',()=>navigation)
  .replace('/* ACTORS */',()=> 'const WALK_FOOT_ANCHORS='+walkingAnchors+';\n'+actors)
  .replace('/* WORLD LIFE */',()=>worldLife);

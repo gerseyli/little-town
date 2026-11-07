@@ -12,7 +12,7 @@ function connection(key,points,label){
  console.log('PASS:',label,'both directions');
 }
 connection('town',[[1090,860],[1090,1000],[1090,1300]],'LT-001 hotel–cinema lane');
-connection('suburbs',[[2134.375,1209.375],[2134.375,1278.125]],'LT-002 harbor–theme park connector');
+connection('suburbs',[[1929.6875,1209.375],[1929.6875,1278.125],[2134.375,1278.125]],'LT-002 actual theme-park gate and harbor promenade');
 connection('suburbs',[[1710.938,1476.562],[1750,1437.5],[1750,1312.5],[1784.375,1278.125]],'LT-003 curved bay-edge path');
 check(!walkable(1850,1380,true,1380,'suburbs'),'bay water blocked');
 check(!walkable(2015,625,true,625,'suburbs'),'lake remains blocked');

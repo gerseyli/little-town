@@ -10,7 +10,7 @@ corridor('town',[[1365,900],[1365,1000],[1365,1120],[1365,1290]],'southern river
 corridor('town',[[1700,1120],[1920,1120],[1960,1120]],'full meadow path');
 corridor('town',[[1090,870],[1090,1000],[1090,1290]],'hotel/cinema path');
 corridor('suburbs',[[1382.8,448.4],[1382.8,640.6],[1382.8,804.6]],'missing western field lane');
-corridor('suburbs',[[2134.375,1209.375],[2134.375,1278.125],[2134.375,1440]],'harbor/theme park and pier');
+corridor('suburbs',[[1929.6875,1209.375],[1929.6875,1278.125],[2134.375,1278.125],[2134.375,1440]],'actual harbor/theme park gate and pier');
 corridor('suburbs',[[1710.938,1476.562],[1750,1437.5],[1750,1312.5],[1784.375,1278.125]],'curved bay promenade');
 corridor('suburbs',[[1718.75,626],[1758,626]],'lake promenade access');
 for(const [key,point] of [['town',[270,235]],['town',[990,1190]],['town',[1230,230]],['town',[840,430]],['suburbs',[2015,625]],['suburbs',[1850,1380]],['suburbs',[289,390]]])check(!walkable(point[0],point[1],true,point[1],key),'terrain/building stays blocked '+key+' '+point);
