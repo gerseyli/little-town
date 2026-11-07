@@ -95,3 +95,18 @@ Implemented the $100 player account, safe atomic credit/debit methods, saved int
 Validation passed: `npm run check`, full `npm test` (including money, traffic, walking, 3,784 independent paving samples and 1,258 concise routes), `python3 tests/browser.py`, and `python3 tests/money-browser.py`. Money browser tests cover reload persistence, old and malformed saves, zero, insufficient funds, train travel, Back to start, denied browser storage and HUD geometry at widths 1920/701/700/375/320. No browser errors. Existing maps, paths, navigation, walking atlases, actor/motion and traffic modules are unchanged from `8d5224f`.
 
 Integration API and limits: `docs/MONEY.md`. New game events should call `playerMoney.credit(dollars)` or check `playerMoney.debit(dollars)` before granting a purchase. No fares, shops or reward triggers are introduced yet. Preview delivery: `preview/Little-Town-Money-Counter.zip`, containing the current standalone HTML verified byte for byte against the build. Branch: `preview/money-counter-20261107`; `main` remains unchanged. This task is complete; await the user's next mechanic request.
+
+## Active task — entering places / pharmacy pilot (2026-11-07)
+
+User request: reusable loose-proximity entrance prompt in the directions-prompt style, naming the place and offering Space. Entry takes precedence over nearby pedestrian directions. Pilot only the pharmacy: full-screen supplied interior, supplied neutral chemist behind the counter, speech bubble “Hello, how can I help you today?”, clickable chemist. Her later interaction is deliberately unspecified. Preserve money, exterior art, movement, traffic and directions.
+
+Branch: `preview/pharmacy-entry-20261107`, based on `2640762`.
+
+- [ ] Locate/import the supplied original pharmacy background and three chemist expressions. Images are visible in chat but no downloadable attachment paths/IDs are exposed yet; requested ZIP or repository originals. Do not regenerate or approximate supplied art.
+- [ ] Implement reusable entrance configuration/proximity and prompt; enable only pharmacy in this pilot. Entrance beats pedestrian prompt and Space/click interaction, with revalidation to prevent stale-target bugs.
+- [ ] Implement accessible full-screen interior, responsive art placement, neutral chemist behind countertop, greeting speech bubble, clickable/keyboard-accessible chemist and an extension event for future interaction. Do not invent shops, dialogue branches, purchases or expression changes.
+- [ ] Provide Back outside/Escape, preserving exact outdoor position, facing and money; stop held movement on entry/exit, prevent exterior actions and repeated Space from opening other UI indoors.
+- [ ] Verify proximity edges, simultaneous entrance/pedestrian priority, entry/exit/cancel/re-entry, held keys, focus/keyboard, art layering, responsive layout and existing gameplay/money suites.
+- [ ] Save verified recovery checkpoints and final plan on GitHub; package a verified standalone preview ZIP when supplied original assets are available. Main stays unchanged.
+
+Asset composition reference: background 1672×941; neutral chemist is first portrait, then displeased and smiling portraits. Use neutral only now; retain others for later requests. Place the chemist in the central recess and clip her below the front countertop's rear edge (about 66.8% of background height). Use a styled HTML speech bubble so greeting stays crisp and accessible.
