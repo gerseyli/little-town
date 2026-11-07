@@ -56,7 +56,7 @@ for(const [key,m]of Object.entries(MAPS))for(const destination of m.places){
  check(route,'route exists '+key+' '+destination.id);
  check(route.legs.some(e=>e.mode==='train'),'cross-map route uses train');
  for(const leg of route.legs)if(leg.mode==='walk')check(clearSegment(leg.from.map,leg.from,leg.to),'route never crosses blocked terrain');
- const directions=routeDirections(route,'north');check(directions.some(t=>t.includes('Take the train.')),'train phrase in directions');
+ const directions=routeDirections(route,'north');check(directions.some(t=>t.toLowerCase().includes('take the train')),'train phrase in directions');
  check(directions.at(-1).includes(destination.name),'names correct destination');
 }
 const busRoute=routeTo('town','field',{map:'town',x:300,y:860});

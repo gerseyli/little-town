@@ -6,7 +6,7 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "check": "node --check src/game.js && node --check src/phrasebook.js && node --check src/navigation.js && node --check src/world-life.js && node --check src/actors.js && node --check src/motion.js && node --check src/paths.js",
-    "test": "npm run build && node tests/smoke.cjs && node tests/world.cjs && node tests/traffic.cjs && node tests/actors.cjs && node tests/motion-paths.cjs"
+    "test": "npm run build && node tests/smoke.cjs && node tests/world.cjs && node tests/traffic.cjs && node tests/actors.cjs && node tests/motion-paths.cjs && node tests/paving-directions.cjs"
   },
   "engines": {
     "node": ">=18"
