@@ -33,7 +33,7 @@ function enterPlace(){
  // Always recheck position/availability rather than trusting a previously visible prompt.
  const entry=availableEntrance();if(!entry)return false;
  clearKeys();releasePan();
- activeInterior={entry,outside:{map:mapKey,x,y,facing,angle}};
+ activeInterior={entry,outside:{map:mapKey,x,y,facing,angle}};resetPharmacyShop();
  nearbyPerson=conversationPerson=null;busy=true;context=null;renderContext();
  $('interior-title').textContent=entry.name;
  $('interior-background').src=ASSETS[entry.background];
@@ -49,7 +49,7 @@ function enterPlace(){
 }
 function finishInteriorExit(){
  if(!activeInterior)return;
- const outside=activeInterior.outside;activeInterior=null;
+ const outside=activeInterior.outside;activeInterior=null;resetPharmacyShop();
  mapKey=outside.map;x=outside.x;y=outside.y;facing=outside.facing;angle=outside.angle;
  busy=false;clearKeys();last=0;update();followPlayer(true);updatePersonPrompt();save();
  $('camera').focus();
@@ -60,21 +60,23 @@ function leavePlace(){
 }
 $('enter-place').addEventListener('click',enterPlace);
 $('interior-exit').addEventListener('click',leavePlace);
-$('interior-dialog').addEventListener('cancel',event=>{event.preventDefault();leavePlace()});
+$('interior-dialog').addEventListener('cancel',event=>{event.preventDefault();if(pharmacyShopVisible())closePharmacyShop();else leavePlace()});
 $('interior-dialog').addEventListener('close',()=>{
  // A queued close event from a previous visit must not end a newly opened visit.
  if(!$('interior-dialog').open)finishInteriorExit();
 });
 $('interior-dialog').addEventListener('keydown',event=>{
  if(event.key!=='Tab'||!activeInterior)return;
- const first=$('interior-exit'),last=$('chemist'),focused=document.activeElement;
+ const controls=pharmacyShopVisible()?[...$('interior-dialog').querySelectorAll('button:not([disabled]),[tabindex="0"]')].filter(el=>el.getClientRects().length):[$('interior-exit'),$('chemist')];
+ const first=controls[0],last=controls.at(-1),focused=document.activeElement;
  if(focused===$('interior-dialog')||(!event.shiftKey&&focused===last)||(event.shiftKey&&focused===first)){
   event.preventDefault();(event.shiftKey?last:first).focus();
  }
 });
 $('chemist').addEventListener('click',()=>{
  if(!activeInterior)return;
- // The next mechanic can listen here; the pilot deliberately keeps the neutral greeting.
+ // Open the consultation while preserving the extension event for later features.
+ openPharmacyShop();
  $('interior-dialog').dispatchEvent(new CustomEvent('little-town:chemist-interact',{
   bubbles:true,detail:{map:activeInterior.entry.map,place:activeInterior.entry.place}
  }));

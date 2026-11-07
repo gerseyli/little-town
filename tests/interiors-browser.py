@@ -37,7 +37,12 @@ try:
   }''')
   page.evaluate("window.chemistClicks=0;document.addEventListener('little-town:chemist-interact',()=>window.chemistClicks++)")
   page.locator('#chemist').click()
-  page.locator('#chemist').focus();page.keyboard.press('Space');page.keyboard.press('Enter')
+  assert page.locator('#pharmacy-shop').is_visible()
+  page.locator('[data-shop-action="back-counter"]').click()
+  for key in ['Space','Enter']:
+   page.locator('#chemist').focus();page.keyboard.press(key)
+   assert page.locator('#pharmacy-shop').is_visible()
+   page.locator('[data-shop-action="back-counter"]').click()
   assert page.evaluate('window.chemistClicks')==3
   assert page.evaluate("$('chemist-art').src===ASSETS['chemist-neutral']&&playerMoney.balanceCents===10000")
   # Arrow keys and repeated Space cannot start outdoor movement or open other interfaces.

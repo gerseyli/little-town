@@ -1,0 +1,32 @@
+const fs=require('fs'),path=require('path'),vm=require('vm'),assert=require('assert');
+const root=path.join(__dirname,'..'),data=JSON.parse(fs.readFileSync(path.join(root,'src/pharmacy-data.json')));
+const ctx=vm.createContext({assert,data});
+vm.runInContext(fs.readFileSync(path.join(root,'src/money.js'),'utf8')+'\n'+fs.readFileSync(path.join(root,'src/shop.js'),'utf8'),ctx);
+vm.runInContext(`
+let saves=0;const wallet=createMoneyAccount(10000,()=>saves++),order=createShopOrder(data.products,wallet);
+assert.equal(order.checkout().reason,'empty');assert.equal(saves,0);
+assert(!order.add('unknown'));assert(!order.remove('unknown'));
+assert(order.add('paracetamol'));assert(!order.add('paracetamol'));assert(order.add('antacid'));
+assert.equal(order.items.length,2);assert.equal(order.totalCents,1250);
+const snapshot=order.items;snapshot.pop();assert.equal(order.items.length,2,'snapshot cannot change cart');
+assert(order.remove('antacid'));assert.equal(order.totalCents,500);assert(!order.has('antacid'));
+assert(order.add('antacid'));const payment=order.checkout();
+assert(payment.ok);assert.equal(payment.receipt.totalCents,1250);assert.equal(payment.receipt.items.length,2);
+assert.equal(wallet.balanceCents,8750);assert.equal(saves,1);assert.equal(order.totalCents,0);
+assert.equal(order.checkout().reason,'empty');assert.equal(wallet.balanceCents,8750);assert.equal(saves,1,'no repeat charge');
+const poor=createMoneyAccount(499),failed=createShopOrder(data.products,poor);failed.add('paracetamol');
+assert.equal(failed.checkout().reason,'funds');assert.equal(poor.balanceCents,499);assert(failed.has('paracetamol'),'failed payment preserves basket');
+poor.credit(.01);assert(failed.checkout().ok);assert.equal(poor.balanceCents,0,'exact balance can be spent');
+let nested;const reentrant=createShopOrder(data.products,{debit(){nested=reentrant.checkout();return true}});reentrant.add('lozenges');assert(reentrant.checkout().ok);assert.equal(nested.reason,'busy');
+assert.equal(data.symptoms.length,12);assert.equal(new Set(data.symptoms.map(s=>s.id)).size,12);
+assert.equal(data.symptoms.find(s=>s.id==='food-poisoning').product,'rehydration');
+const ids=new Set(data.symptoms.map(s=>s.product));assert.equal(ids.size,9);
+const allWallet=createMoneyAccount(10000),all=createShopOrder(data.products,allWallet);
+for(const symptom of data.symptoms){assert(data.products.some(p=>p.id===symptom.product));assert(symptom.statement.startsWith('I have '));all.add(symptom.product)}
+assert.equal(all.items.length,9,'shared recommendations appear once');assert.equal(all.totalCents,5400);
+assert(all.checkout().ok);assert.equal(allWallet.balanceCents,4600);
+for(const priceCents of [0,-1,1.5,NaN,Infinity,'500'])assert.throws(()=>createShopOrder([{id:'bad',priceCents}],wallet),RangeError);
+assert.throws(()=>createShopOrder([{id:'a',priceCents:1},{id:'a',priceCents:2}],wallet),RangeError);
+const large=createShopOrder([{id:'a',priceCents:Number.MAX_SAFE_INTEGER},{id:'b',priceCents:1}],wallet);large.add('a');assert.throws(()=>large.add('b'),RangeError);assert.equal(large.items.length,1);
+`,ctx);
+console.log('PASS: shared basket add/remove/deduplication, exact-cent totals/payment/zero, insufficient funds, repeat/reentrant checkout, immutable snapshots, catalog validation and all 12 real symptom mappings');

@@ -1,0 +1,27 @@
+{
+  "products": [
+    {"id":"paracetamol","name":"Paracetamol","priceCents":500,"description":"Pain and fever relief","kind":"tablets","color":"#759982"},
+    {"id":"antacid","name":"Antacid tablets","priceCents":750,"description":"Indigestion relief","kind":"tablets","color":"#d5a36e"},
+    {"id":"rehydration","name":"Oral rehydration salts","priceCents":600,"description":"Fluid and salt replacement","kind":"sachets","color":"#77a5af"},
+    {"id":"heat-patches","name":"Heat patches","priceCents":650,"description":"Comfort for aching muscles","kind":"patches","color":"#c78d72"},
+    {"id":"cough-syrup","name":"Soothing cough syrup","priceCents":800,"description":"Soothes a dry, tickly cough","kind":"bottle","color":"#b18e6f"},
+    {"id":"saline","name":"Saline nasal spray","priceCents":450,"description":"Gentle nasal relief","kind":"bottle","color":"#81a7bd"},
+    {"id":"lozenges","name":"Throat lozenges","priceCents":400,"description":"Soothes a sore throat","kind":"tablets","color":"#b299b3"},
+    {"id":"after-sun","name":"Cooling after-sun gel","priceCents":700,"description":"Soothing aloe vera gel","kind":"tube","color":"#8fa985"},
+    {"id":"anti-itch","name":"Anti-itch cream","priceCents":550,"description":"Relief for itchy insect bites","kind":"tube","color":"#c19b85"}
+  ],
+  "symptoms": [
+    {"id":"headache","sprite":"headache","statement":"I have a headache.","product":"paracetamol","recommendation":"For a headache, I would recommend paracetamol."},
+    {"id":"stomachache","sprite":"stomachache","statement":"I have a stomachache.","product":"antacid","recommendation":"For a stomachache caused by indigestion, I would recommend antacid tablets."},
+    {"id":"food-poisoning","sprite":"nausea","statement":"I have food poisoning.","product":"rehydration","recommendation":"For food poisoning, I would recommend oral rehydration salts to replace lost fluids."},
+    {"id":"backache","sprite":"backache","statement":"I have backache.","product":"heat-patches","recommendation":"For backache, I would recommend heat patches for comfort."},
+    {"id":"toothache","sprite":"toothache","statement":"I have toothache.","product":"paracetamol","recommendation":"For toothache, I would recommend paracetamol for temporary pain relief."},
+    {"id":"fever","sprite":"fever","statement":"I have a fever.","product":"paracetamol","recommendation":"For a fever, I would recommend paracetamol."},
+    {"id":"cough","sprite":"cough","statement":"I have a cough.","product":"cough-syrup","recommendation":"For a dry, tickly cough, I would recommend soothing cough syrup."},
+    {"id":"flu","sprite":"chills","statement":"I have the flu.","product":"paracetamol","recommendation":"For flu aches and fever, I would recommend paracetamol for symptom relief."},
+    {"id":"runny-nose","sprite":"runny-nose","statement":"I have a runny nose.","product":"saline","recommendation":"For a runny nose, I would recommend saline nasal spray."},
+    {"id":"sore-throat","sprite":"sore-throat","statement":"I have a sore throat.","product":"lozenges","recommendation":"For a sore throat, I would recommend throat lozenges."},
+    {"id":"sunburn","sprite":"sunburn","statement":"I have sunburn.","product":"after-sun","recommendation":"For sunburn, I would recommend cooling after-sun gel."},
+    {"id":"insect-bite","sprite":"insect-bite","statement":"I have an insect bite.","product":"anti-itch","recommendation":"For an itchy insect bite, I would recommend anti-itch cream."}
+  ]
+}

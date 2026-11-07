@@ -5,8 +5,8 @@
   "description": "Offline ESL town and suburbs exploration game",
   "scripts": {
     "build": "node scripts/build.mjs",
-    "check": "node --check src/game.js && node --check src/phrasebook.js && node --check src/navigation.js && node --check src/world-life.js && node --check src/actors.js && node --check src/motion.js && node --check src/paths.js && node --check src/money.js && node --check src/interiors.js",
-    "test": "npm run build && node tests/smoke.cjs && node tests/world.cjs && node tests/traffic.cjs && node tests/actors.cjs && node tests/motion-paths.cjs && node tests/paving-directions.cjs && node tests/money.cjs && node tests/interiors.cjs"
+    "check": "node --check src/game.js && node --check src/phrasebook.js && node --check src/navigation.js && node --check src/world-life.js && node --check src/actors.js && node --check src/motion.js && node --check src/paths.js && node --check src/money.js && node --check src/interiors.js && node --check src/shop.js && node --check src/pharmacy.js",
+    "test": "npm run build && node tests/smoke.cjs && node tests/world.cjs && node tests/traffic.cjs && node tests/actors.cjs && node tests/motion-paths.cjs && node tests/paving-directions.cjs && node tests/money.cjs && node tests/interiors.cjs && node tests/shop.cjs"
   },
   "engines": {
     "node": ">=18"
