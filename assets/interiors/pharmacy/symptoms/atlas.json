@@ -1,0 +1,108 @@
+{
+  "image": "atlas.png",
+  "width": 1448,
+  "height": 1086,
+  "columns": 4,
+  "rows": 3,
+  "cellWidth": 362,
+  "cellHeight": 362,
+  "labelStatus": "Descriptive working labels inferred from the artwork; teaching vocabulary and interaction await user instructions.",
+  "sprites": [
+    {
+      "id": "headache",
+      "label": "Headache",
+      "x": 0,
+      "y": 0,
+      "width": 362,
+      "height": 362
+    },
+    {
+      "id": "stomachache",
+      "label": "Stomachache",
+      "x": 362,
+      "y": 0,
+      "width": 362,
+      "height": 362
+    },
+    {
+      "id": "nausea",
+      "label": "Feeling sick",
+      "x": 724,
+      "y": 0,
+      "width": 362,
+      "height": 362
+    },
+    {
+      "id": "backache",
+      "label": "Backache",
+      "x": 1086,
+      "y": 0,
+      "width": 362,
+      "height": 362
+    },
+    {
+      "id": "toothache",
+      "label": "Toothache",
+      "x": 0,
+      "y": 362,
+      "width": 362,
+      "height": 362
+    },
+    {
+      "id": "fever",
+      "label": "Fever",
+      "x": 362,
+      "y": 362,
+      "width": 362,
+      "height": 362
+    },
+    {
+      "id": "cough",
+      "label": "Cough",
+      "x": 724,
+      "y": 362,
+      "width": 362,
+      "height": 362
+    },
+    {
+      "id": "chills",
+      "label": "Chills",
+      "x": 1086,
+      "y": 362,
+      "width": 362,
+      "height": 362
+    },
+    {
+      "id": "runny-nose",
+      "label": "Runny nose",
+      "x": 0,
+      "y": 724,
+      "width": 362,
+      "height": 362
+    },
+    {
+      "id": "sore-throat",
+      "label": "Sore throat",
+      "x": 362,
+      "y": 724,
+      "width": 362,
+      "height": 362
+    },
+    {
+      "id": "sunburn",
+      "label": "Sunburn",
+      "x": 724,
+      "y": 724,
+      "width": 362,
+      "height": 362
+    },
+    {
+      "id": "insect-bite",
+      "label": "Insect bite",
+      "x": 1086,
+      "y": 724,
+      "width": 362,
+      "height": 362
+    }
+  ]
+}

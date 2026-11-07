@@ -12,3 +12,5 @@ The builder embeds the background and neutral portrait. The entrance requires bo
 If originals have another file type, use that original extension and update the file mapping in `scripts/build.mjs`. Do not merely rename a JPEG to PNG.
 
 The archive also contained a bank lobby, retained unchanged as `../bank/background.png` for a future task. Bank entry is not enabled. All five original file hashes are recorded in `../source-manifest.json`.
+
+A later upload supplied a 12-picture transparent symptom sheet. Original art and cell metadata are in [`symptoms/`](symptoms/README.md); its interaction is awaiting the user's description.

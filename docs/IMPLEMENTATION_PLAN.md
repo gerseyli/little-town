@@ -123,3 +123,15 @@ All pharmacy-pilot checklist items are complete. The attachment-transfer blocker
 Verification passed: syntax checks, full `npm test`, final `tests/interiors.cjs`, `python3 tests/interiors-browser.py`, `python3 tests/money-browser.py` and `python3 tests/browser.py`. Covered proximity/priority, stale targets, repeat/held keys, modal focus, native close/Escape/exit/reset, same-turn rapid re-entry, correct greeting/neutral image, unchanged money/position/facing, real image decoding, original file hashes and outdoor traffic/directions/money. Visual review at desktop, portrait and landscape sizes confirms countertop occlusion, a readable speech bubble and visible exit/money controls. No browser errors. Existing map art, path geometry, navigation, walking atlases and motion/actor modules are unchanged from `2640762`.
 
 Integration notes: `docs/INTERIORS.md`; future interaction hook: `little-town:chemist-interact`. Deliverable: `preview/Little-Town-Pharmacy-Entry.zip`, a verified byte-identical standalone HTML build. Branch `preview/pharmacy-entry-20261107`; recovery checkpoints are pushed, main unchanged. Next work requires the user's description of what happens when the chemist is clicked.
+
+## Symptom artwork received — 2026-11-07
+
+The user uploaded **Pharmacy symptom clip-art sprite sheet.rar** without additional interaction instructions. Source preparation is complete on `assets/pharmacy-symptoms-20261107`, based on the completed pharmacy pilot `9ae4008`.
+
+- [x] Extract and inspect the archive. It contains one transparent 1448×1086 PNG, with twelve illustrations in a 4×3 grid.
+- [x] Preserve original bytes in `assets/interiors/pharmacy/symptoms/atlas.png`; record source archive/filename/SHA-256 in `assets/interiors/source-manifest.json`.
+- [x] Record 362×362 cell coordinates and descriptive working labels in `symptoms/atlas.json` and `symptoms/README.md`. Verify bounds, unique IDs, transparency and unchanged bytes. All six supplied original image hashes pass.
+- [x] Save this source checkpoint on GitHub. The existing playable preview and runtime remain unchanged; no new game ZIP is needed for a source-only asset receipt.
+- [ ] Await the user's description of what clicking the chemist should do and how the symptom pictures are used. Asked in chat. Do not invent medicine matching, dialogue, prices, grading or expression changes.
+
+Resume from this branch so the new atlas is available. The extension point remains `little-town:chemist-interact` in `src/interiors.js`; behaviour and current export are described in `docs/INTERIORS.md`. The latest playable ZIP remains `preview/Little-Town-Pharmacy-Entry.zip`. No further gameplay has been requested by the upload alone.
