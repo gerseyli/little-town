@@ -164,3 +164,14 @@ The requested shop flow is implemented and verified: close-up chemist, generated
 Final checks: `npm run check`, full `npm test`, final model/interior checks, final `python3 tests/pharmacy-browser.py`, plus `tests/interiors-browser.py`, `tests/money-browser.py` and `tests/browser.py`. No browser errors. Original supplied image hashes pass. Generated WebP assets retain original resolution. Shared cart and exact-price catalog are documented in `docs/PHARMACY_SHOP.md`.
 
 Delivery: `preview/Little-Town-Pharmacy-Shop.zip` contains the current HTML verified byte for byte against `dist/Little-Town.html`; `preview/Pharmacy-Shop.png` provides a visual preview. Current branch: `preview/pharmacy-shop-20261107`; main unchanged. Implementation checkpoint `214a301` is pushed; final delivery commit contains current docs, accessibility/shortcut refinement, updated regression and preview. No further feature is implicitly queued; wait for the user's pilot feedback.
+
+## Active fixes — entrance Space and persistent map view (2026-11-07)
+
+User reports that pressing Space at the entrance prompt does nothing. Also requests Whole map as the default starting view and persistence of the selected scale between Town and Suburbs.
+
+Branch: `fix/entry-space-and-map-view-20261107`, based on shop pilot `78f84ac`.
+
+- [ ] Reproduce entrance Space after normal UI interaction/walking, including retained focus on map controls. Fix keyboard precedence without breaking native pharmacy/shop controls or held-key safety; add real-browser regression.
+- [ ] Start new/legacy saves at Whole map (100%). Preserve the selected zoom percentage across map changes, resize, Back to start and saved-game reload. Save view changes immediately and validate restored zoom.
+- [ ] Verify the exact keyboard reproduction plus entry/shop, initial fit, changed scale, train round trips and reloads. Run appropriate regression checks.
+- [ ] Update known bugs/handoff notes and push recoverable commits. Replace the playable preview ZIP with a verified updated export, leaving main unchanged.
