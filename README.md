@@ -1,5 +1,9 @@
 # Little Town — source starter
 
+## Browser preview
+
+Automatic public preview hosting is prepared on **preview/live**. Activation is awaiting the cloud environment network update and GitHub Pages configuration; a live URL has not yet been verified. See [deployment status and instructions](docs/PREVIEW_DEPLOYMENT.md). Once activated, future verified pushes update the same browser link. `npm run build:preview` builds the static site while preserving the standalone offline export.
+
 ## Enter the pharmacy
 
 Walk near the pharmacy entrance on Garden Street and click **Enter the pharmacy · Space** or press Space. Entry takes priority over nearby pedestrians. Inside, click the supplied neutral chemist to open the pharmacy shop: select symptoms, toggle phrase names, ask for recommendations, add medicines to a basket and check out using your saved balance. See [the pharmacy shop pilot](docs/PHARMACY_SHOP.md). **Back outside** or Escape returns you to the same position, preserving money. Only pharmacy entry is enabled in this pilot. See [interior behaviour and extension notes](docs/INTERIORS.md).

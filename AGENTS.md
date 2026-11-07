@@ -27,3 +27,10 @@ The user explicitly deferred fixes to the three issues in docs/KNOWN_BUGS.md. In
 
 ## Delivery
 Keep a fully offline standalone HTML export with all image assets embedded. The game currently needs no server or external API. Do not introduce hosting, accounts, payments, licensing or extra dependencies unless a task needs them. Do not publish the source publicly without the user's instruction.
+
+
+## Permanent browser preview
+
+The user authorized a public browser preview. `preview/live` is the canonical source for future preview work; fetch/inspect it before starting from the historical main branch. Preserve main and repository visibility. Read `docs/PREVIEW_DEPLOYMENT.md` for activation status and hosting prerequisites.
+
+Once Pages is activated, pushes to `preview/live` automatically test/build/deploy the generated site. Advance that branch only with verified changes, then confirm Actions/deployed version before giving the stable URL. Prefer the stable browser preview for delivery; create ZIPs only when requested. Keep `npm run build` producing the offline export. `npm run test:preview` verifies the web artifact, and `python3 tests/preview-browser.py` tests its launcher, assets and saved state across updates. Do not publish editor sources, archives or credentials as the site artifact.
