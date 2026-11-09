@@ -228,3 +228,14 @@ Work on canonical `preview/live`, preserving the current verified game and main.
 
 
 Bank implementation checkpoint (2026-11-09): reuses the exact existing supplied lobby unchanged. Registry now supports optional character/greeting, the bank uses its named approach and a background-only view, and pharmacy-only actions are guarded. Node interior/hash checks, real bank keyboard/focus/exit/scene-switching browser regression and the existing pharmacy shop browser suite pass. Responsive screenshots confirm the whole supplied image, no pharmacy overlays and readable exit/money controls. `npm run test:preview` verifies 28 external HD assets and unchanged game/asset bytes. Prior deployment 68fc8d9 was also verified in a real HTTPS browser today, completing the interrupted hosting check. Bank deployment/hosted verification is next.
+
+## Active task — bank hotspots and ATM pilot (2026-11-09)
+
+The user dictated this next mechanic while bank entry was being deployed. Preserve that bank entrance/lobby work. Make all five visible bank services clickable: ATM, mortgages, loans, savings accounts and investments. Implement the ATM first; other desks get selection feedback and an extension hook without invented financial products.
+
+- [ ] Generate an ATM close-up matching the supplied lobby ATM, a separate cash-slot asset and realistic illustrated dollar-stack asset. Preserve prompts and use clipped, smooth cash-in/cash-out animation.
+- [ ] Add a distinct persistent bank account starting at $500, separate from spendable wallet money ($100 default). Migrate older saves, preserve zero and validate malformed stored balances. Transfers must conserve total cents, prevent overdrafts/overflow, and save both balances coherently.
+- [ ] ATM menu: Account balance, Withdraw money and Deposit money. Amount entry asks the requested question, supports confirm/back/keyboard, validates positive two-decimal dollar amounts and funds, and shows clear errors/success. Prevent repeated confirmation while animating.
+- [ ] Wire accurately aligned lobby hotspots, close-up/back/Escape/focus rules, separate bank/wallet readouts and robust animation cleanup. Confirmed transfer persists immediately; exiting/reloading during the visual animation must not lose or repeat it.
+- [ ] Test account defaults/save migration, deposit/withdraw/exact/insufficient funds and cents conservation, click targets, amount input, repeat clicks, cash direction/slot clipping, reduced motion and exit/re-entry/reload. Preserve pharmacy checkout and bank entry.
+- [ ] Save checkpoints and deploy/verify the complete ATM pilot at the same public preview URL. Finish the bank-only deployment check first if it completes while assets are generated.
