@@ -4,11 +4,13 @@ The user explicitly chose a public preview and authorized public repository/hist
 
 ## Current activation status
 
-Hosting is active. Current gameplay deployment is **ec53368864d253f3c083973c35f19a4ab10a39ff** (Grocery store, ATM and mortgage pilots). Run **42676590783** completed build, source/gameplay/static checks, artifact upload and Pages deployment successfully on 2026-11-09. The static site contains 41 content-hashed HD image assets and the standalone offline export remains supported.
+Hosting is active. Current published gameplay source is **3e293e7453270c86c40c21628c8c4c18649077e0**, including the pharmacy voice pilot and local-file speech correction. Pages run **42686409173** completed successfully. The actual public HTTPS version manifest confirms that source, 43 content-hashed image assets and three separately cached speech resources. The full offline HTML remains supported.
 
-The actual public HTTPS browser check `tests/hosted-preview.py --banking --grocery` passed against that exact deployed commit: launcher/current version, HD assets, retained-focus Space entry, pharmacy checkout/reload, original bank lobby, saved ATM transfers, mortgage signing/monthly overdraft, Grocery store's 24 food catalog, shared-wallet checkout/repeat protection and saved 120% zoom/money after reload. No asset failures or JavaScript errors. Screenshot artifacts are in `/tmp/little-town-public-*.png` in the development workspace. Completion/recovery notes are in IMPLEMENTATION_PLAN.md.
+Voice validation uses the actual bundled Vosk/WASM engine, synthetic English speech through Chromium's capture pipeline, first-use recognition with networking disabled in the standalone export, and recognition in an opaque-origin Blob worker. Full Node/gameplay/static tests and pharmacy/grocery browser regressions pass. These do not establish recognition quality for student accents or physical microphones. Earlier ec53368 bank/grocery HTTPS browser checks are historical validation; the user's previously reported preview failure on their device is not claimed diagnosed or repaired.
 
-The owner previously enabled public-repository GitHub Actions Pages and added the exact preview/live branch rule to github-pages, retaining main. Earlier activation and bank-only deployments are historical checkpoints; they are superseded by the verified combined deployment above.
+The preferred delivery for the user is now the verified standalone [Little-Town.html](https://github.com/gerseyli/little-town/releases/download/offline-42686409466/Little-Town.html) (125.3 MB including the offline voice engine/model), published by release run **42686409466**. The actual download matches the tested local file. See VOICE_MODE.md and IMPLEMENTATION_PLAN.md for instructions, integrity and limits.
+
+The owner enabled public-repository GitHub Actions Pages and allowed preview/live in the github-pages deployment environment, retaining main. Earlier activation issues are historical checkpoints.
 
 No further GitHub/environment activation is required. Earlier 403/404/branch-rule notes in the plan are historical checkpoints, not remaining setup work.
 
