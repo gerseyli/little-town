@@ -214,3 +214,14 @@ Hosting owner-setting checkpoint (2026-11-07): user screenshot confirmed GitHub 
 
 
 Pages activation checkpoint (2026-11-07): owner completed public visibility and Pages Source=GitHub Actions. API confirms private:false/has_pages:true and public HTTPS URL https://gerseyli.github.io/little-town/. Full build plus static verification and artifact upload passed on run 42356686612. Deployment alone was rejected before steps: github-pages environment permits only main. Adding the exact preview/live branch policy via API returned integration HTTP403. User is instructed to Environments → github-pages → Deployment branches and tags → add Branch preview/live, preserving main. URL still404: do not claim live yet. Workflow now excludes docs/README/AGENTS/preview-only changes to avoid unnecessary redeploys for recovery notes; source/build/workflow changes still deploy automatically. After owner rule is saved, follow/retry latest run and verify actual game/HTTPS.
+
+## Active task — bank entrance and supplied lobby (2026-11-09)
+
+User request: allow the player to enter the bank and show the exact City Bank lobby image supplied in chat. That image is already tracked unchanged as `assets/interiors/bank/background.png` from Downloads.rar (1672×941; original hash in source-manifest.json).
+
+Work on canonical `preview/live`, preserving the current verified game and main. Preserve the existing untracked `tests/hosted-preview.py` from the earlier interrupted deployment check.
+
+- [ ] Add bank to the existing loose-proximity entrance system using `bank-entrance`; keep Space/button focus priority and pedestrian precedence.
+- [ ] Support a background-only interior with the supplied bank art, money HUD and Back outside/Escape. The pharmacy chemist, greeting and shop must appear only in the pharmacy. No ATM, banking transaction or staff interaction is requested yet.
+- [ ] Verify bank proximity/keyboard entry, correct HD art with no pharmacy overlay, focus, exit/re-entry, preserved position/facing/zoom/money, and pharmacy regression. Keep supplied image bytes unchanged and embed bank in offline/web builds.
+- [ ] Save progress and deployment notes, push the verified update to preview/live, await Pages success and verify the actual hosted bank scene at the stable URL. Finish the previously interrupted hosting-status handoff when the live check succeeds.
