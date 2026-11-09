@@ -19,6 +19,8 @@ jobs:
           node-version: '22'
       - name: Build standalone HTML
         run: npm run build
+      - name: Verify local speech bundle
+        run: node tests/voice.cjs
       - name: Check embedded assets
         run: |
           node <<'JS'

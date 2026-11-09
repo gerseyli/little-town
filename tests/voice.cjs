@@ -50,6 +50,13 @@ function harness(options={}){
  return {input,records,streams,contexts,onResult,states,partial,makeStream,setActive(value){active=value}};
 }
 (async()=>{
+ const {memorySpeechEngine}=await import('../scripts/speech-engine.mjs');
+ const runtime=memorySpeechEngine(fs.readFileSync(path.join(root,'vendor/speech/vosk.js'),'utf8'));
+ const encoded=/var WorkerFactory = createBase64WorkerFactory\('([^']+)'/.exec(runtime)[1];
+ const worker=Buffer.from(encoded,'base64').toString('utf8');
+ const urlExpression=/const fullModelUrl = ([^;]+);/.exec(worker)[1];
+ assert.equal(vm.runInNewContext(urlExpression+'.href',{URL,modelUrl:'blob:null/offline-model',location:{href:'blob:null/offline-worker'}}),'blob:null/offline-model','opaque local-file Blob URLs need no invalid stripped base');
+ assert(!worker.includes('this.Vosk.FS.mount(this.Vosk.IDBFS, {}, storagePath);'));
  const h=harness();assert(await h.input.start());assert.equal(h.input.phase,'listening');assert(!await h.input.start(),'no duplicate take');
  h.records[0].emit('partialresult');assert.equal(h.onResult.length,0,'interim speech never applies');assert.equal(h.partial.length,1);
  h.records[0].emit('result');assert.equal(h.onResult.length,1);assert.equal(h.streams[0].track.stopped,1);assert.equal(h.contexts[0].closed,1);assert.equal(h.records[0].removed,1);
