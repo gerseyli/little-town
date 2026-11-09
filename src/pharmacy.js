@@ -3,6 +3,7 @@
 let pharmacySession=null;
 function pharmacyShopVisible(){return !!pharmacySession?.visible}
 function resetPharmacyShop(){
+ stopPharmacyVoice(true);
  pharmacySession=null;$('pharmacy-shop').classList.add('hidden');$('interior-dialog').classList.remove('shop-open');$('interior-dialog').setAttribute('aria-describedby','chemist-greeting');
 }
 function shopActionArt(){return '<img class="shop-action-art" src="'+ASSETS.pharmacyAction+'" alt="" aria-hidden="true">'}
@@ -19,7 +20,7 @@ function openPharmacyShop(){
 }
 function closePharmacyShop(){
  if(!pharmacySession)return;
- pharmacySession.visible=false;$('pharmacy-shop').classList.add('hidden');$('interior-dialog').classList.remove('shop-open');$('interior-dialog').setAttribute('aria-describedby','chemist-greeting');
+ stopPharmacyVoice();pharmacySession.visible=false;$('pharmacy-shop').classList.add('hidden');$('interior-dialog').classList.remove('shop-open');$('interior-dialog').setAttribute('aria-describedby','chemist-greeting');
  clearKeys();$('chemist').focus();
 }
 function selectedPharmacySymptoms(){return PHARMACY_DATA.symptoms.filter(item=>pharmacySession.selected.has(item.id))}
@@ -47,7 +48,7 @@ function renderPharmacyShop(){
  $('shop-scroll').classList.toggle('names-hidden',!session.names);
  $('shop-workspace').classList.toggle('has-basket',!choosing);
  $('shop-basket').classList.toggle('hidden',choosing);
- $('shop-chemist-speech').innerHTML=choosing?'<p>How are you feeling?</p><p class="shop-speech-hint">Choose one or more pictures.</p>':receipt?'<p>Thank you! Here is your order.</p>':selectedPharmacySymptoms().map(item=>'<p>'+item.recommendation+'</p>').join('');
+ $('shop-chemist-speech').innerHTML=choosing?'<p>How are you feeling?</p><p class="shop-speech-hint">Choose one or more pictures, or use voice mode.</p>':receipt?'<p>Thank you! Here is your order.</p>':selectedPharmacySymptoms().map(item=>'<p>'+item.recommendation+'</p>').join('');
  if(choosing){
   $('shop-scroll').innerHTML='<div class="symptom-grid">'+PHARMACY_DATA.symptoms.map(item=>'<button type="button" id="symptom-'+item.id+'" class="symptom-card" data-symptom="'+item.id+'" aria-label="'+item.statement+'" aria-pressed="false">'+symptomPicture(item)+'<span class="symptom-caption">'+item.statement+'</span><span class="symptom-check" aria-hidden="true">✓</span></button>').join('')+'</div>';
   $('shop-footer').innerHTML='<span id="symptom-selection-count" role="status" aria-live="polite"></span><button id="pharmacy-recommend" class="shop-action" data-shop-action="recommend">'+shopActionArt()+'<span>What would you recommend?</span></button>';
@@ -60,7 +61,7 @@ function renderPharmacyShop(){
   $('shop-footer').innerHTML='<button class="shop-text-button" data-shop-action="change-symptoms">← Change symptoms</button>';
  }
  $('shop-scroll').scrollTop=0;
- renderPharmacyBasket();
+ renderPharmacyBasket();syncPharmacyVoice();
 }
 function refreshSymptomSelection(){
  const session=pharmacySession;
@@ -113,7 +114,8 @@ function pharmacyShopClick(event){
  const symptom=event.target.closest('[data-symptom]');
  if(symptom&&pharmacySession.phase==='symptoms'){
   const id=symptom.dataset.symptom;if(!PHARMACY_DATA.symptoms.some(item=>item.id===id))return;
-  pharmacySession.selected.has(id)?pharmacySession.selected.delete(id):pharmacySession.selected.add(id);refreshSymptomSelection();return;
+  stopPharmacyVoice(true);pharmacyVoiceOwner=pharmacySession;
+  pharmacySession.selected.has(id)?pharmacySession.selected.delete(id):pharmacySession.selected.add(id);refreshSymptomSelection();renderPharmacyVoice();return;
  }
  const product=event.target.closest('[data-product]');if(product){addPharmacyProduct(product.dataset.product);return}
  const remove=event.target.closest('[data-remove-product]');

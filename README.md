@@ -12,6 +12,10 @@
 
 Walk near the bank entrance on Oak Street and click **Enter the bank · Space** or press Space. The supplied City Bank lobby fills the interior screen. **Back outside** or Escape returns to the same position and facing, preserving money and zoom. See [interior behaviour](docs/INTERIORS.md).
 
+## Pharmacy voice mode
+
+The pharmacy symptom chooser now offers generated **Voice: on/off** controls. Turn voice on, allow the microphone, and say one or more symptoms. Keywords count: “headache”, “I have a headache” and “I has a headache” all work. Review the selected pictures before requesting recommendations. The free Vosk engine and English model process speech on-device and are included in the standalone HTML; no API key/subscription is needed. Browser microphone support and accents vary. [Voice mode details](docs/VOICE_MODE.md).
+
 ## Enter the pharmacy
 
 Walk near the pharmacy entrance on Garden Street and click **Enter the pharmacy · Space** or press Space. Entry takes priority over nearby pedestrians. Inside, click the supplied neutral chemist to open the pharmacy shop: select symptoms, toggle phrase names, ask for recommendations, add medicines to a basket and check out using your saved balance. See [the pharmacy shop pilot](docs/PHARMACY_SHOP.md). **Back outside** or Escape returns you to the same position, preserving money. Bank and pharmacy entry are enabled. See [interior behaviour and extension notes](docs/INTERIORS.md).

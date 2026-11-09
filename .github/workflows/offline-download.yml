@@ -26,9 +26,15 @@ jobs:
           const html=fs.readFileSync('dist/Little-Town.html','utf8');
           const start=html.indexOf('const ASSETS=')+13,end=html.indexOf(';\nconst MAPS=',start);
           const assets=JSON.parse(html.slice(start,end));
-          assert(Object.keys(assets).length>=41);
+          assert(Object.keys(assets).length>=43);
           assert(Object.values(assets).every(value=>/^data:image\/(?:png|webp);base64,/.test(value)));
           for(const key of ['bankATM','bankComputer','grocery-background','grocery-assistant','grocery-fresh'])assert(assets[key]);
+          assert(assets.voiceOn&&assets.voiceOff);
+          const speechStart=html.indexOf('const SPEECH_ASSETS=')+20,speechEnd=html.indexOf(';\nconst SPEECH_CONFIG=',speechStart);
+          const speech=JSON.parse(html.slice(speechStart,speechEnd));
+          assert(speech.engine.startsWith('data:application/javascript;base64,'));
+          assert(speech.model.startsWith('data:application/gzip;base64,'));
+          assert(speech.worklet.startsWith('data:application/javascript;base64,'));
           assert(!html.includes('/* GAME */'));
           console.log('Standalone HTML verified: all '+Object.keys(assets).length+' image assets embedded.');
           JS
@@ -37,9 +43,11 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           cat > /tmp/offline-release-notes.md <<EOF
-          Download **Little-Town.html**, save it on your computer, and open it in a browser. All 41 image assets and game logic are embedded; no server or internet connection is required to play.
+          Download **Little-Town.html**, save it on your computer, and open it in a browser. All 43 image assets, game logic, voice engine and English model are embedded; no server, API key or subscription is needed.
 
-          Includes the Grocery store with 24 foods and shared-wallet checkout, pharmacy, ATM deposits/withdrawals, mortgages, monthly interaction calendar, moving traffic and walking pedestrians.
+          Includes the pharmacy voice pilot with learner-tolerant symptom keywords, the Grocery store with 24 foods and shared-wallet checkout, ATM deposits/withdrawals, mortgages, monthly interaction calendar, moving traffic and walking pedestrians.
+
+          Voice is optional: enter the pharmacy, click the chemist, turn Voice on and allow the microphone. A recent Chrome or Edge is recommended. Local-file microphone support varies by browser; manual selection remains available. Audio is processed on-device. The file is larger because it includes the offline English model. Automated speech checks use synthetic audio, not a physical microphone/student accents.
 
           Source: ${GITHUB_SHA}. The live preview site is not needed for this download.
           EOF

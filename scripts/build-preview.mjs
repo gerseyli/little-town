@@ -17,17 +17,27 @@ for(const [key,value] of Object.entries(embedded)){
  const bytes=Buffer.from(match[2],'base64'),filename=key+'-'+hash(bytes)+'.'+match[1];
  urls[key]='./assets/'+filename;await writeFile(path.join(output,'assets',filename),bytes);
 }
-const game=offline.slice(0,start+marker.length)+JSON.stringify(urls)+offline.slice(end);
+let game=offline.slice(0,start+marker.length)+JSON.stringify(urls)+offline.slice(end);
+const speechMarker='const SPEECH_ASSETS=',speechStart=game.indexOf(speechMarker),speechEnd=game.indexOf(';\nconst SPEECH_CONFIG=',speechStart);
+if(speechStart<0||speechEnd<0)throw new Error('Speech asset manifest was not found.');
+const speechEmbedded=JSON.parse(game.slice(speechStart+speechMarker.length,speechEnd)),speechUrls={};
+for(const [key,[type,extension]] of Object.entries({engine:['application/javascript','js'],model:['application/gzip','tar.gz'],worklet:['application/javascript','js']})){
+ const prefix='data:'+type+';base64,';
+ if(!speechEmbedded[key]?.startsWith(prefix))throw new Error('Unsupported speech asset '+key);
+ const bytes=Buffer.from(speechEmbedded[key].slice(prefix.length),'base64'),filename='speech-'+key+'-'+hash(bytes)+'.'+extension;
+ speechUrls[key]='./assets/'+filename;await writeFile(path.join(output,'assets',filename),bytes);
+}
+game=game.slice(0,speechStart+speechMarker.length)+JSON.stringify(speechUrls)+game.slice(speechEnd);
 const filename='game-'+hash(game)+'.html';
 const commit=process.env.GITHUB_SHA||'local';
-const version={game:filename,commit,generatedAt:new Date().toISOString(),assetCount:Object.keys(urls).length};
+const version={game:filename,commit,generatedAt:new Date().toISOString(),assetCount:Object.keys(urls).length,speechAssetCount:Object.keys(speechUrls).length};
 await writeFile(path.join(output,filename),game);
 await writeFile(path.join(output,'version.json'),JSON.stringify(version,null,2)+'\n');
 await writeFile(path.join(output,'.nojekyll'),'');
 await writeFile(path.join(output,'index.html'),`<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Little Town — Preview</title>
 <style>html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#355640;color:#fff4db;font:16px system-ui,sans-serif}#loading{position:absolute;inset:0;display:grid;place-content:center;text-align:center;padding:24px}#game{display:block;border:0;width:100%;height:100dvh}#game[hidden],#loading[hidden]{display:none}a{color:#ffdfa1}</style></head>
-<body><div id="loading" role="status" aria-live="polite">Opening Little Town…</div><iframe id="game" title="Little Town game" allow="fullscreen" allowfullscreen hidden></iframe>
+<body><div id="loading" role="status" aria-live="polite">Opening Little Town…</div><iframe id="game" title="Little Town game" allow="fullscreen; microphone" allowfullscreen hidden></iframe>
 <noscript><p>Enable JavaScript to play Little Town.</p></noscript><script>
 (async()=>{
  const loading=document.getElementById('loading'),frame=document.getElementById('game');

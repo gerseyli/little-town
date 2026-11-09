@@ -1,6 +1,7 @@
 import {readFile,mkdir,writeFile} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
 import path from 'node:path';
+import {memorySpeechEngine} from './speech-engine.mjs';
 const root=path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const read=p=>readFile(path.join(root,p),'utf8');
 const assets={};
@@ -25,6 +26,7 @@ for(const [key,file] of [['pharmacy-background','pharmacy/background'],['chemist
  const bytes=await readFile(path.join(root,'assets/interiors',file+'.png'));
  assets[key]='data:image/png;base64,'+bytes.toString('base64');
 }
+for(const [key,file] of [['voiceOn','on'],['voiceOff','off']])assets[key]='data:image/webp;base64,'+(await readFile(path.join(root,'assets/ui/voice',file+'.webp'))).toString('base64');
 for(const [key,file] of [['pharmacyConsultation','consultation'],['pharmacyBasket','basket'],['pharmacyAction','action']]){
  const bytes=await readFile(path.join(root,'assets/ui/pharmacy',file+'.webp'));
  assets[key]='data:image/webp;base64,'+bytes.toString('base64');
@@ -37,9 +39,11 @@ for(const name of ['background','assistant','pantry1','pantry2','fresh'])assets[
 assets.pharmacySymptoms='data:image/png;base64,'+(await readFile(path.join(root,'assets/interiors/pharmacy/symptoms/atlas.png'))).toString('base64');
 // Embed every map, control and actor image for a standalone offline export.
 const assetJSON='{'+Object.entries(assets).map(([k,v])=>JSON.stringify(k)+': '+JSON.stringify(v)).join(', ')+'}';
+const speechAssets={engine:'data:application/javascript;base64,'+Buffer.from(memorySpeechEngine(await read('vendor/speech/vosk.js'))).toString('base64'),model:'data:application/gzip;base64,'+(await readFile(path.join(root,'vendor/speech/vosk-model-small-en-us-0.15.tar.gz'))).toString('base64'),worklet:'data:application/javascript;base64,'+Buffer.from(await read('src/voice-capture.js')).toString('base64')};
+const speechConfig={engine:'Vosk-browser 0.0.8',model:'Vosk small US English 0.15',licenses:await read('vendor/speech/COPYING'),modelNotice:await read('vendor/speech/MODEL-NOTICE'),modification:'Little Town: in-memory model filesystem; no persistent engine cache.'};
 const maps=await read('src/maps.json');
 const phrases=await read('src/phrasebook.js');
-const styles=(await read('src/styles.css'))+'\n'+(await read('src/pharmacy.css'))+'\n'+(await read('src/bank.css'))+'\n'+(await read('src/grocery.css'));
+const styles=(await read('src/styles.css'))+'\n'+(await read('src/pharmacy.css'))+'\n'+(await read('src/bank.css'))+'\n'+(await read('src/grocery.css'))+'\n'+(await read('src/voice.css'));
 const walkingAnchors=await read('assets/walking/foot-anchors.json');
 const pharmacyData=await read('src/pharmacy-data.json'),symptomAtlas=await read('assets/interiors/pharmacy/symptoms/atlas.json');
 const money=await read('src/money.js'),interiors=await read('src/interiors.js'),shop=await read('src/shop.js');
@@ -49,8 +53,14 @@ const grocery=(await read('src/grocery.js')).replace('/* GROCERY DATA */',()=> '
 const banking=await read('src/banking.js'),bank=await read('src/bank.js');
 const motion=await read('src/motion.js'),paths=await read('src/paths.js');
 const navigation=await read('src/navigation.js'),worldLife=await read('src/world-life.js'),actors=await read('src/actors.js');
+const voiceMatching=await read('src/voice-matching.js'),voiceInput=await read('src/voice-input.js'),voiceEngine=await read('src/voice-engine.js'),pharmacyVoice=await read('src/pharmacy-voice.js');
 const game=(await read('src/game.js'))
  .replace('/* ASSETS */',()=> 'const ASSETS='+assetJSON+';')
+ .replace('/* SPEECH ASSETS */',()=> 'const SPEECH_ASSETS='+JSON.stringify(speechAssets)+';\nconst SPEECH_CONFIG='+JSON.stringify(speechConfig)+';')
+ .replace('/* VOICE MATCHING */',()=>voiceMatching)
+ .replace('/* VOICE INPUT */',()=>voiceInput)
+ .replace('/* VOICE ENGINE */',()=>voiceEngine)
+ .replace('/* PHARMACY VOICE */',()=>pharmacyVoice)
  .replace('/* MAP DATA */',()=> 'const MAPS='+maps+';')
  .replace('/* PHRASEBOOK */\n',()=>phrases)
  .replace('/* MONEY */',()=>money)

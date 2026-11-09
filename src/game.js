@@ -1,6 +1,7 @@
 
 /* ASSETS */
 /* MAP DATA */
+/* SPEECH ASSETS */
 const $=id=>document.getElementById(id),SPEED=210,held=new Set();
 let mapKey='town',x=120,y=1300,facing='north',angle=0,labels=true,busy=false,context=null,dismissed=null,routeIndex=0,travelCooldown=0,travelTimer,last=0,signalEpoch=performance.now(),lastGreen=null,lastNotice=0,toastTimer,zoom=1,scale=1,camX=0,camY=0,drag=null,bookTab='directions',russian=false;
 const current=()=>MAPS[mapKey];
@@ -62,6 +63,10 @@ function tick(t){const dt=last?Math.max(0,(t-last)/1000):0;last=t;simulationFram
 /* INTERIORS */
 /* SHOP */
 /* PHARMACY */
+/* VOICE MATCHING */
+/* VOICE INPUT */
+/* VOICE ENGINE */
+/* PHARMACY VOICE */
 /* BANK */
 /* GROCERY */
 const keyMap={w:'ArrowUp',a:'ArrowLeft',s:'ArrowDown',d:'ArrowRight'};
