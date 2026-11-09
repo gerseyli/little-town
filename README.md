@@ -2,11 +2,15 @@
 
 ## Browser preview
 
-Automatic public preview hosting is prepared on **preview/live**. The environment network update is applied and GitHub build/gameplay checks pass. The repository is public and GitHub Pages is enabled. The owner is allowing preview/live in the Pages deployment environment; successful public deployment is still pending. See [deployment status and instructions](docs/PREVIEW_DEPLOYMENT.md). Once activated, future verified pushes update the same browser link. `npm run build:preview` builds the static site while preserving the standalone offline export.
+[**Play Little Town in your browser**](https://gerseyli.github.io/little-town/). Refresh this same link after updates; no ZIP download is needed. Verified game/build pushes to **preview/live** automatically test and deploy. See [deployment details](docs/PREVIEW_DEPLOYMENT.md). The offline export is still available with `npm run build`.
+
+## Enter the bank
+
+Walk near the bank entrance on Oak Street and click **Enter the bank · Space** or press Space. The supplied City Bank lobby fills the interior screen. **Back outside** or Escape returns to the same position and facing, preserving money and zoom. See [interior behaviour](docs/INTERIORS.md).
 
 ## Enter the pharmacy
 
-Walk near the pharmacy entrance on Garden Street and click **Enter the pharmacy · Space** or press Space. Entry takes priority over nearby pedestrians. Inside, click the supplied neutral chemist to open the pharmacy shop: select symptoms, toggle phrase names, ask for recommendations, add medicines to a basket and check out using your saved balance. See [the pharmacy shop pilot](docs/PHARMACY_SHOP.md). **Back outside** or Escape returns you to the same position, preserving money. Only pharmacy entry is enabled in this pilot. See [interior behaviour and extension notes](docs/INTERIORS.md).
+Walk near the pharmacy entrance on Garden Street and click **Enter the pharmacy · Space** or press Space. Entry takes priority over nearby pedestrians. Inside, click the supplied neutral chemist to open the pharmacy shop: select symptoms, toggle phrase names, ask for recommendations, add medicines to a basket and check out using your saved balance. See [the pharmacy shop pilot](docs/PHARMACY_SHOP.md). **Back outside** or Escape returns you to the same position, preserving money. Bank and pharmacy entry are enabled. See [interior behaviour and extension notes](docs/INTERIORS.md).
 
 ## Map view
 

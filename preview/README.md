@@ -1,24 +1,11 @@
-# Entrance Space and saved map view — corrected preview
+# Play the latest Little Town
 
-Download **Little-Town-Entry-and-Map-View.zip** with GitHub's **Download raw file** button. Extract it and open the **newly extracted Little-Town.html**. The game is fully offline.
+[**Open the game in your browser**](https://gerseyli.github.io/little-town/). Refresh the same link after updates. Ordinary previews no longer require downloads.
 
-## Fixed in this version
+## Bank and pharmacy
 
-- **Space enters at the pharmacy prompt**, even when a zoom, labels, Whole map or walking button retains keyboard focus. Entry wins before the button's native action and nearby pedestrian interaction.
-- New games/older saves start at **Whole map (100%)**.
-- Your chosen zoom percentage stays the same between Town and Suburbs and survives resize, Back to start and reload. View changes save immediately.
-- The complete pharmacy shop pilot is retained: symptom multi-selection/names toggle, recommendations, editable basket and saved-money checkout.
+Walk to the bank on Oak Street or pharmacy on Garden Street. Press **Space** or click the named entrance prompt. Bank entry shows the supplied City Bank lobby. Pharmacy entry retains the chemist, symptoms, recommendations and paid basket checkout. **Back outside** or Escape leaves the room, preserving outdoor state and money.
 
-## Try the pharmacy
+[Recovery plan](../docs/IMPLEMENTATION_PLAN.md) · [Deployment status](../docs/PREVIEW_DEPLOYMENT.md) · [Interiors](../docs/INTERIORS.md)
 
-Enter the pharmacy on Garden Street, then click the chemist. Select symptom pictures and ask **What would you recommend?** Add product cards to **Your basket** and check out. Insufficient funds preserve the basket and balance; paid spending saves. **Back to counter** or Escape returns to the room; Escape from the room leaves. **Back outside** leaves directly.
-
-![Pharmacy shop](Pharmacy-Shop.png)
-
-## Verification
-
-The retained-focus entrance regression failed on the previous build and now passes for five control types. Real train journeys confirm zoom persistence at 160% and Whole map, along with reload/resize/reset and invalid-save fallback retaining money. Syntax/full Node and interior/shop/motion/exterior/paving Chromium suites pass. The archived HTML is byte-identical to the build; all artwork and existing gameplay data are preserved.
-
-[Recovery plan](../docs/IMPLEMENTATION_PLAN.md) · [Map view and keyboard fix](../docs/MAP_VIEW.md) · [Pharmacy shop](../docs/PHARMACY_SHOP.md)
-
-Branch: `fix/entry-space-and-map-view-20261107`. Main unchanged.
+Canonical source: `preview/live`. Verified game changes trigger the automatic Pages pipeline. Existing ZIPs are historical snapshots; use the browser link for the latest game.

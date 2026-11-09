@@ -221,7 +221,10 @@ User request: allow the player to enter the bank and show the exact City Bank lo
 
 Work on canonical `preview/live`, preserving the current verified game and main. Preserve the existing untracked `tests/hosted-preview.py` from the earlier interrupted deployment check.
 
-- [ ] Add bank to the existing loose-proximity entrance system using `bank-entrance`; keep Space/button focus priority and pedestrian precedence.
-- [ ] Support a background-only interior with the supplied bank art, money HUD and Back outside/Escape. The pharmacy chemist, greeting and shop must appear only in the pharmacy. No ATM, banking transaction or staff interaction is requested yet.
-- [ ] Verify bank proximity/keyboard entry, correct HD art with no pharmacy overlay, focus, exit/re-entry, preserved position/facing/zoom/money, and pharmacy regression. Keep supplied image bytes unchanged and embed bank in offline/web builds.
+- [x] Add bank to the existing loose-proximity entrance system using `bank-entrance`; keep Space/button focus priority and pedestrian precedence.
+- [x] Support a background-only interior with the supplied bank art, money HUD and Back outside/Escape. The pharmacy chemist, greeting and shop must appear only in the pharmacy. No ATM, banking transaction or staff interaction is requested yet.
+- [x] Verify bank proximity/keyboard entry, correct HD art with no pharmacy overlay, focus, exit/re-entry, preserved position/facing/zoom/money, and pharmacy regression. Keep supplied image bytes unchanged and embed bank in offline/web builds.
 - [ ] Save progress and deployment notes, push the verified update to preview/live, await Pages success and verify the actual hosted bank scene at the stable URL. Finish the previously interrupted hosting-status handoff when the live check succeeds.
+
+
+Bank implementation checkpoint (2026-11-09): reuses the exact existing supplied lobby unchanged. Registry now supports optional character/greeting, the bank uses its named approach and a background-only view, and pharmacy-only actions are guarded. Node interior/hash checks, real bank keyboard/focus/exit/scene-switching browser regression and the existing pharmacy shop browser suite pass. Responsive screenshots confirm the whole supplied image, no pharmacy overlays and readable exit/money controls. `npm run test:preview` verifies 28 external HD assets and unchanged game/asset bytes. Prior deployment 68fc8d9 was also verified in a real HTTPS browser today, completing the interrupted hosting check. Bank deployment/hosted verification is next.

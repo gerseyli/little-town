@@ -43,9 +43,23 @@ assert(enterPlace());$('interior-dialog').fire('cancel',{preventDefault(){}});as
 assert(enterPlace());$('interior-dialog').close();assert(!activeInterior&&!busy,'native close clears state');
 assert(enterPlace());reset();assert(!activeInterior&&!busy);assert.equal(x,current().start[0]);
 x=900;y=1020;updateEntrancePrompt();x=1000;assert.equal(enterPlace(),false,'stale entrance click cannot teleport');
+for(const [px,py] of [[270,575],[270,590],[270,610],[230,610],[310,610]])assert.equal(entranceAt('town',px,py)?.place,'bank','bank entrance '+px+','+py);
+assert.equal(entranceAt('town',313,610),null,'outside bank radius');
+x=270;y=610;facing='west';angle=270;setZoom(2);update();
+assert($('enter-place').innerHTML.includes('Enter the bank'));fireKey('Space');
+assert.equal(activeInterior.entry.place,'bank');assert.equal($('interior-title').textContent,'Bank');
+assert.equal($('interior-background').src,ASSETS['bank-background']);
+assert($('interior-character').classList.contains('hidden'));assert($('chemist-greeting').classList.contains('hidden'));
+assert.equal($('chemist-greeting').textContent,'');assert.equal($('interior-money').textContent,'$125');
+openPharmacyShop();$('chemist').fire('click');assert(!pharmacyShopVisible(),'bank cannot open pharmacy interaction');
+leavePlace();assert.deepEqual([x,y,facing,angle,zoom,playerMoney.balanceCents],[270,610,'west',270,2,12500]);
+x=900;y=1020;assert(enterPlace());assert(!$('interior-character').classList.contains('hidden'));
+assert(!$('chemist-greeting').classList.contains('hidden'));assert.equal($('chemist-greeting').textContent,'Hello, how can I help you today?');
+leavePlace();x=270;y=610;assert(enterPlace());$('interior-dialog').fire('cancel',{preventDefault(){}});assert(!activeInterior&&!busy);
+
 `,ctx);
 assert.deepEqual(events.get('little-town:chemist-interact'),{map:'town',place:'pharmacy'});
 assert.equal(focused,'camera');
 const manifest=JSON.parse(fs.readFileSync(path.join(root,'assets/interiors/source-manifest.json')));
 for(const record of manifest.images)assert.equal(crypto.createHash('sha256').update(fs.readFileSync(path.join(root,'assets/interiors',record.file))).digest('hex'),record.sha256,'unchanged supplied image '+record.file);
-console.log('PASS: pharmacy proximity/blocked geometry, entrance priority over pedestrians, stale targets, repeated Space, interior movement isolation, neutral greeting/click hook, money/position/focus preservation, cancel/native close/reset, and unchanged original assets');
+console.log('PASS: bank background-only entry/exit, scene isolation, preserved zoom/money and pharmacy proximity/blocked geometry, entrance priority over pedestrians, stale targets, repeated Space, interior movement isolation, neutral greeting/click hook, money/position/focus preservation, cancel/native close/reset, and unchanged original assets');

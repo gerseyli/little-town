@@ -20,9 +20,9 @@ for(const name of ['tourist',...Array.from({length:6},(_,i)=>'person-'+i)]){
  const bytes=await readFile(path.join(root,'assets/walking',name+'.webp'));
  assets['walk-'+name]='data:image/webp;base64,'+bytes.toString('base64');
 }
-// Embed the supplied pharmacy pilot artwork; keep other expressions/lobby as source assets.
-for(const [key,file] of [['pharmacy-background','background'],['chemist-neutral','chemist-neutral']]){
- const bytes=await readFile(path.join(root,'assets/interiors/pharmacy',file+'.png'));
+// Embed supplied interiors; keep unused character expressions as source assets.
+for(const [key,file] of [['pharmacy-background','pharmacy/background'],['chemist-neutral','pharmacy/chemist-neutral'],['bank-background','bank/background']]){
+ const bytes=await readFile(path.join(root,'assets/interiors',file+'.png'));
  assets[key]='data:image/png;base64,'+bytes.toString('base64');
 }
 for(const [key,file] of [['pharmacyConsultation','consultation'],['pharmacyBasket','basket'],['pharmacyAction','action']]){

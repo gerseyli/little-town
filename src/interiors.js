@@ -2,10 +2,15 @@
 const PLACE_INTERIORS=[{
  map:'town',place:'pharmacy',approach:'pharmacy-entrance',radius:42,
  background:'pharmacy-background',character:'chemist-neutral',
+ backgroundAlt:'Inside the pharmacy, with medicine shelves and a wooden counter.',
  greeting:'Hello, how can I help you today?'
+},{
+ map:'town',place:'bank',approach:'bank-entrance',radius:42,
+ background:'bank-background',
+ backgroundAlt:'Inside City Bank, with an ATM and desks for mortgages, loans, savings accounts and investments.'
 }];
 let activeInterior=null;
-function interiorReady(entry){return !!(ASSETS[entry.background]&&ASSETS[entry.character])}
+function interiorReady(entry){return !!ASSETS[entry.background]&&(!entry.character||!!ASSETS[entry.character])}
 function entranceAt(key=mapKey,px=x,py=y){
  if(!walkable(px,py,true,py,key))return null;
  return PLACE_INTERIORS.filter(entry=>entry.map===key&&interiorReady(entry)).map(entry=>{
@@ -38,9 +43,12 @@ function enterPlace(){
  $('interior-title').textContent=entry.name;
  $('interior-background').src=ASSETS[entry.background];
  $('interior-backdrop').src=ASSETS[entry.background];
- $('interior-background').alt='Inside the pharmacy, with medicine shelves and a wooden counter.';
- $('chemist-art').src=ASSETS[entry.character];
- $('chemist-greeting').textContent=entry.greeting;
+ $('interior-background').alt=entry.backgroundAlt;
+ $('interior-character').classList.toggle('hidden',!entry.character);
+ $('chemist-greeting').classList.toggle('hidden',!entry.greeting);
+ if(entry.character)$('chemist-art').src=ASSETS[entry.character];
+ $('chemist-greeting').textContent=entry.greeting||'';
+ $('interior-dialog').setAttribute('aria-describedby',entry.greeting?'chemist-greeting':'interior-title');
  $('interior-wallet').src=ASSETS.walletIcon;
  $('interior-money').textContent=formatMoney(playerMoney.balanceCents);
  const dialog=$('interior-dialog');dialog.showModal();dialog.focus();
@@ -76,14 +84,14 @@ $('interior-dialog').addEventListener('close',()=>{
 });
 $('interior-dialog').addEventListener('keydown',event=>{
  if(event.key!=='Tab'||!activeInterior)return;
- const controls=pharmacyShopVisible()?[...$('interior-dialog').querySelectorAll('button:not([disabled]),[tabindex="0"]')].filter(el=>el.getClientRects().length):[$('interior-exit'),$('chemist')];
+ const controls=pharmacyShopVisible()?[...$('interior-dialog').querySelectorAll('button:not([disabled]),[tabindex="0"]')].filter(el=>el.getClientRects().length):activeInterior.entry.character?[$('interior-exit'),$('chemist')]:[$('interior-exit')];
  const first=controls[0],last=controls.at(-1),focused=document.activeElement;
  if(focused===$('interior-dialog')||(!event.shiftKey&&focused===last)||(event.shiftKey&&focused===first)){
   event.preventDefault();(event.shiftKey?last:first).focus();
  }
 });
 $('chemist').addEventListener('click',()=>{
- if(!activeInterior)return;
+ if(!activeInterior||activeInterior.entry.place!=='pharmacy')return;
  // Open the consultation while preserving the extension event for later features.
  openPharmacyShop();
  $('interior-dialog').dispatchEvent(new CustomEvent('little-town:chemist-interact',{
