@@ -2,7 +2,7 @@
 
 ## Download the standalone game
 
-[**Download Little-Town.html**](https://github.com/gerseyli/little-town/releases/download/offline-42678595210/Little-Town.html). Save it and open it in a browser. The 60.7 MB HTML includes all artwork and current banking, mortgage, pharmacy and grocery features; it plays offline. This direct download is independent of the live preview.
+[**Download Little-Town.html**](https://github.com/gerseyli/little-town/releases/download/offline-42686409466/Little-Town.html). Save it and open it in a browser. The 125.3 MB HTML includes all artwork, current banking/mortgage/pharmacy/grocery features, and the free offline voice engine/English model. Voice mode is optional and requires browser microphone permission. This direct download is independent of the live preview.
 
 ## Browser preview
 
