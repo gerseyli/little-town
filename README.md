@@ -1,5 +1,9 @@
 # Little Town — source starter
 
+## Download the standalone game
+
+[**Download Little-Town.html**](https://github.com/gerseyli/little-town/releases/download/offline-42678595210/Little-Town.html). Save it and open it in a browser. The 60.7 MB HTML includes all artwork and current banking, mortgage, pharmacy and grocery features; it plays offline. This direct download is independent of the live preview.
+
 ## Browser preview
 
 [**Play Little Town in your browser**](https://gerseyli.github.io/little-town/). Refresh this same link after updates; no ZIP download is needed. Verified game/build pushes to **preview/live** automatically test and deploy. See [deployment details](docs/PREVIEW_DEPLOYMENT.md). The offline export is still available with `npm run build`.

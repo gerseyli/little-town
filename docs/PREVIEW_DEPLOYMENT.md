@@ -41,3 +41,7 @@ Saved money, zoom and progress use the same browser origin/localStorage across g
 - No gameplay source or original asset was modified for hosting. GitHub-hosted source/gameplay/static verification also passed. Pages is public, enabled and verified.
 
 Hosted verification: `python3 tests/hosted-preview.py https://gerseyli.github.io/little-town/ --commit <deployed-sha>`; add `--bank` to check the new bank scene once deployed. Uses the normal environment HTTPS proxy without disabling certificate verification.
+
+## Download fallback — 2026-11-09
+
+The user reports that the live preview does not work for them and requested a standalone HTML. No user-device diagnosis or site repair is claimed. The latest complete game is available as [Little-Town.html](https://github.com/gerseyli/little-town/releases/download/offline-42678595210/Little-Town.html), published by successful release-export run 42678595210. All 41 assets are embedded; the downloaded bytes match the locally verified build. ATM and Grocery store play pass with networking disabled. See IMPLEMENTATION_PLAN.md for digest and validation details.
