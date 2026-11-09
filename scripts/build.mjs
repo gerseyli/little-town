@@ -33,16 +33,19 @@ for(const [key,file] of [['bankATM','atm'],['bankSlot','slot'],['bankCash','cash
  assets[key]='data:image/webp;base64,'+(await readFile(path.join(root,'assets/ui/bank',file+'.webp'))).toString('base64');
 }
 for(const id of ['bakers','johnsons','millers','wilsons'])assets['house-'+id]='data:image/webp;base64,'+(await readFile(path.join(root,'assets/interiors/bank/houses',id+'.webp'))).toString('base64');
+for(const name of ['background','assistant','pantry1','pantry2','fresh'])assets['grocery-'+name]='data:image/webp;base64,'+(await readFile(path.join(root,'assets/interiors/grocery',name+'.webp'))).toString('base64');
 assets.pharmacySymptoms='data:image/png;base64,'+(await readFile(path.join(root,'assets/interiors/pharmacy/symptoms/atlas.png'))).toString('base64');
 // Embed every map, control and actor image for a standalone offline export.
 const assetJSON='{'+Object.entries(assets).map(([k,v])=>JSON.stringify(k)+': '+JSON.stringify(v)).join(', ')+'}';
 const maps=await read('src/maps.json');
 const phrases=await read('src/phrasebook.js');
-const styles=(await read('src/styles.css'))+'\n'+(await read('src/pharmacy.css'))+'\n'+(await read('src/bank.css'));
+const styles=(await read('src/styles.css'))+'\n'+(await read('src/pharmacy.css'))+'\n'+(await read('src/bank.css'))+'\n'+(await read('src/grocery.css'));
 const walkingAnchors=await read('assets/walking/foot-anchors.json');
 const pharmacyData=await read('src/pharmacy-data.json'),symptomAtlas=await read('assets/interiors/pharmacy/symptoms/atlas.json');
 const money=await read('src/money.js'),interiors=await read('src/interiors.js'),shop=await read('src/shop.js');
 const pharmacy=(await read('src/pharmacy.js')).replace('/* PHARMACY DATA */',()=> 'const PHARMACY_DATA='+pharmacyData+';').replace('/* SYMPTOM ATLAS */',()=> 'const SYMPTOM_ATLAS='+symptomAtlas+';');
+const groceryData=await read('src/grocery-data.json');
+const grocery=(await read('src/grocery.js')).replace('/* GROCERY DATA */',()=> 'const GROCERY_DATA='+(groceryData)+';');
 const banking=await read('src/banking.js'),bank=await read('src/bank.js');
 const motion=await read('src/motion.js'),paths=await read('src/paths.js');
 const navigation=await read('src/navigation.js'),worldLife=await read('src/world-life.js'),actors=await read('src/actors.js');
@@ -53,6 +56,7 @@ const game=(await read('src/game.js'))
  .replace('/* MONEY */',()=>money)
  .replace('/* BANKING */',()=>banking)
  .replace('/* BANK */',()=>bank)
+ .replace('/* GROCERY */',()=>grocery)
  .replace('/* INTERIORS */',()=>interiors)
  .replace('/* SHOP */',()=>shop)
  .replace('/* PHARMACY */',()=>pharmacy)

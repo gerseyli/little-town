@@ -1,0 +1,282 @@
+{
+  "sheets": {
+    "pantry1": {
+      "width": 1774,
+      "height": 887
+    },
+    "pantry2": {
+      "width": 1774,
+      "height": 887
+    },
+    "fresh": {
+      "width": 1774,
+      "height": 887
+    }
+  },
+  "products": [
+    {
+      "id": "beans",
+      "food": "beans",
+      "container": "a can of",
+      "phrase": "a can of beans",
+      "plural": "cans of beans",
+      "priceCents": 250,
+      "group": "cans-jars",
+      "sheet": "pantry1",
+      "frame": 0
+    },
+    {
+      "id": "tuna",
+      "food": "tuna",
+      "container": "a can of",
+      "phrase": "a can of tuna",
+      "plural": "cans of tuna",
+      "priceCents": 300,
+      "group": "cans-jars",
+      "sheet": "pantry1",
+      "frame": 1
+    },
+    {
+      "id": "honey",
+      "food": "honey",
+      "container": "a jar of",
+      "phrase": "a jar of honey",
+      "plural": "jars of honey",
+      "priceCents": 650,
+      "group": "cans-jars",
+      "sheet": "pantry1",
+      "frame": 2
+    },
+    {
+      "id": "jam",
+      "food": "jam",
+      "container": "a jar of",
+      "phrase": "a jar of jam",
+      "plural": "jars of jam",
+      "priceCents": 450,
+      "group": "cans-jars",
+      "sheet": "pantry1",
+      "frame": 3
+    },
+    {
+      "id": "milk",
+      "food": "milk",
+      "container": "a bottle of",
+      "phrase": "a bottle of milk",
+      "plural": "bottles of milk",
+      "priceCents": 325,
+      "group": "dairy-drinks",
+      "sheet": "pantry1",
+      "frame": 4
+    },
+    {
+      "id": "water",
+      "food": "water",
+      "container": "a bottle of",
+      "phrase": "a bottle of water",
+      "plural": "bottles of water",
+      "priceCents": 150,
+      "group": "dairy-drinks",
+      "sheet": "pantry1",
+      "frame": 5
+    },
+    {
+      "id": "juice",
+      "food": "juice",
+      "container": "a carton of",
+      "phrase": "a carton of juice",
+      "plural": "cartons of juice",
+      "priceCents": 375,
+      "group": "dairy-drinks",
+      "sheet": "pantry1",
+      "frame": 6
+    },
+    {
+      "id": "eggs",
+      "food": "eggs",
+      "container": "a carton of",
+      "phrase": "a carton of eggs",
+      "plural": "cartons of eggs",
+      "priceCents": 425,
+      "group": "dairy-drinks",
+      "sheet": "pantry1",
+      "frame": 7
+    },
+    {
+      "id": "pasta",
+      "food": "pasta",
+      "container": "a packet of",
+      "phrase": "a packet of pasta",
+      "plural": "packets of pasta",
+      "priceCents": 225,
+      "group": "packets-bags",
+      "sheet": "pantry2",
+      "frame": 0
+    },
+    {
+      "id": "rice",
+      "food": "rice",
+      "container": "a packet of",
+      "phrase": "a packet of rice",
+      "plural": "packets of rice",
+      "priceCents": 275,
+      "group": "packets-bags",
+      "sheet": "pantry2",
+      "frame": 1
+    },
+    {
+      "id": "flour",
+      "food": "flour",
+      "container": "a bag of",
+      "phrase": "a bag of flour",
+      "plural": "bags of flour",
+      "priceCents": 325,
+      "group": "packets-bags",
+      "sheet": "pantry2",
+      "frame": 2
+    },
+    {
+      "id": "sugar",
+      "food": "sugar",
+      "container": "a bag of",
+      "phrase": "a bag of sugar",
+      "plural": "bags of sugar",
+      "priceCents": 300,
+      "group": "packets-bags",
+      "sheet": "pantry2",
+      "frame": 3
+    },
+    {
+      "id": "yogurt",
+      "food": "yogurt",
+      "container": "a tub of",
+      "phrase": "a tub of yogurt",
+      "plural": "tubs of yogurt",
+      "priceCents": 250,
+      "group": "dairy-drinks",
+      "sheet": "pantry2",
+      "frame": 4
+    },
+    {
+      "id": "ice-cream",
+      "food": "ice cream",
+      "container": "a tub of",
+      "phrase": "a tub of ice cream",
+      "plural": "tubs of ice cream",
+      "priceCents": 550,
+      "group": "dairy-drinks",
+      "sheet": "pantry2",
+      "frame": 5
+    },
+    {
+      "id": "cereal",
+      "food": "cereal",
+      "container": "a box of",
+      "phrase": "a box of cereal",
+      "plural": "boxes of cereal",
+      "priceCents": 475,
+      "group": "packets-bags",
+      "sheet": "pantry2",
+      "frame": 6
+    },
+    {
+      "id": "tea",
+      "food": "tea",
+      "container": "a box of",
+      "phrase": "a box of tea",
+      "plural": "boxes of tea",
+      "priceCents": 400,
+      "group": "packets-bags",
+      "sheet": "pantry2",
+      "frame": 7
+    },
+    {
+      "id": "bread",
+      "food": "bread",
+      "container": "a loaf of",
+      "phrase": "a loaf of bread",
+      "plural": "loaves of bread",
+      "priceCents": 350,
+      "group": "bakery",
+      "sheet": "fresh",
+      "frame": 0
+    },
+    {
+      "id": "chocolate",
+      "food": "chocolate",
+      "container": "a bar of",
+      "phrase": "a bar of chocolate",
+      "plural": "bars of chocolate",
+      "priceCents": 275,
+      "group": "bakery",
+      "sheet": "fresh",
+      "frame": 1
+    },
+    {
+      "id": "bananas",
+      "food": "bananas",
+      "container": "a bunch of",
+      "phrase": "a bunch of bananas",
+      "plural": "bunches of bananas",
+      "priceCents": 225,
+      "group": "produce",
+      "sheet": "fresh",
+      "frame": 2
+    },
+    {
+      "id": "grapes",
+      "food": "grapes",
+      "container": "a bunch of",
+      "phrase": "a bunch of grapes",
+      "plural": "bunches of grapes",
+      "priceCents": 375,
+      "group": "produce",
+      "sheet": "fresh",
+      "frame": 3
+    },
+    {
+      "id": "apple",
+      "food": "apple",
+      "container": null,
+      "phrase": "an apple",
+      "plural": "apples",
+      "priceCents": 85,
+      "group": "produce",
+      "sheet": "fresh",
+      "frame": 4
+    },
+    {
+      "id": "orange",
+      "food": "orange",
+      "container": null,
+      "phrase": "an orange",
+      "plural": "oranges",
+      "priceCents": 95,
+      "group": "produce",
+      "sheet": "fresh",
+      "frame": 5
+    },
+    {
+      "id": "carrot",
+      "food": "carrot",
+      "container": null,
+      "phrase": "a carrot",
+      "plural": "carrots",
+      "priceCents": 65,
+      "group": "produce",
+      "sheet": "fresh",
+      "frame": 6
+    },
+    {
+      "id": "tomato",
+      "food": "tomato",
+      "container": null,
+      "phrase": "a tomato",
+      "plural": "tomatoes",
+      "priceCents": 110,
+      "group": "produce",
+      "sheet": "fresh",
+      "frame": 7
+    }
+  ]
+}

@@ -2,7 +2,7 @@
 
 Four generated, transparent HD assets, converted to lossless WebP without resizing. Existing lobby and map are unchanged. All screen text, buttons, account values and house cards are live HTML; no text is baked into the monitor art. Dollar stack is a decorative game prop, not a representation of the transaction denomination/count. CSS clips it at the slot and moves it in/out; reduced-motion uses a short animation. Original generated PNGs remain in the generation workspace.
 
-Native sizes: ATM 1122×1402; cash slot 2172×724; dollar stack 1774×887; mortgage computer 1480×1056.
+Native sizes: ATM 1122×1402; cash slot 2172×724; dollar stack 1774×887; mortgage computer 1496×1051.
 
 ## Generation prompts
 

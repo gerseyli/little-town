@@ -8,6 +8,11 @@ const PLACE_INTERIORS=[{
  map:'town',place:'bank',approach:'bank-entrance',radius:42,
  background:'bank-background',
  backgroundAlt:'Inside City Bank, with an ATM and desks for mortgages, loans, savings accounts and investments.'
+},{
+ map:'town',place:'supermarket',approach:'supermarket-entrance',radius:42,
+ background:'grocery-background',character:'grocery-assistant',actionLabel:'Talk to the shop assistant',
+ backgroundAlt:'Inside the grocery store, with fresh produce, bread, packaged food and a wooden counter.',
+ greeting:'Hello! What would you like today?'
 }];
 let activeInterior=null;
 function interiorReady(entry){return !!ASSETS[entry.background]&&(!entry.character||!!ASSETS[entry.character])}
@@ -38,9 +43,11 @@ function enterPlace(){
  // Always recheck position/availability rather than trusting a previously visible prompt.
  const entry=availableEntrance();if(!entry)return false;
  clearKeys();releasePan();
- activeInterior={entry,outside:{map:mapKey,x,y,facing,angle}};resetPharmacyShop();resetBank();
+ activeInterior={entry,outside:{map:mapKey,x,y,facing,angle}};resetPharmacyShop();resetBank();resetGroceryShop();
  nearbyPerson=conversationPerson=null;busy=true;context=null;renderContext();
  $('interior-title').textContent=entry.name;
+ $('interior-dialog').classList.toggle('grocery-room',entry.place==='supermarket');
+ $('chemist').setAttribute('aria-label',entry.actionLabel||'Talk to the chemist');
  $('interior-background').src=ASSETS[entry.background];
  $('interior-backdrop').src=ASSETS[entry.background];
  $('interior-background').alt=entry.backgroundAlt;
@@ -58,7 +65,7 @@ function enterPlace(){
 }
 function finishInteriorExit(){
  if(!activeInterior)return;
- const outside=activeInterior.outside;activeInterior=null;resetPharmacyShop();resetBank();
+ const outside=activeInterior.outside;activeInterior=null;resetPharmacyShop();resetBank();resetGroceryShop();
  mapKey=outside.map;x=outside.x;y=outside.y;facing=outside.facing;angle=outside.angle;
  busy=false;clearKeys();last=0;update();followPlayer(true);updatePersonPrompt();save();
  $('camera').focus();
@@ -78,7 +85,7 @@ function handleEntranceKeydown(event){
 document.addEventListener('keydown',handleEntranceKeydown,true);
 $('enter-place').addEventListener('click',enterPlace);
 $('interior-exit').addEventListener('click',leavePlace);
-$('interior-dialog').addEventListener('cancel',event=>{event.preventDefault();if(bankViewVisible())closeBankView();else if(pharmacyShopVisible())closePharmacyShop();else leavePlace()});
+$('interior-dialog').addEventListener('cancel',event=>{event.preventDefault();if(bankViewVisible())closeBankView();else if(pharmacyShopVisible())closePharmacyShop();else if(groceryShopVisible())closeGroceryShop();else leavePlace()});
 $('interior-dialog').addEventListener('close',()=>{
  // A queued close event from a previous visit must not end a newly opened visit.
  if(!$('interior-dialog').open)finishInteriorExit();
@@ -88,7 +95,7 @@ $('interior-dialog').addEventListener('keydown',event=>{
  // requests can become non-cancelable, bypassing the service → lobby step.
  if(event.key==='Escape'&&activeInterior){
   event.preventDefault();event.stopPropagation();
-  if(!event.repeat){if(bankViewVisible())closeBankView();else if(pharmacyShopVisible())closePharmacyShop();else leavePlace()}
+  if(!event.repeat){if(bankViewVisible())closeBankView();else if(pharmacyShopVisible())closePharmacyShop();else if(groceryShopVisible())closeGroceryShop();else leavePlace()}
   return;
  }
  if(event.key!=='Tab'||!activeInterior)return;
@@ -100,6 +107,7 @@ $('interior-dialog').addEventListener('keydown',event=>{
  }
 });
 $('chemist').addEventListener('click',()=>{
+ if(activeInterior?.entry.place==='supermarket'){openGroceryShop();return}
  if(!activeInterior||activeInterior.entry.place!=='pharmacy')return;
  // Open the consultation while preserving the extension event for later features.
  openPharmacyShop();
