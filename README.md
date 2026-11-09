@@ -95,3 +95,5 @@ The original three path bugs are fixed, with further visible-path connections au
 Garden Street and the actual theme-park/harbor gate link now use their painted widths. The path data also supplies the street names and centred labels, including repeated names on long bent roads. The existing label toggle controls these names.
 
 NPC directions follow named paths rather than narrating grid adjustments. They use as few concise items as needed, never padding the list; six is the maximum. Current start/NPC/patrol-end regression journeys take one to five items. Bus/train transfers, safe road crossings and the destination are retained. The approved map artwork, walking atlases and speeds are unchanged. See `docs/IMPLEMENTATION_PLAN.md` for the recovery plan and `docs/WALKING_PATH_AUDIT.md` for verification details.
+
+The bank now includes a saved $500 account, ATM deposits/withdrawals with animated cash, and mortgages for the four suburban houses. Ten completed interactions advance a game month; unpaid installments debit the bank automatically and can put its balance into the red. Wallet money stays separate. See [banking rules](docs/BANKING.md).

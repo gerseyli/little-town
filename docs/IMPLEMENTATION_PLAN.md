@@ -199,8 +199,8 @@ Canonical preview source branch: `preview/live`; main remains unchanged. Preserv
 - [x] Save a narrow environment network draft adding `api.github.com` and `gerseyli.github.io` while retaining presets. Draft save confirmed; requires user review/save/publication. User asked for a walkthrough; instructions supplied for the little-town environment. Do not claim network change is applied yet.
 - [x] Build a static web distribution from the verified offline export, with unchanged game logic and content-hashed HD image assets for browser caching. Keep offline export available. Use a stable launcher/version manifest so refresh loads the latest build.
 - [x] Add automatic GitHub Pages build/deploy workflow triggered by pushes to preview/live; test generated site under the repository URL path, keyboard interaction, pharmacy checkout and saved state.
-- [ ] When network configuration is applied, inspect repository Pages/permissions, configure workflow-based Pages and deployment environment, and verify GitHub Actions completes. Do not change repository visibility or introduce paid resources.
-- [ ] Verify the actual public HTTPS URL and current deployed version, including browser assets/gameplay. Save deployment/recovery instructions and ensure future changes publish from preview/live.
+- [x] Owner activated public Pages and allowed preview/live; build/deploy and real HTTPS checks pass. Repository/history publication was explicitly authorized in the later owner-setting checkpoint. No paid resources.
+- [x] Verified actual public HTTPS launcher/assets/gameplay and saved money/zoom. Deployment/recovery instructions are saved; preview/live updates the same stable URL.
 
 Environment network draft is saved, not applied/published. It is tied to the existing little-town cloud configuration. GitHub API denial was an environment CONNECT 403; no missing credential was inferred, no new token requested. Continue independent build/workflow work while the user navigates settings.
 
@@ -224,7 +224,7 @@ Work on canonical `preview/live`, preserving the current verified game and main.
 - [x] Add bank to the existing loose-proximity entrance system using `bank-entrance`; keep Space/button focus priority and pedestrian precedence.
 - [x] Support a background-only interior with the supplied bank art, money HUD and Back outside/Escape. The pharmacy chemist, greeting and shop must appear only in the pharmacy. No ATM, banking transaction or staff interaction is requested yet.
 - [x] Verify bank proximity/keyboard entry, correct HD art with no pharmacy overlay, focus, exit/re-entry, preserved position/facing/zoom/money, and pharmacy regression. Keep supplied image bytes unchanged and embed bank in offline/web builds.
-- [ ] Save progress and deployment notes, push the verified update to preview/live, await Pages success and verify the actual hosted bank scene at the stable URL. Finish the previously interrupted hosting-status handoff when the live check succeeds.
+- [x] Bank entry deployed successfully in run 42670728615 at 3f7266a; real public HTTPS bank entry, exact lobby, pharmacy checkout, saved money/zoom and exit checks pass. Interrupted hosting handoff complete.
 
 
 Bank implementation checkpoint (2026-11-09): reuses the exact existing supplied lobby unchanged. Registry now supports optional character/greeting, the bank uses its named approach and a background-only view, and pharmacy-only actions are guarded. Node interior/hash checks, real bank keyboard/focus/exit/scene-switching browser regression and the existing pharmacy shop browser suite pass. Responsive screenshots confirm the whole supplied image, no pharmacy overlays and readable exit/money controls. `npm run test:preview` verifies 28 external HD assets and unchanged game/asset bytes. Prior deployment 68fc8d9 was also verified in a real HTTPS browser today, completing the interrupted hosting check. Bank deployment/hosted verification is next.
@@ -233,26 +233,28 @@ Bank implementation checkpoint (2026-11-09): reuses the exact existing supplied 
 
 The user dictated this next mechanic while bank entry was being deployed. Preserve that bank entrance/lobby work. Make all five visible bank services clickable: ATM, mortgages, loans, savings accounts and investments. Implement the ATM first; other desks get selection feedback and an extension hook without invented financial products.
 
-- [ ] Generate an ATM close-up matching the supplied lobby ATM, a separate cash-slot asset and realistic illustrated dollar-stack asset. Preserve prompts and use clipped, smooth cash-in/cash-out animation.
-- [ ] Add a distinct persistent bank account starting at $500, separate from spendable wallet money ($100 default). Migrate older saves, preserve zero and validate malformed stored balances. Transfers must conserve total cents, prevent overdrafts/overflow, and save both balances coherently.
-- [ ] ATM menu: Account balance, Withdraw money and Deposit money. Amount entry asks the requested question, supports confirm/back/keyboard, validates positive two-decimal dollar amounts and funds, and shows clear errors/success. Prevent repeated confirmation while animating.
-- [ ] Wire accurately aligned lobby hotspots, close-up/back/Escape/focus rules, separate bank/wallet readouts and robust animation cleanup. Confirmed transfer persists immediately; exiting/reloading during the visual animation must not lose or repeat it.
-- [ ] Test account defaults/save migration, deposit/withdraw/exact/insufficient funds and cents conservation, click targets, amount input, repeat clicks, cash direction/slot clipping, reduced motion and exit/re-entry/reload. Preserve pharmacy checkout and bank entry.
+- [x] Generate an ATM close-up matching the supplied lobby ATM, a separate cash-slot asset and realistic illustrated dollar-stack asset. Preserve prompts and use clipped, smooth cash-in/cash-out animation.
+- [x] Add a distinct persistent bank account starting at $500, separate from spendable wallet money ($100 default). Migrate older saves, preserve zero and validate malformed stored balances. Transfers must conserve total cents, prevent overdrafts/overflow, and save both balances coherently.
+- [x] ATM menu: Account balance, Withdraw money and Deposit money. Amount entry asks the requested question, supports confirm/back/keyboard, validates positive two-decimal dollar amounts and funds, and shows clear errors/success. Prevent repeated confirmation while animating.
+- [x] Wire accurately aligned lobby hotspots, close-up/back/Escape/focus rules, separate bank/wallet readouts and robust animation cleanup. Confirmed transfer persists immediately; exiting/reloading during the visual animation must not lose or repeat it.
+- [x] Test account defaults/save migration, deposit/withdraw/exact/insufficient funds and cents conservation, click targets, amount input, repeat clicks, cash direction/slot clipping, reduced motion and exit/re-entry/reload. Preserve pharmacy checkout and bank entry.
 - [ ] Save checkpoints and deploy/verify the complete ATM pilot at the same public preview URL. Finish the bank-only deployment check first if it completes while assets are generated.
+
 
 ## Active task — mortgages and interaction calendar (2026-11-09)
 
 User dictated this alongside the ATM implementation. Finish both together; keep exact bank lobby, pharmacy, traffic, saved wallet and zoom. House catalog must crop the existing suburbs map and preserve the Bakers’, Johnsons’, Millers’ and Wilsons’ names.
 
-- [ ] Generate a matching bank computer frame; crop all four existing house pictures (no regenerated houses/map). Add realistic six-figure catalog prices.
-- [ ] Mortgage desk opens computer: choose house, compare fixed annual interest rate/term/monthly payment plans, review and explicitly confirm purchase; prevent duplicate ownership and accidental repeated signing. Show congratulations and saved active mortgages, including “None” when empty.
-- [ ] Add persistent interaction calendar: ten completed meaningful interactions = one month. Equivalent click/Space actions count once; held keys, browsing choices, cancelled/failed actions do not advance time. Show month and progress, document counted actions.
-- [ ] Fixed amortizing monthly payments use integer cents and annual interest. Allow one manual monthly payment from bank account ahead of due date; at month rollover automatically collect any installment not already paid. Future installments must not double-charge. Show remaining principal, next due month, payment history and final payoff.
-- [ ] Bank account may go negative only for scheduled mortgage collection. Show negative numbers in red in ATM, mortgage screen and bank balance; deposits reduce overdraft and withdrawals require sufficient positive funds. Wallet remains nonnegative. Persist account, calendar, ownership and schedules coherently; preserve older saves and zero balances.
-- [ ] Verify amortization, multiple mortgages, automatic/manual timing, no duplicate charges, overdue overdraft/deposits, reload/migration, keyboard/focus/scrolling, exact image crops, responsive desktop/mobile and existing ATM/pharmacy/gameplay suites.
+- [x] Generate a matching bank computer frame; crop all four existing house pictures (no regenerated houses/map). Add realistic six-figure catalog prices.
+- [x] Mortgage desk opens computer: choose house, compare fixed annual interest rate/term/monthly payment plans, review and explicitly confirm purchase; prevent duplicate ownership and accidental repeated signing. Show congratulations and saved active mortgages, including “None” when empty.
+- [x] Add persistent interaction calendar: ten completed meaningful interactions = one month. Equivalent click/Space actions count once; held keys, browsing choices, cancelled/failed actions do not advance time. Show month and progress, document counted actions.
+- [x] Fixed amortizing monthly payments use integer cents and annual interest. Allow one manual monthly payment from bank account ahead of due date; at month rollover automatically collect any installment not already paid. Future installments must not double-charge. Show remaining principal, next due month, payment history and final payoff.
+- [x] Bank account may go negative only for scheduled mortgage collection. Show negative numbers in red in ATM, mortgage screen and bank balance; deposits reduce overdraft and withdrawals require sufficient positive funds. Wallet remains nonnegative. Persist account, calendar, ownership and schedules coherently; preserve older saves and zero balances.
+- [x] Verify amortization, multiple mortgages, automatic/manual timing, no duplicate charges, overdue overdraft/deposits, reload/migration, keyboard/focus/scrolling, exact image crops, responsive desktop/mobile and existing ATM/pharmacy/gameplay suites.
 - [ ] Push recovery checkpoints, deploy verified game to preview/live and confirm the actual public build. Keep main unchanged.
 
 Pilot rules: fully financed houses; three fixed-rate plans (15/20/30 years), no down payment or fees. A manual payment covers the next installment when within its monthly payment window. Automatic collection can overdraw the bank with no invented penalty. Time counts successful entrances, directions conversations, travel, purchases, ATM transfers, mortgage signing and manual mortgage payments, using their shared action functions for mouse/keyboard parity. Browsing/service clicks and rejected transactions do not count.
+
 
 ## Active task — Grocery store and container vocabulary (2026-11-09)
 
@@ -263,3 +265,5 @@ User added this while banking was being verified. Rename the Town supermarket to
 - [ ] Build assistant/catalog interaction, container phrases, food categories, basket quantities/removal/total and checkout/receipt using the existing spendable wallet. No demonstrative grammar or separate money balance.
 - [ ] Count one completed grocery checkout in the new interaction calendar; failed/empty/repeated checkout and browsing do not advance time. Preserve bank mortgages, ATM, pharmacy, outdoor position, zoom, traffic and keyboard/focus/Escape behavior.
 - [ ] Verify generated sprite framing, vocabulary mappings, cart accounting, funds/repeat safeguards, reload, entrance priority, responsive scrolling and all bank/pharmacy regressions. Save checkpoints and publish a verified update to the same public preview.
+
+Banking validation checkpoint: all Node suites pass, including multiple full mortgage amortizations, exact cent transfers, safe defaults/debt, duplicate ownership, manual payment at rollover and payoff reload. Chromium tests pass for all five bank desks, retained-focus entry, cash clipping/direction, reload/exit during animation, insufficient funds, payment history, automatic red bank balances, mobile/reduced-motion and scene isolation. Fixed a real Chrome close-watcher issue: repeated native cancel events can become non-cancelable; Escape now handles the nested service/lobby/outside navigation before requesting native dialog closure. Bank/grocery work remains on preview/live; bank deployment and grocery assets are next.

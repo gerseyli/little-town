@@ -6,7 +6,7 @@ The user explicitly chose a public preview and authorized public repository/hist
 
 Hosting is active. The user enabled GitHub Actions Pages and added the exact preview/live branch rule to the github-pages deployment environment, retaining main. Run **42356996477** at commit **68fc8d9** completed its full build, gameplay/static checks, artifact upload and deployment successfully on 2026-11-07.
 
-The interrupted final check was completed on 2026-11-09 after the environment recovered: live HTTPS metadata reports that same commit, and `tests/hosted-preview.py` passed against the actual public site. Verified the launcher, HD assets, retained-focus Space entry, pharmacy consultation/checkout ($100 → $91) and saved 120% zoom/money after reload. No asset failures or browser errors. The bank update is being published through the same pipeline; its task/deployment result is recorded in IMPLEMENTATION_PLAN.md.
+The interrupted final check was completed on 2026-11-09 after the environment recovered: live HTTPS metadata reports that same commit, and `tests/hosted-preview.py` passed against the actual public site. Verified the launcher, HD assets, retained-focus Space entry, pharmacy consultation/checkout ($100 → $91) and saved 120% zoom/money after reload. No asset failures or browser errors. The bank entrance update at 3f7266a also deployed successfully (run 42670728615) and passed the actual HTTPS bank-scene check. ATM/mortgage and grocery follow-ups use the same pipeline; their deployment results are recorded in IMPLEMENTATION_PLAN.md.
 
 No further GitHub/environment activation is required. Earlier 403/404/branch-rule notes in the plan are historical checkpoints, not remaining setup work.
 

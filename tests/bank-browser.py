@@ -32,9 +32,9 @@ try:
   assert not page.locator('#chemist-greeting').is_visible()
   assert not page.locator('#pharmacy-shop').is_visible()
   assert page.locator('#interior-dialog').get_attribute('aria-describedby')=='interior-title'
-  for _ in range(6):
-   page.keyboard.press('Tab');assert page.evaluate("document.activeElement===$('interior-exit')")
-  page.keyboard.press('Shift+Tab');assert page.evaluate("document.activeElement===$('interior-exit')")
+  for expected in ['interior-exit','bank-atm','bank-mortgages','bank-loans','bank-savings','bank-investments','interior-exit']:
+   page.keyboard.press('Tab');assert page.evaluate('document.activeElement.id')==expected
+  page.keyboard.press('Shift+Tab');assert page.evaluate('document.activeElement.id')=='bank-investments'
   page.evaluate("$('interior-dialog').focus()")
   page.keyboard.down('ArrowDown');page.evaluate('for(let i=1;i<=10;i++)tick(2000+i*1000/60)');page.keyboard.up('ArrowDown')
   assert page.evaluate('({map:mapKey,x,y,facing,angle,zoom,money:playerMoney.balanceCents})')==outside

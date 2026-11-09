@@ -38,7 +38,7 @@ function enterPlace(){
  // Always recheck position/availability rather than trusting a previously visible prompt.
  const entry=availableEntrance();if(!entry)return false;
  clearKeys();releasePan();
- activeInterior={entry,outside:{map:mapKey,x,y,facing,angle}};resetPharmacyShop();
+ activeInterior={entry,outside:{map:mapKey,x,y,facing,angle}};resetPharmacyShop();resetBank();
  nearbyPerson=conversationPerson=null;busy=true;context=null;renderContext();
  $('interior-title').textContent=entry.name;
  $('interior-background').src=ASSETS[entry.background];
@@ -51,13 +51,14 @@ function enterPlace(){
  $('interior-dialog').setAttribute('aria-describedby',entry.greeting?'chemist-greeting':'interior-title');
  $('interior-wallet').src=ASSETS.walletIcon;
  $('interior-money').textContent=formatMoney(playerMoney.balanceCents);
+ showBankLobby();recordInteraction('entrance');
  const dialog=$('interior-dialog');dialog.showModal();dialog.focus();
  updateEntrancePrompt();updatePersonPrompt();save();
  return true;
 }
 function finishInteriorExit(){
  if(!activeInterior)return;
- const outside=activeInterior.outside;activeInterior=null;resetPharmacyShop();
+ const outside=activeInterior.outside;activeInterior=null;resetPharmacyShop();resetBank();
  mapKey=outside.map;x=outside.x;y=outside.y;facing=outside.facing;angle=outside.angle;
  busy=false;clearKeys();last=0;update();followPlayer(true);updatePersonPrompt();save();
  $('camera').focus();
@@ -77,14 +78,22 @@ function handleEntranceKeydown(event){
 document.addEventListener('keydown',handleEntranceKeydown,true);
 $('enter-place').addEventListener('click',enterPlace);
 $('interior-exit').addEventListener('click',leavePlace);
-$('interior-dialog').addEventListener('cancel',event=>{event.preventDefault();if(pharmacyShopVisible())closePharmacyShop();else leavePlace()});
+$('interior-dialog').addEventListener('cancel',event=>{event.preventDefault();if(bankViewVisible())closeBankView();else if(pharmacyShopVisible())closePharmacyShop();else leavePlace()});
 $('interior-dialog').addEventListener('close',()=>{
  // A queued close event from a previous visit must not end a newly opened visit.
  if(!$('interior-dialog').open)finishInteriorExit();
 });
 $('interior-dialog').addEventListener('keydown',event=>{
+ // Handle Escape before the browser's close watcher. Repeated native cancel
+ // requests can become non-cancelable, bypassing the service → lobby step.
+ if(event.key==='Escape'&&activeInterior){
+  event.preventDefault();event.stopPropagation();
+  if(!event.repeat){if(bankViewVisible())closeBankView();else if(pharmacyShopVisible())closePharmacyShop();else leavePlace()}
+  return;
+ }
  if(event.key!=='Tab'||!activeInterior)return;
- const controls=pharmacyShopVisible()?[...$('interior-dialog').querySelectorAll('button:not([disabled]),[tabindex="0"]')].filter(el=>el.getClientRects().length):activeInterior.entry.character?[$('interior-exit'),$('chemist')]:[$('interior-exit')];
+ const controls=[...$('interior-dialog').querySelectorAll('button:not([disabled]),input:not([disabled]),select:not([disabled]),[tabindex="0"]')].filter(el=>el.getClientRects().length);
+ if(!controls.length)return;
  const first=controls[0],last=controls.at(-1),focused=document.activeElement;
  if(focused===$('interior-dialog')||(!event.shiftKey&&focused===last)||(event.shiftKey&&focused===first)){
   event.preventDefault();(event.shiftKey?last:first).focus();

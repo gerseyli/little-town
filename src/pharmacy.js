@@ -104,6 +104,7 @@ function checkoutPharmacy(){
   pharmacySession.error=result.reason==='funds'?'Not enough money. You need '+formatMoney(pharmacySession.order.totalCents)+', but you have '+formatMoney(playerMoney.balanceCents)+'. Remove an item to reduce the total.':'Add a product to your basket first.';
   renderPharmacyBasket();return;
  }
+ recordInteraction('purchase');
  pharmacySession.receipt=result.receipt;pharmacySession.phase='receipt';pharmacySession.error='';renderPharmacyShop();
  $('shop-live').textContent='Purchase complete. Paid '+formatMoney(result.receipt.totalCents)+'. Money left '+formatMoney(playerMoney.balanceCents)+'.';$('shop-heading').focus();
 }

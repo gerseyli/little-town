@@ -1,0 +1,86 @@
+[
+  {
+    "id": "bakers",
+    "name": "The Bakers’ house",
+    "source": "assets/suburbs.webp",
+    "worldCrop": [
+      132.8125,
+      289.0625,
+      328.125,
+      210.9375
+    ],
+    "pixelBox": [
+      85,
+      185,
+      295,
+      320
+    ],
+    "size": [
+      210,
+      135
+    ]
+  },
+  {
+    "id": "johnsons",
+    "name": "The Johnsons’ house",
+    "source": "assets/suburbs.webp",
+    "worldCrop": [
+      515.625,
+      281.25,
+      351.5625,
+      226.5625
+    ],
+    "pixelBox": [
+      330,
+      180,
+      555,
+      325
+    ],
+    "size": [
+      225,
+      145
+    ]
+  },
+  {
+    "id": "millers",
+    "name": "The Millers’ house",
+    "source": "assets/suburbs.webp",
+    "worldCrop": [
+      125.0,
+      546.875,
+      343.75,
+      226.5625
+    ],
+    "pixelBox": [
+      80,
+      350,
+      300,
+      495
+    ],
+    "size": [
+      220,
+      145
+    ]
+  },
+  {
+    "id": "wilsons",
+    "name": "The Wilsons’ house",
+    "source": "assets/suburbs.webp",
+    "worldCrop": [
+      515.625,
+      546.875,
+      351.5625,
+      226.5625
+    ],
+    "pixelBox": [
+      330,
+      350,
+      555,
+      495
+    ],
+    "size": [
+      225,
+      145
+    ]
+  }
+]
