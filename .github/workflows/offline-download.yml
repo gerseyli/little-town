@@ -1,0 +1,46 @@
+name: Downloadable offline game
+
+on:
+  push:
+    branches: [preview/live]
+    paths: [.github/workflows/offline-download.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build standalone HTML
+        run: npm run build
+      - name: Check embedded assets
+        run: |
+          node <<'JS'
+          const fs=require('node:fs'),assert=require('node:assert/strict');
+          const html=fs.readFileSync('dist/Little-Town.html','utf8');
+          const start=html.indexOf('const ASSETS=')+13,end=html.indexOf(';\nconst MAPS=',start);
+          const assets=JSON.parse(html.slice(start,end));
+          assert(Object.keys(assets).length>=41);
+          assert(Object.values(assets).every(value=>/^data:image\/(?:png|webp);base64,/.test(value)));
+          for(const key of ['bankATM','bankComputer','grocery-background','grocery-assistant','grocery-fresh'])assert(assets[key]);
+          assert(!html.includes('/* GAME */'));
+          console.log('Standalone HTML verified: all '+Object.keys(assets).length+' image assets embedded.');
+          JS
+      - name: Publish direct HTML download
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cat > /tmp/offline-release-notes.md <<EOF
+          Download **Little-Town.html**, save it on your computer, and open it in a browser. All 41 image assets and game logic are embedded; no server or internet connection is required to play.
+
+          Includes the Grocery store with 24 foods and shared-wallet checkout, pharmacy, ATM deposits/withdrawals, mortgages, monthly interaction calendar, moving traffic and walking pedestrians.
+
+          Source: ${GITHUB_SHA}. The live preview site is not needed for this download.
+          EOF
+          gh release create "offline-${GITHUB_RUN_ID}" dist/Little-Town.html --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --title "Little Town — standalone HTML" --notes-file /tmp/offline-release-notes.md
