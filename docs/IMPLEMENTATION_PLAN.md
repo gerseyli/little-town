@@ -239,3 +239,17 @@ The user dictated this next mechanic while bank entry was being deployed. Preser
 - [ ] Wire accurately aligned lobby hotspots, close-up/back/Escape/focus rules, separate bank/wallet readouts and robust animation cleanup. Confirmed transfer persists immediately; exiting/reloading during the visual animation must not lose or repeat it.
 - [ ] Test account defaults/save migration, deposit/withdraw/exact/insufficient funds and cents conservation, click targets, amount input, repeat clicks, cash direction/slot clipping, reduced motion and exit/re-entry/reload. Preserve pharmacy checkout and bank entry.
 - [ ] Save checkpoints and deploy/verify the complete ATM pilot at the same public preview URL. Finish the bank-only deployment check first if it completes while assets are generated.
+
+## Active task — mortgages and interaction calendar (2026-11-09)
+
+User dictated this alongside the ATM implementation. Finish both together; keep exact bank lobby, pharmacy, traffic, saved wallet and zoom. House catalog must crop the existing suburbs map and preserve the Bakers’, Johnsons’, Millers’ and Wilsons’ names.
+
+- [ ] Generate a matching bank computer frame; crop all four existing house pictures (no regenerated houses/map). Add realistic six-figure catalog prices.
+- [ ] Mortgage desk opens computer: choose house, compare fixed annual interest rate/term/monthly payment plans, review and explicitly confirm purchase; prevent duplicate ownership and accidental repeated signing. Show congratulations and saved active mortgages, including “None” when empty.
+- [ ] Add persistent interaction calendar: ten completed meaningful interactions = one month. Equivalent click/Space actions count once; held keys, browsing choices, cancelled/failed actions do not advance time. Show month and progress, document counted actions.
+- [ ] Fixed amortizing monthly payments use integer cents and annual interest. Allow one manual monthly payment from bank account ahead of due date; at month rollover automatically collect any installment not already paid. Future installments must not double-charge. Show remaining principal, next due month, payment history and final payoff.
+- [ ] Bank account may go negative only for scheduled mortgage collection. Show negative numbers in red in ATM, mortgage screen and bank balance; deposits reduce overdraft and withdrawals require sufficient positive funds. Wallet remains nonnegative. Persist account, calendar, ownership and schedules coherently; preserve older saves and zero balances.
+- [ ] Verify amortization, multiple mortgages, automatic/manual timing, no duplicate charges, overdue overdraft/deposits, reload/migration, keyboard/focus/scrolling, exact image crops, responsive desktop/mobile and existing ATM/pharmacy/gameplay suites.
+- [ ] Push recovery checkpoints, deploy verified game to preview/live and confirm the actual public build. Keep main unchanged.
+
+Pilot rules: fully financed houses; three fixed-rate plans (15/20/30 years), no down payment or fees. A manual payment covers the next installment when within its monthly payment window. Automatic collection can overdraw the bank with no invented penalty. Time counts successful entrances, directions conversations, travel, purchases, ATM transfers, mortgage signing and manual mortgage payments, using their shared action functions for mouse/keyboard parity. Browsing/service clicks and rejected transactions do not count.
