@@ -253,3 +253,13 @@ User dictated this alongside the ATM implementation. Finish both together; keep 
 - [ ] Push recovery checkpoints, deploy verified game to preview/live and confirm the actual public build. Keep main unchanged.
 
 Pilot rules: fully financed houses; three fixed-rate plans (15/20/30 years), no down payment or fees. A manual payment covers the next installment when within its monthly payment window. Automatic collection can overdraw the bank with no invented penalty. Time counts successful entrances, directions conversations, travel, purchases, ATM transfers, mortgage signing and manual mortgage payments, using their shared action functions for mouse/keyboard parity. Browsing/service clicks and rejected transactions do not count.
+
+## Active task — Grocery store and container vocabulary (2026-11-09)
+
+User added this while banking was being verified. Rename the Town supermarket to Grocery store. Reuse the Little Shop style shopping flow, with new artwork and shared wallet checkout. Explicitly omit this/that/these/those exercises; teach food containers and unwrapped produce instead.
+
+- [ ] Locate available Little Shop baseline, preserving the current game. Generate a matching HD grocery interior, one friendly assistant state and at least 24 identifiable food illustrations covering cans, packets, bags, tubs, jars, bottles, cartons, boxes and loose produce. Keep prompts and native image resolution.
+- [ ] Enable the existing supermarket entrance under the new Grocery store name and center its map/path labels; preserve stable place/path IDs and directions routes.
+- [ ] Build assistant/catalog interaction, container phrases, food categories, basket quantities/removal/total and checkout/receipt using the existing spendable wallet. No demonstrative grammar or separate money balance.
+- [ ] Count one completed grocery checkout in the new interaction calendar; failed/empty/repeated checkout and browsing do not advance time. Preserve bank mortgages, ATM, pharmacy, outdoor position, zoom, traffic and keyboard/focus/Escape behavior.
+- [ ] Verify generated sprite framing, vocabulary mappings, cart accounting, funds/repeat safeguards, reload, entrance priority, responsive scrolling and all bank/pharmacy regressions. Save checkpoints and publish a verified update to the same public preview.
